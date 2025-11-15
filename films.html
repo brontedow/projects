@@ -2,36 +2,34 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Films — Bronte Dow</title>
+  <title>Films | Bronte Dow</title>
   <style>
     body { 
       margin: 0; 
-      padding: 40px; 
+      padding: 20px; 
       font-family: sans-serif; 
-      font-size: 18px;
-      line-height: 1.5;
     }
 
-    /* Sentence links style */
-    a {
-      color: red;          /* red text */
-      font-style: italic;  /* italic */
+    .header-text {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .header-text a {
+      color: red;
+      font-style: italic;
       text-decoration: none;
     }
 
-    a:active {
-      font-weight: bold;   /* bold when clicked */
-    }
-
-    a:hover {
-      font-weight: bold;   /* also bold on hover for clarity */
+    .header-text a:hover,
+    .header-text a:active {
+      font-weight: bold;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 15px;
-      margin-top: 30px; /* space between sentence and grid */
     }
 
     .grid img {
@@ -39,37 +37,38 @@
       height: auto;
       display: block;
     }
-
-    /* Optional: add small spacing above the page */
-    p.sentence {
-      margin-bottom: 20px;
-    }
   </style>
 </head>
 <body>
 
-<!-- Sentence at top, same as homepage -->
-<p class="sentence">
-  Bronte Dow makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. She was born in Sydney, Australia, and is based in London.
-</p>
+<div class="header-text">
+  Bronte Dow makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>.
+</div>
 
-<!-- Image grid below sentence -->
 <div class="grid">
-
   <!-- 1 (linked) -->
-  <a href="https://vimeo.com/421674126" target="_blank"><img src="1.jpg" alt=""></a>
+  <a href="https://vimeo.com/421674126" target="_blank">
+    <img src="1.jpg" alt="">
+  </a>
+
   <img src="2.jpg" alt="">
   <img src="3.jpg" alt="">
   <img src="4.jpg" alt="">
 
   <!-- 5 (linked) -->
-  <a href="https://youtu.be/ujp5JmtpsuY" target="_blank"><img src="5.jpg" alt=""></a>
+  <a href="https://youtu.be/ujp5JmtpsuY" target="_blank">
+    <img src="5.jpg" alt="">
+  </a>
+
   <img src="6.jpg" alt="">
   <img src="7.jpg" alt="">
   <img src="8.jpg" alt="">
 
   <!-- 9 (linked) -->
-  <a href="https://vimeo.com/brontedow/soundings" target="_blank"><img src="9.jpg" alt=""></a>
+  <a href="https://vimeo.com/brontedow/soundings" target="_blank">
+    <img src="9.jpg" alt="">
+  </a>
+
   <img src="10.jpg" alt="">
   <img src="11.jpg" alt="">
   <img src="12.jpg" alt="">
@@ -78,8 +77,9 @@
   <img src="15.jpg" alt="">
 
   <!-- 16 (linked) -->
-  <a href="https://vimeo.com/384226372" target="_blank"><img src="16.jpg" alt=""></a>
-
+  <a href="https://vimeo.com/384226372" target="_blank">
+    <img src="16.jpg" alt="">
+  </a>
 </div>
 
 </body>
