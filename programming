@@ -1,16 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-  <title>Programming — Bronte Dow</title>
+  <meta charset="utf-8">
+  <title>Bronte Dow — Programming</title>
+  <style>
+    body { 
+      margin: 0; 
+      padding: 20px; 
+      font-family: sans-serif; 
+    }
+
+    /* Header container */
+    .header {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      margin: 0;
+    }
+
+    .header a {
+      font-size: 18px;
+      text-decoration: none;
+      color: black;
+    }
+
+    .header a:hover {
+      text-decoration: underline;
+    }
+
+    /* iframe styling */
+    iframe {
+      width: 100%;
+      height: 90vh; /* takes almost full viewport height */
+      border: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>Programming</h1>
 
-  <iframe 
-    src="https://weathergirlevents.wordpress.com/" 
-    style="width: 100%; height: 90vh; border: none;">
-  </iframe>
+<div class="header">
+  <h1>Bronte Dow</h1>
+  <a href="index.html">Home</a>
+  <a href="films.html">Films</a>
+</div>
 
-  <a href="index.html">← Back to home</a>
+<!-- Embed WordPress site -->
+<iframe src="https://weathergirlevents.wordpress.com/"></iframe>
+
 </body>
 </html>
