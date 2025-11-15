@@ -17,17 +17,13 @@
       color: red;          /* red text */
       font-style: italic;  /* italic */
       text-decoration: none;
+      transition: font-weight 0.2s;
     }
 
-    a:active {
-      font-weight: bold;   /* bold when clicked */
+    a:hover, a:active {
+      font-weight: bold;   /* bold on hover or active */
     }
 
-    a:hover {
-      font-weight: bold;   /* also bold on hover */
-    }
-
-    /* Center sentence optionally */
     p.sentence {
       margin-bottom: 20px;
     }
@@ -35,7 +31,6 @@
 </head>
 <body>
 
-<!-- Homepage sentence -->
 <p class="sentence">
   Bronte Dow makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. She was born in Sydney, Australia, and is based in London.
 </p>
