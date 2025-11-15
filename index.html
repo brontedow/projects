@@ -12,20 +12,31 @@
       line-height: 1.5;
     }
 
+    /* Sentence links style */
     a {
-      color: red;
-      font-style: italic;
+      color: red;          /* red text */
+      font-style: italic;  /* italic */
       text-decoration: none;
     }
 
     a:active {
-      font-weight: bold;
+      font-weight: bold;   /* bold when clicked */
+    }
+
+    a:hover {
+      font-weight: bold;   /* also bold on hover */
+    }
+
+    /* Center sentence optionally */
+    p.sentence {
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
 
-<p>
+<!-- Homepage sentence -->
+<p class="sentence">
   Bronte Dow makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. She was born in Sydney, Australia, and is based in London.
 </p>
 
