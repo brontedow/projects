@@ -6,34 +6,54 @@
   <style>
     body { 
       margin: 0; 
-      padding: 40px; 
+      padding: 20px; 
       font-family: sans-serif; 
-      font-size: 18px;
-      line-height: 1.5;
     }
 
-    /* Sentence links style */
-    a {
-      color: red;          /* red text */
-      font-style: italic;  /* italic */
-      text-decoration: none;
-      transition: font-weight 0.2s;
-    }
-
-    a:hover, a:active {
-      font-weight: bold;   /* bold on hover or active */
-    }
-
-    p.sentence {
+    /* Header / top sentences */
+    .header-text {
+      font-size: 20px;
       margin-bottom: 20px;
+    }
+
+    .header-text a {
+      color: red;
+      font-style: italic;
+      text-decoration: none;
+    }
+
+    .header-text a:hover,
+    .header-text a:active {
+      font-weight: bold;
+    }
+
+    /* Image grid / single image */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 15px;
+    }
+
+    .grid img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
   </style>
 </head>
 <body>
 
-<p class="sentence">
-  Bronte Dow makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. She was born in Sydney, Australia, and is based in London.
-</p>
+<div class="header-text">
+  Bronte Dow makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>.<br>
+  If you like you can contact her <a href="mailto:dowbronte@gmail.com">here</a>.
+</div>
+
+<div class="grid">
+  <!-- Only image 1 on homepage -->
+  <a href="https://vimeo.com/421674126" target="_blank">
+    <img src="1.jpg" alt="">
+  </a>
+</div>
 
 </body>
 </html>
