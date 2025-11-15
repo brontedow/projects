@@ -6,14 +6,32 @@
   <style>
     body { 
       margin: 0; 
-      padding: 20px; 
+      padding: 40px; 
       font-family: sans-serif; 
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    /* Sentence links style */
+    a {
+      color: red;          /* red text */
+      font-style: italic;  /* italic */
+      text-decoration: none;
+    }
+
+    a:active {
+      font-weight: bold;   /* bold when clicked */
+    }
+
+    a:hover {
+      font-weight: bold;   /* also bold on hover for clarity */
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 15px;
+      margin-top: 30px; /* space between sentence and grid */
     }
 
     .grid img {
@@ -21,10 +39,21 @@
       height: auto;
       display: block;
     }
+
+    /* Optional: add small spacing above the page */
+    p.sentence {
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
 
+<!-- Sentence at top, same as homepage -->
+<p class="sentence">
+  Bronte Dow makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. She was born in Sydney, Australia, and is based in London.
+</p>
+
+<!-- Image grid below sentence -->
 <div class="grid">
 
   <!-- 1 (linked) -->
