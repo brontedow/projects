@@ -10,9 +10,8 @@
       font-family: sans-serif; 
     }
 
-    /* Same header sentence styling as homepage */
     .header-text {
-      font-size: 20px; /* same as homepage */
+      font-size: 20px;
       line-height: 1.5;
       margin-bottom: 20px;
     }
@@ -32,6 +31,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 15px;
+      margin-bottom: 20px;
     }
 
     .grid img {
@@ -39,12 +39,18 @@
       height: auto;
       display: block;
     }
+
+    iframe {
+      width: 100%;
+      height: 800px;
+      border: none;
+    }
   </style>
 </head>
 <body>
 
 <div class="header-text">
-  <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>.
+  <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="#programmes">programmes screenings</a>.
 </div>
 
 <div class="grid">
@@ -82,6 +88,11 @@
   <a href="https://vimeo.com/384226372" target="_blank">
     <img src="16.jpg" alt="">
   </a>
+</div>
+
+<!-- Embedded WordPress -->
+<div id="programmes">
+  <iframe src="https://weathergirlevents.wordpress.com/"></iframe>
 </div>
 
 </body>
