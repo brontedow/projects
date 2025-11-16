@@ -1,63 +1,60 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <title>Bronte Dow</title>
   <style>
     body {
-      margin: 0;
-      padding: 20px;
       font-family: sans-serif;
-      font-size: 18px;
-      line-height: 1.5;
-      text-align: center;
+      margin: 20px;
+      padding: 0;
     }
 
     /* Sentence styling */
-    .sentence {
+    .intro {
+      font-size: 20px;
       margin-bottom: 20px;
+      line-height: 1.5;
     }
 
-    .sentence a {
+    .intro a {
       color: red;
       font-style: italic;
       text-decoration: none;
     }
 
-    .sentence a:active, .sentence a:focus {
+    .intro a:active, .intro a:focus {
       font-weight: bold;
     }
 
-    /* Image styling */
+    /* Random image styling */
+    .random-image {
+      text-align: left; /* matches top-left position of 1.jpg on films page */
+      margin-bottom: 20px;
+    }
+
     .random-image img {
-      width: 300px;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-      object-fit: cover; /* ensures same visual size */
+      width: 300px; /* same as films page images */
+      height: 200px; 
+      object-fit: cover; /* crops images to uniform size */
     }
   </style>
 </head>
 <body>
 
-<div class="sentence">
-  <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. <a href="mailto:dowbronte@gmail.com">Contact her here</a>.
+<div class="intro">
+  <a href="index.html">Bronte Dow</a> makes films and <a href="films.html">programmes screenings</a>. 
+  <a href="mailto:dowbronte@gmail.com">You can contact her here</a>.
 </div>
 
 <div class="random-image">
-  <a href="films.html" id="imageLink"><img src="" alt="Random film"></a>
+  <a href="films.html"><img id="randomImg" src="" alt="Random film"></a>
 </div>
 
 <script>
-  // Array of available images
-  const images = ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg','11.jpg','15.jpg','16.jpg','17.jpg','18.jpg','19.jpg'];
-  
-  // Pick a random image
+  const images = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg","10.jpg","11.jpg","15.jpg","16.jpg","17.jpg","18.jpg","19.jpg"];
   const randomIndex = Math.floor(Math.random() * images.length);
-  const imgSrc = images[randomIndex];
-
-  // Set the image src
-  document.querySelector('#imageLink img').src = imgSrc;
+  document.getElementById("randomImg").src = images[randomIndex];
 </script>
 
 </body>
