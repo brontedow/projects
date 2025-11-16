@@ -2,46 +2,47 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Bronte Dow - Films</title>
+  <title>Films - Bronte Dow</title>
   <style>
-    body { 
-      margin: 0; 
-      padding: 20px; 
-      font-family: sans-serif; 
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: sans-serif;
     }
 
-    /* Header sentence */
-    .header-sentence {
+    /* Header / intro sentence */
+    .intro {
       font-size: 20px;
       line-height: 1.5;
+      margin-bottom: 20px;
     }
 
-    .header-sentence a {
+    .intro a {
       color: red;
       font-style: italic;
       text-decoration: none;
     }
 
-    .header-sentence a:hover {
-      text-decoration: underline;
-    }
-
-    /* Make "Films" underlined on films page */
-    .header-sentence a.films-active {
-      text-decoration: underline;
-    }
-
-    .header-sentence a:active {
+    .intro a:active,
+    .intro a:visited {
       font-weight: bold;
     }
 
-    /* Grid styling */
+    .intro a.films-link {
+      text-decoration: underline; /* underline on films page */
+    }
+
+    /* Grid styles */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 15px;
-      margin-top: 20px;
     }
+
+    /* Define grid rows using grid-template-columns for each line */
+    .row-1 { grid-template-columns: repeat(6, 1fr); display: grid; }
+    .row-2 { grid-template-columns: repeat(6, 1fr); display: grid; }
+    .row-3 { grid-template-columns: repeat(5, 1fr); display: grid; }
+    .row-4 { grid-template-columns: repeat(4, 1fr); display: grid; }
 
     .grid img {
       width: 100%;
@@ -52,50 +53,49 @@
 </head>
 <body>
 
-<div class="header-sentence">
-  <a href="index.html">Bronte Dow</a> makes films and 
-  <a href="films.html" class="films-active">Films</a>. You can contact her 
-  <a href="mailto:dowbronte@gmail.com">here</a>. 
-  <a href="https://weathergirlevents.wordpress.com/" target="_blank">Programmes screenings</a>.
+<div class="intro">
+  <a href="index.html" class="films-link">Bronte Dow</a> makes 
+  <a href="films.html" class="films-link">films</a> and 
+  <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. You can contact her 
+  <a href="mailto:dowbronte@gmail.com">here</a>.
 </div>
 
-<div class="grid">
-
-  <!-- 1 (linked) -->
-  <a href="https://vimeo.com/421674126" target="_blank">
-    <img src="1.jpg" alt="">
-  </a>
-
+<!-- Image grid -->
+<div class="row-1">
+  <a href="https://youtu.be/ujp5JmtpsuY" target="_blank"><img src="1.jpg" alt=""></a>
   <img src="2.jpg" alt="">
   <img src="3.jpg" alt="">
   <img src="4.jpg" alt="">
-
-  <!-- 5 (linked) -->
-  <a href="https://youtu.be/ujp5JmtpsuY" target="_blank">
-    <img src="5.jpg" alt="">
-  </a>
-
+  <img src="5.jpg" alt="">
   <img src="6.jpg" alt="">
-  <img src="7.jpg" alt="">
+</div>
+
+<div class="row-2">
+  <a href="https://vimeo.com/421674126" target="_blank"><img src="7.jpg" alt=""></a>
   <img src="8.jpg" alt="">
-
-  <!-- 9 (linked) -->
-  <a href="https://vimeo.com/brontedow/soundings" target="_blank">
-    <img src="9.jpg" alt="">
-  </a>
-
+  <img src="9.jpg" alt="">
   <img src="10.jpg" alt="">
   <img src="11.jpg" alt="">
   <img src="12.jpg" alt="">
-  <img src="13.jpg" alt="">
+</div>
+
+<div class="row-3">
+  <a href="https://vimeo.com/384226372" target="_blank"><img src="13.jpg" alt=""></a>
   <img src="14.jpg" alt="">
   <img src="15.jpg" alt="">
+  <img src="16.jpg" alt="">
+  <img src="17.jpg" alt="">
+</div>
 
-  <!-- 16 (linked) -->
-  <a href="https://vimeo.com/384226372" target="_blank">
-    <img src="16.jpg" alt="">
-  </a>
-
+<div class="row-4">
+  <a href="https://youtu.be/X9oY3zLiJPw" target="_blank"><img src="18.jpg" alt=""></a>
+  <img src="19.jpg" alt="">
+  <img src="20.jpg" alt="">
+  <img src="21.jpg" alt="">
+  <img src="22.jpg" alt="">
+  <img src="23.jpg" alt="">
+  <img src="24.jpg" alt="">
+  <img src="25.jpg" alt="">
 </div>
 
 </body>
