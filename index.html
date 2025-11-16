@@ -1,65 +1,63 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8">
-<title>Bronte Dow</title>
-<style>
-  body {
-    margin: 20px;
-    font-family: sans-serif;
-    color: black;
-  }
+  <meta charset="utf-8">
+  <title>Bronte Dow</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: sans-serif;
+      font-size: 18px;
+      line-height: 1.5;
+    }
 
-  /* Sentence styling */
-  .intro {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
+    /* Text styling */
+    .sentence {
+      margin-bottom: 20px;
+    }
 
-  .intro a {
-    color: red;
-    font-style: italic;
-    text-decoration: none;
-  }
+    .sentence a {
+      color: red;
+      font-style: italic;
+      text-decoration: none;
+    }
 
-  .intro a:hover {
-    font-weight: bold;
-  }
+    .sentence a:active, .sentence a:focus {
+      font-weight: bold;
+    }
 
-  /* Random homepage image container */
-  .random-image {
-    display: block;
-    width: 150px; /* image size same as films grid images */
-    margin-bottom: 20px;
-  }
+    /* Random image container */
+    .random-image {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
 
-  .random-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-</style>
+    .random-image img {
+      width: 300px; /* adjust size */
+      height: auto;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
-<div class="intro">
-  <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. You can contact <a href="mailto:dowbronte@gmail.com">here</a>.
+<div class="sentence">
+  <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. You can contact her <a href="mailto:dowbronte@gmail.com">here</a>.
 </div>
 
 <div class="random-image">
   <a href="films.html">
-    <img id="homepage-img" src="" alt="">
+    <img id="homepageImg" src="" alt="Random image">
   </a>
 </div>
 
 <script>
-  // Random image logic
-  const images = Array.from({length: 25}, (_, i) => `${i+1}.jpg`);
-  
-  // Pick random image
-  let randomIndex = Math.floor(Math.random() * images.length);
-  let randomImage = images[randomIndex];
-  document.getElementById('homepage-img').src = randomImage;
+  // Random image from 1.jpg to 25.jpg
+  const totalImages = 25;
+  const randomIndex = Math.floor(Math.random() * totalImages) + 1;
+  document.getElementById('homepageImg').src = randomIndex + ".jpg";
 </script>
 
 </body>
