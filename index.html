@@ -10,47 +10,39 @@
       font-family: sans-serif; 
     }
 
-    .header-text {
-      font-size: 18px;
-      line-height: 1.4;
+    /* Header sentence */
+    .header-sentence {
+      font-size: 20px;
+      line-height: 1.5;
     }
 
-    /* hyperlink style */
-    .header-text a {
+    .header-sentence a {
       color: red;
       font-style: italic;
       text-decoration: none;
     }
 
-    .header-text a:active, .header-text a:visited:active {
+    .header-sentence a:hover {
+      text-decoration: underline;
+    }
+
+    .header-sentence a:active {
       font-weight: bold;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .grid img {
-      width: 100%;
-      height: auto;
-      display: block;
     }
   </style>
 </head>
 <body>
 
-<div class="header-text">
-  <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. You can contact her <a href="mailto:dowbronte@gmail.com">here</a>.
+<div class="header-sentence">
+  <a href="index.html">Bronte Dow</a> makes films and 
+  <a href="films.html">Films</a>. You can contact her 
+  <a href="mailto:dowbronte@gmail.com">here</a>. 
+  <a href="https://weathergirlevents.wordpress.com/" target="_blank">Programmes screenings</a>.
 </div>
 
-<div class="grid">
-  <!-- Only image 1 on homepage -->
-  <a href="https://vimeo.com/421674126" target="_blank">
-    <img src="1.jpg" alt="">
-  </a>
+<!-- Optionally display homepage image -->
+<div style="margin-top:20px;">
+  <img src="1.jpg" style="width:350px; height:auto;">
 </div>
 
 </body>
