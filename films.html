@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Films - Bronte Dow</title>
+  <title>Bronte Dow - Films</title>
   <style>
     body { 
       margin: 0; 
@@ -10,22 +10,32 @@
       font-family: sans-serif; 
     }
 
-    .header-text {
-      font-size: 18px;       /* same as homepage */
-      line-height: 1.4;
+    /* Header sentence */
+    .header-sentence {
+      font-size: 20px;
+      line-height: 1.5;
     }
 
-    .header-text a {
+    .header-sentence a {
       color: red;
       font-style: italic;
       text-decoration: none;
     }
 
-    /* Special styling for films link on this page */
-    .header-text a.films-page {
+    .header-sentence a:hover {
       text-decoration: underline;
     }
 
+    /* Make "Films" underlined on films page */
+    .header-sentence a.films-active {
+      text-decoration: underline;
+    }
+
+    .header-sentence a:active {
+      font-weight: bold;
+    }
+
+    /* Grid styling */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -42,28 +52,50 @@
 </head>
 <body>
 
-<div class="header-text">
-  <a href="index.html">Bronte Dow</a> makes <a href="films.html" class="films-page">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. You can contact her <a href="mailto:dowbronte@gmail.com">here</a>.
+<div class="header-sentence">
+  <a href="index.html">Bronte Dow</a> makes films and 
+  <a href="films.html" class="films-active">Films</a>. You can contact her 
+  <a href="mailto:dowbronte@gmail.com">here</a>. 
+  <a href="https://weathergirlevents.wordpress.com/" target="_blank">Programmes screenings</a>.
 </div>
 
 <div class="grid">
-  <!-- All film images -->
-  <a href="https://vimeo.com/421674126" target="_blank"><img src="1.jpg" alt=""></a>
-  <a href="#"><img src="2.jpg" alt=""></a>
-  <a href="#"><img src="3.jpg" alt=""></a>
-  <a href="#"><img src="4.jpg" alt=""></a>
-  <a href="https://youtu.be/ujp5JmtpsuY" target="_blank"><img src="5.jpg" alt=""></a>
-  <a href="#"><img src="6.jpg" alt=""></a>
-  <a href="#"><img src="7.jpg" alt=""></a>
-  <a href="#"><img src="8.jpg" alt=""></a>
-  <a href="https://vimeo.com/brontedow/soundings" target="_blank"><img src="9.jpg" alt=""></a>
-  <a href="#"><img src="10.jpg" alt=""></a>
-  <a href="#"><img src="11.jpg" alt=""></a>
-  <a href="#"><img src="12.jpg" alt=""></a>
-  <a href="#"><img src="13.jpg" alt=""></a>
-  <a href="#"><img src="14.jpg" alt=""></a>
-  <a href="#"><img src="15.jpg" alt=""></a>
-  <a href="https://vimeo.com/384226372" target="_blank"><img src="16.jpg" alt=""></a>
+
+  <!-- 1 (linked) -->
+  <a href="https://vimeo.com/421674126" target="_blank">
+    <img src="1.jpg" alt="">
+  </a>
+
+  <img src="2.jpg" alt="">
+  <img src="3.jpg" alt="">
+  <img src="4.jpg" alt="">
+
+  <!-- 5 (linked) -->
+  <a href="https://youtu.be/ujp5JmtpsuY" target="_blank">
+    <img src="5.jpg" alt="">
+  </a>
+
+  <img src="6.jpg" alt="">
+  <img src="7.jpg" alt="">
+  <img src="8.jpg" alt="">
+
+  <!-- 9 (linked) -->
+  <a href="https://vimeo.com/brontedow/soundings" target="_blank">
+    <img src="9.jpg" alt="">
+  </a>
+
+  <img src="10.jpg" alt="">
+  <img src="11.jpg" alt="">
+  <img src="12.jpg" alt="">
+  <img src="13.jpg" alt="">
+  <img src="14.jpg" alt="">
+  <img src="15.jpg" alt="">
+
+  <!-- 16 (linked) -->
+  <a href="https://vimeo.com/384226372" target="_blank">
+    <img src="16.jpg" alt="">
+  </a>
+
 </div>
 
 </body>
