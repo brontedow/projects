@@ -10,9 +10,10 @@
       font-family: sans-serif;
       font-size: 18px;
       line-height: 1.5;
+      text-align: center;
     }
 
-    /* Text styling */
+    /* Sentence styling */
     .sentence {
       margin-bottom: 20px;
     }
@@ -27,37 +28,36 @@
       font-weight: bold;
     }
 
-    /* Random image container */
-    .random-image {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
+    /* Image styling */
     .random-image img {
-      width: 300px; /* adjust size */
+      width: 300px;
       height: auto;
-      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+      object-fit: cover; /* ensures same visual size */
     }
   </style>
 </head>
 <body>
 
 <div class="sentence">
-  <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. You can contact her <a href="mailto:dowbronte@gmail.com">here</a>.
+  <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. <a href="mailto:dowbronte@gmail.com">Contact her here</a>.
 </div>
 
 <div class="random-image">
-  <a href="films.html">
-    <img id="homepageImg" src="" alt="Random image">
-  </a>
+  <a href="films.html" id="imageLink"><img src="" alt="Random film"></a>
 </div>
 
 <script>
-  // Random image from 1.jpg to 25.jpg
-  const totalImages = 25;
-  const randomIndex = Math.floor(Math.random() * totalImages) + 1;
-  document.getElementById('homepageImg').src = randomIndex + ".jpg";
+  // Array of available images
+  const images = ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg','11.jpg','15.jpg','16.jpg','17.jpg','18.jpg','19.jpg'];
+  
+  // Pick a random image
+  const randomIndex = Math.floor(Math.random() * images.length);
+  const imgSrc = images[randomIndex];
+
+  // Set the image src
+  document.querySelector('#imageLink img').src = imgSrc;
 </script>
 
 </body>
