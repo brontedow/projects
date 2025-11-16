@@ -4,46 +4,48 @@
   <meta charset="utf-8">
   <title>Bronte Dow</title>
   <style>
-    body { 
-      margin: 0; 
-      padding: 20px; 
-      font-family: sans-serif; 
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: sans-serif;
     }
 
-    /* Header sentence */
-    .header-sentence {
+    /* Header / intro sentence */
+    .intro {
       font-size: 20px;
       line-height: 1.5;
+      margin-bottom: 20px;
     }
 
-    .header-sentence a {
+    .intro a {
       color: red;
       font-style: italic;
       text-decoration: none;
     }
 
-    .header-sentence a:hover {
-      text-decoration: underline;
+    .intro a:active,
+    .intro a:visited {
+      font-weight: bold;
     }
 
-    .header-sentence a:active {
-      font-weight: bold;
+    /* Image grid on homepage */
+    .homepage-img {
+      width: 100%;
+      max-width: 350px;
+      display: block;
     }
   </style>
 </head>
 <body>
 
-<div class="header-sentence">
-  <a href="index.html">Bronte Dow</a> makes films and 
-  <a href="films.html">Films</a>. You can contact her 
-  <a href="mailto:dowbronte@gmail.com">here</a>. 
-  <a href="https://weathergirlevents.wordpress.com/" target="_blank">Programmes screenings</a>.
+<div class="intro">
+  Bronte Dow makes 
+  <a href="films.html">films</a> and programmes screenings. You can contact her 
+  <a href="mailto:dowbronte@gmail.com">here</a>.
 </div>
 
-<!-- Optionally display homepage image -->
-<div style="margin-top:20px;">
-  <img src="1.jpg" style="width:350px; height:auto;">
-</div>
+<!-- Only 11.jpg on homepage -->
+<img src="11.jpg" alt="" class="homepage-img">
 
 </body>
 </html>
