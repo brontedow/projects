@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Bronte Dow</title>
+  <title>Films - Bronte Dow</title>
   <style>
     body {
       margin: 20px;
@@ -10,7 +10,7 @@
       color: black;
     }
 
-    /* Sentence styling */
+    /* Top sentence */
     .intro {
       font-size: 18px;
       margin-bottom: 20px;
@@ -23,17 +23,35 @@
     }
 
     .intro a:hover {
-      /* Optional: add hover effect if you want */
       font-weight: bold;
     }
 
-    /* Homepage single image */
-    .random-image {
-      max-width: 350px;
+    /* Grid styling */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+    }
+
+    .grid img {
+      width: 100%;
       height: auto;
       display: block;
-      margin-top: 20px;
     }
+
+    /* Adjust smaller rows */
+    .row-7to12 {
+      grid-column: span 6;
+    }
+
+    .row-13to17 {
+      grid-column: span 6;
+    }
+
+    .row-18to25 {
+      grid-column: span 6;
+    }
+
   </style>
 </head>
 <body>
@@ -42,17 +60,42 @@
   <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. <a href="mailto:dowbronte@gmail.com">You can contact her here</a>.
 </div>
 
-<!-- Random image -->
-<a href="films.html" id="randomImageLink">
-  <img src="" alt="Featured film" class="random-image" id="randomImage">
-</a>
+<div class="grid">
 
-<script>
-  // Randomly select an image from 1-25
-  const randomNumber = Math.floor(Math.random() * 25) + 1;
-  const img = document.getElementById('randomImage');
-  img.src = randomNumber + '.jpg';
-</script>
+  <!-- Row 1: 1-6 -->
+  <a href="https://youtu.be/ujp5JmtpsuY" target="_blank"><img src="1.jpg" alt=""></a>
+  <img src="2.jpg" alt="">
+  <img src="3.jpg" alt="">
+  <img src="4.jpg" alt="">
+  <img src="5.jpg" alt="">
+  <img src="6.jpg" alt="">
+
+  <!-- Row 2: 7-12 -->
+  <a href="https://vimeo.com/421674126" target="_blank"><img src="7.jpg" alt=""></a>
+  <img src="8.jpg" alt="">
+  <img src="9.jpg" alt="">
+  <img src="10.jpg" alt="">
+  <img src="11.jpg" alt="">
+  <img src="12.jpg" alt="">
+
+  <!-- Row 3: 13-17 -->
+  <a href="https://vimeo.com/384226372" target="_blank"><img src="13.jpg" alt=""></a>
+  <img src="14.jpg" alt="">
+  <img src="15.jpg" alt="">
+  <img src="16.jpg" alt="">
+  <img src="17.jpg" alt="">
+
+  <!-- Row 4: 18-25 -->
+  <a href="https://youtu.be/X9oY3zLiJPw" target="_blank"><img src="18.jpg" alt=""></a>
+  <img src="19.jpg" alt="">
+  <img src="20.jpg" alt="">
+  <img src="21.jpg" alt="">
+  <img src="22.jpg" alt="">
+  <img src="23.jpg" alt="">
+  <img src="24.jpg" alt="">
+  <img src="25.jpg" alt="">
+
+</div>
 
 </body>
 </html>
