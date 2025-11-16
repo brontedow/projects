@@ -1,66 +1,60 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8">
-<title>Films - Bronte Dow</title>
-<style>
-  body {
-    margin: 20px;
-    font-family: sans-serif;
-    color: black;
-  }
+  <meta charset="utf-8">
+  <title>Bronte Dow - Films</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: sans-serif;
+      font-size: 18px;
+      line-height: 1.5;
+    }
 
-  /* Top sentence */
-  .intro {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
+    /* Text styling */
+    .sentence {
+      margin-bottom: 20px;
+    }
 
-  .intro a {
-    color: red;
-    font-style: italic;
-    text-decoration: none;
-  }
+    .sentence a {
+      color: red;
+      font-style: italic;
+      text-decoration: none;
+    }
 
-  .intro a:hover {
-    font-weight: bold;
-  }
+    .sentence a:active, .sentence a:focus {
+      font-weight: bold;
+    }
 
-  /* Grid styling */
-  .grid {
-    display: grid;
-    gap: 10px;
-  }
+    /* Grid styling */
+    .row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: nowrap;
+    }
 
-  .row1 { grid-template-columns: repeat(6, 150px); }
-  .row2 { grid-template-columns: repeat(6, 150px); }
-  .row3 { grid-template-columns: repeat(5, 150px); }
-  
-  /* Row 4 scrollable */
-  .row4 {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-  }
+    .row.scrollable {
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
 
-  .grid img {
-    width: 150px; /* same size as homepage image */
-    height: auto;
-    display: block;
-  }
-</style>
+    .row img {
+      width: 300px; /* same as homepage image */
+      height: auto;
+    }
+  </style>
 </head>
 <body>
 
-<div class="intro">
-  <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. You can contact <a href="mailto:dowbronte@gmail.com">here</a>.
+<div class="sentence">
+  <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>.
 </div>
 
-<!-- Grid container -->
 <div class="grid">
 
-  <!-- Row 1: 1-6 -->
-  <div class="row1">
+  <div class="row">
     <a href="https://youtu.be/ujp5JmtpsuY" target="_blank"><img src="1.jpg" alt=""></a>
     <img src="2.jpg" alt="">
     <img src="3.jpg" alt="">
@@ -69,8 +63,7 @@
     <img src="6.jpg" alt="">
   </div>
 
-  <!-- Row 2: 7-12 -->
-  <div class="row2">
+  <div class="row">
     <a href="https://vimeo.com/421674126" target="_blank"><img src="7.jpg" alt=""></a>
     <img src="8.jpg" alt="">
     <img src="9.jpg" alt="">
@@ -79,8 +72,7 @@
     <img src="12.jpg" alt="">
   </div>
 
-  <!-- Row 3: 13-17 -->
-  <div class="row3">
+  <div class="row">
     <a href="https://vimeo.com/384226372" target="_blank"><img src="13.jpg" alt=""></a>
     <img src="14.jpg" alt="">
     <img src="15.jpg" alt="">
@@ -88,8 +80,7 @@
     <img src="17.jpg" alt="">
   </div>
 
-  <!-- Row 4: 18-25 scrollable -->
-  <div class="row4">
+  <div class="row scrollable">
     <a href="https://youtu.be/X9oY3zLiJPw" target="_blank"><img src="18.jpg" alt=""></a>
     <img src="19.jpg" alt="">
     <img src="20.jpg" alt="">
