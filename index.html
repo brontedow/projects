@@ -1,19 +1,18 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Bronte Dow</title>
   <style>
     body {
-      margin: 0;
-      padding: 20px;
+      margin: 20px;
       font-family: sans-serif;
+      color: black;
     }
 
-    /* Header / intro sentence */
+    /* Sentence styling */
     .intro {
-      font-size: 20px;
-      line-height: 1.5;
+      font-size: 18px;
       margin-bottom: 20px;
     }
 
@@ -23,29 +22,37 @@
       text-decoration: none;
     }
 
-    .intro a:active,
-    .intro a:visited {
+    .intro a:hover {
+      /* Optional: add hover effect if you want */
       font-weight: bold;
     }
 
-    /* Image grid on homepage */
-    .homepage-img {
-      width: 100%;
+    /* Homepage single image */
+    .random-image {
       max-width: 350px;
+      height: auto;
       display: block;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
 
 <div class="intro">
-  Bronte Dow makes 
-  <a href="films.html">films</a> and programmes screenings. You can contact her 
-  <a href="mailto:dowbronte@gmail.com">here</a>.
+  <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. <a href="mailto:dowbronte@gmail.com">You can contact her here</a>.
 </div>
 
-<!-- Only 11.jpg on homepage -->
-<img src="11.jpg" alt="" class="homepage-img">
+<!-- Random image -->
+<a href="films.html" id="randomImageLink">
+  <img src="" alt="Featured film" class="random-image" id="randomImage">
+</a>
+
+<script>
+  // Randomly select an image from 1-25
+  const randomNumber = Math.floor(Math.random() * 25) + 1;
+  const img = document.getElementById('randomImage');
+  img.src = randomNumber + '.jpg';
+</script>
 
 </body>
 </html>
