@@ -1,82 +1,51 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Bronte Dow Films</title>
-<style>
-  body { 
-    margin: 0; 
-    padding: 40px; 
-    font-family: sans-serif; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-start; /* top-left alignment */
-  }
+  <meta charset="utf-8">
+  <title>Bronte Dow Films</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* top-left alignment */
+    }
 
-  /* Sentence styling */
-  .intro {
-    font-size: 24px;
-    text-align: left;
-    margin-bottom: 40px;
-  }
+    /* Sentence styling */
+    .intro {
+      font-size: 24px;
+      text-align: left;
+      margin-bottom: 40px;
+    }
+    .intro a {
+      color: red;
+      font-style: italic;
+      text-decoration: none;
+    }
+    .intro a:active, .intro a:focus {
+      font-weight: bold;
+    }
 
-  .intro a {
-    color: red;
-    font-style: italic;
-    text-decoration: none;
-  }
-
-  .intro a:active, .intro a:focus {
-    font-weight: bold;
-  }
-
-  /* Grid styling */
-  .grid {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .row {
-    display: flex;
-    gap: 20px;
-  }
-
-  .row img {
-    width: 360px;       /* make images bigger */
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    cursor: pointer;
-  }
-</style>
+    /* Image styling */
+    .grid img {
+      width: 360px;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
-<div class="intro">
-  <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. You can contact her <a href="mailto:dowbronte@gmail.com">here</a>.
-</div>
-
-<div class="grid">
-  <!-- Row 1 -->
-  <div class="row">
-    <a href="https://youtu.be/ujp5JmtpsuY" target="_blank"><img src="2.jpg" alt=""></a>
-    <img src="4.jpg" alt="">
+  <div class="intro">
+    <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. You can contact her <a href="mailto:dowbronte@gmail.com">here</a>.
   </div>
 
-  <!-- Row 2 -->
-  <div class="row">
-    <a href="https://vimeo.com/421674126?share=copy&fl=sv&fe=ci" target="_blank"><img src="7.jpg" alt=""></a>
-    <img src="8.jpg" alt="">
-    <img src="9.jpg" alt="">
+  <div class="grid">
+    <img src="18.jpg" alt="">
   </div>
-
-  <!-- Row 3 -->
-  <div class="row">
-    <a href="https://vimeo.com/384226372" target="_blank"><img src="12.jpg" alt=""></a>
-    <img src="16.jpg" alt="">
-    <img src="17.jpg" alt="">
-  </div>
-</div>
 
 </body>
 </html>
