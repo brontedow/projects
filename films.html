@@ -6,28 +6,19 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
+      padding: 40px;
       font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center; /* horizontal center */
-      justify-content: center; /* vertical center */
-      height: 100vh; /* full viewport height */
-      text-align: center;
-    }
-
-    /* Under construction notice */
-    .notice {
-      font-size: 16px;
-      color: orange;
-      font-weight: bold;
-      margin-bottom: 20px;
+      height: 100vh;
+      position: relative;
     }
 
     /* Sentence styling */
     .intro {
-      font-size: 24px;
-      margin-bottom: 40px;
+      font-size: 20px; /* slightly smaller */
+      text-align: left;
+      position: absolute;
+      top: 40px;
+      left: 40px;
     }
     .intro a {
       color: red;
@@ -44,16 +35,16 @@
       aspect-ratio: 16/9;
       object-fit: cover;
       cursor: pointer;
-      display: block;
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
     }
   </style>
 </head>
 <body>
 
-  <div class="notice">⚠️ This website is under construction ⚠️</div>
-
   <div class="intro">
-    <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. You can contact her <a href="mailto:dowbronte@gmail.com">here</a>.
+    <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. This website is under construction but you can contact her <a href="mailto:dowbronte@gmail.com">here</a>.
   </div>
 
   <div class="grid">
