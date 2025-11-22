@@ -6,17 +6,27 @@
   <style>
     body {
       margin: 0;
-      padding: 40px;
+      padding: 0;
       font-family: sans-serif;
       display: flex;
       flex-direction: column;
-      align-items: flex-start; /* top-left alignment */
+      align-items: center; /* horizontal center */
+      justify-content: center; /* vertical center */
+      height: 100vh; /* full viewport height */
+      text-align: center;
+    }
+
+    /* Under construction notice */
+    .notice {
+      font-size: 16px;
+      color: orange;
+      font-weight: bold;
+      margin-bottom: 20px;
     }
 
     /* Sentence styling */
     .intro {
       font-size: 24px;
-      text-align: left;
       margin-bottom: 40px;
     }
     .intro a {
@@ -29,22 +39,27 @@
     }
 
     /* Image styling */
-    .grid img {
+    .grid a img {
       width: 360px;
       aspect-ratio: 16/9;
       object-fit: cover;
       cursor: pointer;
+      display: block;
     }
   </style>
 </head>
 <body>
+
+  <div class="notice">⚠️ This website is under construction ⚠️</div>
 
   <div class="intro">
     <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. You can contact her <a href="mailto:dowbronte@gmail.com">here</a>.
   </div>
 
   <div class="grid">
-    <img src="18.jpg" alt="">
+    <a href="https://vimeo.com/347524581?fl=ip&fe=ec" target="_blank">
+      <img src="18.jpg" alt="Film thumbnail">
+    </a>
   </div>
 
 </body>
