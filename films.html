@@ -8,17 +8,13 @@
       margin: 0;
       padding: 40px;
       font-family: sans-serif;
-      height: 100vh;
+      min-height: 100vh;
       position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center; /* horizontal center for image */
-      justify-content: center; /* vertical center for image */
     }
 
     /* Sentence styling */
     .intro {
-      font-size: 20px; /* slightly smaller */
+      font-size: 20px;
       text-align: left;
       position: absolute;
       top: 40px;
@@ -34,8 +30,15 @@
     }
 
     /* Image styling */
+    .grid {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
     .grid a img {
-      width: 360px;
+      max-width: 90vw; /* never wider than viewport */
+      max-height: 80vh; /* never taller than viewport */
       aspect-ratio: 16/9;
       object-fit: cover;
       cursor: pointer;
