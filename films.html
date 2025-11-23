@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Bronte Dow</title>
+<title>Bronte Dow Films</title>
 <style>
   * {
     box-sizing: border-box;
@@ -13,58 +13,77 @@
     padding: 0;
     font-family: sans-serif;
     height: 100vh;
+    overflow: hidden;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    overflow: hidden;
   }
 
-  /* Full-screen background image */
-  body::before {
-    content: "";
+  /* Background images container */
+  .background-images {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('18.jpg');
-    background-size: cover;   /* fill screen without stretching */
-    background-position: center;
-    z-index: -1;              /* behind text */
+    z-index: -1; /* behind text */
   }
+
+  .background-images img {
+    position: absolute;
+    object-fit: cover;
+    opacity: 0.4; /* semi-transparent behind text */
+    width: 300px;  /* base size, can vary */
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+
+  /* You can adjust individual positions randomly */
+  .img1 { top: 10%; left: 5%; transform: rotate(-5deg); }
+  .img2 { top: 20%; left: 60%; transform: rotate(10deg); }
+  .img3 { top: 50%; left: 15%; transform: rotate(-8deg); }
+  .img4 { top: 60%; left: 50%; transform: rotate(5deg); }
+  .img5 { top: 70%; left: 30%; transform: rotate(-12deg); }
+  .img6 { top: 35%; left: 75%; transform: rotate(8deg); }
 
   /* Text container */
-  .intro {
-    font-size: 22px;
+  .container {
+    position: relative;
+    z-index: 1;  /* above images */
     max-width: 500px;
     text-align: justify;
-    color: rgba(0,0,0,0);      /* invisible by default */
-    transition: color 0.3s ease;
-    z-index: 1;                /* above background */
-    cursor: pointer;           /* indicate hover */
+    font-size: 22px;
+    color: black;
+    cursor: default;
   }
 
-  /* Reveal text on hover */
-  .intro:hover {
-    color: black;             /* or white if contrast better */
-  }
-
-  .intro a {
-    color: inherit;            /* links inherit text color */
+  .container a {
+    color: red;
     font-style: italic;
     text-decoration: none;
   }
 
-  .intro a:active,
-  .intro a:focus {
+  .container a:active,
+  .container a:focus {
     font-weight: bold;
   }
 </style>
 </head>
 <body>
 
-<div class="intro">
+<!-- Random background images -->
+<div class="background-images">
+  <img src="11.jpg" class="img1" alt="">
+  <img src="16.jpg" class="img2" alt="">
+  <img src="17.jpg" class="img3" alt="">
+  <img src="19.jpg" class="img4" alt="">
+  <img src="2.jpg"  class="img5" alt="">
+  <img src="4.jpg"  class="img6" alt="">
+</div>
+
+<!-- Text on top -->
+<div class="container">
   <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. This website is under construction but you can contact her <a href="mailto:dowbronte@gmail.com">here</a>.
 </div>
 
