@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <title>Bronte Dow</title>
 <style>
+  * { box-sizing: border-box; }
+
   body {
     margin: 0;
     padding: 0;
@@ -13,38 +15,40 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url(18.jpg) center/cover no-repeat;
+    background: url('18.jpg') center/cover no-repeat; /* full screen, cover */
     overflow: hidden;
   }
 
   .intro {
-    font-size: 24px;
-    text-align: justify;
-    max-width: 700px;
+    max-width: 500px;
     width: 80%;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    color: white;
+    text-align: justify;
+    font-size: 22px;
+    color: rgba(0,0,0,0); /* invisible initially */
+    transition: color 0.3s ease;
+    cursor: pointer;
   }
 
-  body:hover .intro {
-    opacity: 1;
+  /* reveal text on hover */
+  .intro:hover {
+    color: black;
   }
 
-  a {
-    color: red;
+  .intro a {
+    color: inherit; /* inherits hover color */
     font-style: italic;
     text-decoration: none;
   }
-  a:hover { font-weight: bold; }
+
+  .intro a:active,
+  .intro a:focus {
+    font-weight: bold;
+  }
 </style>
 </head>
-
 <body>
   <div class="intro">
-    <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> 
-    and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. 
-    You can contact her <a href="mailto:dowbronte@gmail.com">here</a>.
+    <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. This website is under construction but you can contact her <a href="mailto:dowbronte@gmail.com">here</a>.
   </div>
 </body>
 </html>
