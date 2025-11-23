@@ -21,7 +21,7 @@
     position: relative;
   }
 
-  /* Full-screen background image (no cropping) */
+  /* Full-screen background image, NO bars (crops edges as needed) */
   body::before {
     content: "";
     position: absolute;
@@ -32,7 +32,7 @@
     background-image: url('18.jpg');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;  /* no cropping */
+    background-size: cover; /* <-- CHANGED TO A */
     z-index: -1;
   }
 
@@ -41,7 +41,7 @@
     max-width: 500px;
     text-align: justify;
     font-size: 22px;
-    color: rgba(0,0,0,0); /* invisible at first */
+    color: rgba(0,0,0,0); /* invisible until hover */
     transition: color 0.3s ease;
     cursor: pointer;
   }
@@ -51,9 +51,8 @@
     color: black;
   }
 
-  /* Link styles */
   .intro a {
-    color: inherit; /* inherits black on hover */
+    color: inherit;
     font-style: italic;
     text-decoration: none;
   }
