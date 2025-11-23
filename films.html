@@ -2,91 +2,61 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Bronte Dow Films</title>
+<title>Films — Bronte Dow</title>
 <style>
-  * {
-    box-sizing: border-box;
-  }
-
   body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
     height: 100vh;
+    width: 100vw;
     overflow: hidden;
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
   }
 
-  /* Background images container */
-  .background-images {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+  /* RANDOM BACKGROUNDS */
+  body.bg1 { background: url(2.jpg) center/cover no-repeat; }
+  body.bg2 { background: url(3.jpg) center/cover no-repeat; }
+  body.bg3 { background: url(4.jpg) center/cover no-repeat; }
+  body.bg4 { background: url(7.jpg) center/cover no-repeat; }
+  body.bg5 { background: url(11.jpg) center/cover no-repeat; }
+  body.bg6 { background: url(16.jpg) center/cover no-repeat; }
+  body.bg7 { background: url(17.jpg) center/cover no-repeat; }
+  body.bg8 { background: url(19.jpg) center/cover no-repeat; }
+
+  .block {
+    max-width: 700px;
+    width: 80%;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    padding: 30px;
   }
 
-  .background-images img {
-    position: absolute;
-    object-fit: cover;
-    opacity: 0.4;
-    width: 300px;
-    height: auto;
-    transition: transform 0.3s ease;
-  }
-
-  /* Collage positions (you can adjust any) */
-  .img1 { top: 8%;  left: 5%;  transform: rotate(-5deg); }
-  .img2 { top: 25%; left: 62%; transform: rotate(10deg); }
-  .img3 { top: 52%; left: 14%; transform: rotate(-8deg); }
-  .img4 { top: 64%; left: 50%; transform: rotate(5deg); }
-  .img5 { top: 72%; left: 30%; transform: rotate(-12deg); }
-  .img6 { top: 38%; left: 78%; transform: rotate(8deg); }
-  .img7 { top: 10%; left: 40%; transform: rotate(-3deg); }
-  .img8 { top: 55%; left: 80%; transform: rotate(4deg); } /* NEW: 7.jpg */
-
-  /* Text container */
-  .container {
-    position: relative;
-    z-index: 1;
-    max-width: 500px;
-    text-align: justify;
-    font-size: 22px;
-    color: black;
-  }
-
-  .container a {
+  a {
     color: red;
     font-style: italic;
     text-decoration: none;
   }
-
-  .container a:active,
-  .container a:focus {
-    font-weight: bold;
-  }
+  a:hover { font-weight: bold; }
 </style>
+
+<script>
+  // Pick random background
+  document.addEventListener("DOMContentLoaded", () => {
+    const n = Math.floor(Math.random() * 8) + 1;
+    document.body.classList.add("bg" + n);
+  });
+</script>
+
 </head>
 <body>
-
-<div class="background-images">
-  <img src="11.jpg" class="img1" alt="">
-  <img src="16.jpg" class="img2" alt="">
-  <img src="17.jpg" class="img3" alt="">
-  <img src="19.jpg" class="img4" alt="">
-  <img src="2.jpg"  class="img5" alt="">
-  <img src="4.jpg"  class="img6" alt="">
-  <img src="3.jpg"  class="img7" alt="">
-  <img src="7.jpg"  class="img8" alt="">  <!-- ADDED -->
-</div>
-
-<div class="container">
-  <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. This website is under construction but you can contact her <a href="mailto:dowbronte@gmail.com">here</a>.
-</div>
-
+  <div class="block">
+    <a href="index.html">Bronte Dow</a> makes films and programmes screenings.  
+    View moving image works soon. This page is under construction.  
+    Contact her <a href="mailto:dowbronte@gmail.com">here</a>.
+  </div>
 </body>
 </html>
