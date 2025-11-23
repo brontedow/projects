@@ -2,71 +2,70 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Bronte Dow Films</title>
+<title>Bronte Dow</title>
 <style>
-  /* Include padding in height/width calculations */
   * {
     box-sizing: border-box;
   }
 
   body {
     margin: 0;
-    padding: 40px;
+    padding: 0;
     font-family: sans-serif;
+    height: 100vh;
     display: flex;
-    justify-content: center;  /* center horizontally */
-    align-items: center;      /* center vertically */
-    height: 100vh;            /* full viewport height */
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
   }
 
-  /* Container for text + image */
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;      /* center content horizontally */
-    text-align: justify;      /* justify text */
-    max-width: 500px;         /* match image width */
+  /* Full-screen background image */
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('18.jpg');
+    background-size: cover;   /* fill screen without stretching */
+    background-position: center;
+    z-index: -1;              /* behind text */
   }
 
-  /* Sentence styling */
-  .intro { 
-    font-size: 22px;          /* same as index */
-    margin-bottom: 20px;
+  /* Text container */
+  .intro {
+    font-size: 22px;
+    max-width: 500px;
+    text-align: justify;
+    color: rgba(0,0,0,0);      /* invisible by default */
+    transition: color 0.3s ease;
+    z-index: 1;                /* above background */
+    cursor: pointer;           /* indicate hover */
   }
 
-  .intro a { 
-    color: red; 
-    font-style: italic; 
-    text-decoration: none; 
+  /* Reveal text on hover */
+  .intro:hover {
+    color: black;             /* or white if contrast better */
   }
 
-  .intro a:active, .intro a:focus { 
-    font-weight: bold; 
+  .intro a {
+    color: inherit;            /* links inherit text color */
+    font-style: italic;
+    text-decoration: none;
   }
 
-  /* Image styling */
-  .grid a img {
-    width: 500px;             /* bigger image */
-    max-width: 90vw;          /* responsive */
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    cursor: pointer;
-    display: block;
+  .intro a:active,
+  .intro a:focus {
+    font-weight: bold;
   }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="intro">
-    <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. This website is under construction but you can contact her <a href="mailto:dowbronte@gmail.com">here</a>.
-  </div>
-
-  <div class="grid">
-    <a href="https://vimeo.com/347524581?fl=ip&fe=ec" target="_blank">
-      <img src="18.jpg" alt="Film thumbnail">
-    </a>
-  </div>
+<div class="intro">
+  <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. This website is under construction but you can contact her <a href="mailto:dowbronte@gmail.com">here</a>.
 </div>
 
 </body>
