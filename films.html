@@ -27,36 +27,36 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* behind text */
+    z-index: -1;
   }
 
   .background-images img {
     position: absolute;
     object-fit: cover;
-    opacity: 0.4; /* semi-transparent behind text */
-    width: 300px;  /* base size */
+    opacity: 0.4;
+    width: 300px;
     height: auto;
     transition: transform 0.3s ease;
   }
 
-  /* Random collage positions */
+  /* Collage positions (you can adjust any) */
   .img1 { top: 8%;  left: 5%;  transform: rotate(-5deg); }
   .img2 { top: 25%; left: 62%; transform: rotate(10deg); }
   .img3 { top: 52%; left: 14%; transform: rotate(-8deg); }
   .img4 { top: 64%; left: 50%; transform: rotate(5deg); }
   .img5 { top: 72%; left: 30%; transform: rotate(-12deg); }
   .img6 { top: 38%; left: 78%; transform: rotate(8deg); }
-  .img7 { top: 10%; left: 40%; transform: rotate(-3deg); } /* NEW: 3.jpg */
+  .img7 { top: 10%; left: 40%; transform: rotate(-3deg); }
+  .img8 { top: 55%; left: 80%; transform: rotate(4deg); } /* NEW: 7.jpg */
 
   /* Text container */
   .container {
     position: relative;
-    z-index: 1;  /* above images */
+    z-index: 1;
     max-width: 500px;
     text-align: justify;
     font-size: 22px;
     color: black;
-    cursor: default;
   }
 
   .container a {
@@ -73,7 +73,6 @@
 </head>
 <body>
 
-<!-- Random background images -->
 <div class="background-images">
   <img src="11.jpg" class="img1" alt="">
   <img src="16.jpg" class="img2" alt="">
@@ -81,10 +80,10 @@
   <img src="19.jpg" class="img4" alt="">
   <img src="2.jpg"  class="img5" alt="">
   <img src="4.jpg"  class="img6" alt="">
-  <img src="3.jpg"  class="img7" alt="">  <!-- NEW -->
+  <img src="3.jpg"  class="img7" alt="">
+  <img src="7.jpg"  class="img8" alt="">  <!-- ADDED -->
 </div>
 
-<!-- Text on top -->
 <div class="container">
   <a href="index.html">Bronte Dow</a> makes <a href="films.html">films</a> and <a href="https://weathergirlevents.wordpress.com/" target="_blank">programmes screenings</a>. This website is under construction but you can contact her <a href="mailto:dowbronte@gmail.com">here</a>.
 </div>
