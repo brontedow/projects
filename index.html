@@ -4,20 +4,25 @@
 <meta charset="utf-8">
 <title>Bronte Dow</title>
 <style>
+  /* Make sure padding is included in height calculations */
+  * {
+    box-sizing: border-box;
+  }
+
   body { 
     margin: 0; 
     padding: 40px; 
     font-family: sans-serif; 
     display: flex;
-    justify-content: center; /* center vertically and horizontally */
-    align-items: center;
-    height: 100vh; /* full viewport height */
-    text-align: justify; /* even edges for text */
+    justify-content: center; /* center horizontally */
+    align-items: center;     /* center vertically */
+    height: 100vh;           /* full viewport height */
+    text-align: justify;      /* even left and right edges */
   }
 
   .intro { 
-    font-size: 22px; /* same as films page */
-    max-width: 500px; /* same width as films image */
+    font-size: 22px;          /* same as films page */
+    max-width: 500px;         /* same width as films image */
   }
 
   .intro a { 
