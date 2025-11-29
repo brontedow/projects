@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Labour (2025-ongoing)</title>
+  <style>
+    /* Use Arial as requested */
+    :root { --gap: 20px; }
+    html,body { height:100%; margin:0; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:40px 20px;
+      background:#fff;
+      color:#111;
+    }
+
+    .container {
+      width:100%;
+      max-width:1100px;
+    }
+
+    .intro {
+      text-align:left;
+      font-size:16px;
+      line-height:1.4;
+      margin:0 0 20px 0;
+    }
+
+    /* Two images, side-by-side, responsive */
+    .gallery {
+      display:flex;
+      gap:var(--gap);
+      align-items:stretch;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+
+    .gallery figure {
+      flex:1 1 calc(50% - var(--gap)/2);
+      margin:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      min-width:260px; /* prevents shrinking too small on tiny screens */
+    }
+
+    .gallery img {
+      width:100%;
+      height:auto;
+      display:block;
+      object-fit:cover;
+      border:0;
+    }
+
+    /* Make images stack on very narrow screens */
+    @media (max-width:640px) {
+      .gallery {
+        flex-direction:column;
+      }
+      .gallery figure { width:100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p class="intro">Labour (2025-ongoing) is a four-month photographic research project following the lives of pregnant goats on farm in the middle of London city.</p>
+
+    <div class="gallery">
+      <figure>
+        <img src="goats.jpg" alt="Project image 1">
+      </figure>
+
+      <figure>
+        <img src="goats2.jpg" alt="Project image 2">
+      </figure>
+    </div>
+  </div>
+</body>
+</html>
+
