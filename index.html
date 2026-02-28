@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Bronte Dow</title>
-    <!-- Minimal inline styles - exactly like ACME but responsive -->
     <style>
         * {
             margin: 0;
@@ -16,17 +15,47 @@
             background-color: #A4CB9E;
             color: #000000;
             font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-            padding: 15px 15px 15px 25px;
             min-height: 100vh;
             width: 100%;
         }
         
-        /* Responsive container */
-        .content {
-            max-width: 800px;
+        /* Split screen layout */
+        .container {
+            display: flex;
+            min-height: 100vh;
             width: 100%;
-            margin: 0;
+        }
+        
+        /* Left column - index (ACME style) */
+        .index-column {
+            flex: 0 0 250px;
+            padding: 20px 15px 20px 30px;
+            border-right: 1px solid #000000;  /* Thin vertical line */
+        }
+        
+        /* Right column - content area */
+        .content-column {
+            flex: 1;
+            padding: 20px 30px;
+            background-color: #A4CB9E;
+        }
+        
+        /* Content card for projects */
+        .project-content {
+            max-width: 600px;
+        }
+        
+        .project-content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #333;
+            margin-bottom: 15px;
+        }
+        
+        .project-content p {
+            font-size: 16px;
+            line-height: 1.4;
+            font-family: Arial, Helvetica, sans-serif;
         }
         
         h1 {
@@ -38,7 +67,7 @@
         ul {
             list-style-type: none;
             padding-left: 0;
-            margin: 0 0 18px 0;
+            margin: 0;
         }
         
         li {
@@ -52,6 +81,7 @@
             text-decoration: none;
             display: inline-block;
             padding: 2px 0;
+            cursor: pointer;
             -webkit-tap-highlight-color: rgba(0,0,0,0.1);
         }
         
@@ -59,57 +89,148 @@
             text-decoration: underline;
         }
         
-        hr {
-            border: none;
-            border-top: 1px solid #000000;
-            margin: 18px 0 10px 0;
-            width: 100%;
+        /* Active link state */
+        .active-link {
+            background-color: #ffff99;
         }
         
-        /* iPhone SE / small phone optimization */
+        /* Hide all project content by default */
+        .project-content {
+            display: none;
+        }
+        
+        /* Show active project */
+        .project-content.active {
+            display: block;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .index-column {
+                flex: none;
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #000000;
+                padding: 15px 15px 15px 25px;
+            }
+            .content-column {
+                padding: 20px;
+            }
+        }
+        
         @media (max-width: 380px) {
-            body {
+            .index-column {
                 padding: 12px 12px 12px 20px;
-            }
-            h1 {
-                margin: 8px 0 16px 0;
-            }
-            li {
-                margin-bottom: 3px;
-            }
-        }
-        
-        /* iPad / tablet optimization */
-        @media (min-width: 768px) {
-            body {
-                padding: 20px 20px 20px 30px;
-            }
-        }
-        
-        /* Landscape orientation */
-        @media (orientation: landscape) and (max-height: 500px) {
-            body {
-                padding: 10px 10px 10px 25px;
-            }
-            h1 {
-                margin: 5px 0 12px 0;
             }
         }
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>Bronte Dow</h1>
+    <div class="container">
+        <!-- Left column - index -->
+        <div class="index-column">
+            <h1>Bronte Dow</h1>
+            
+            <ul>
+                <li><a href="#" onclick="showProject('weathergirl', event)">Weathergirl</a></li>
+                <li><a href="#" onclick="showProject('dreams', event)">Dreams</a></li>
+                <li><a href="#" onclick="showProject('bathynomus', event)">Bathynomus</a></li>
+                <li><a href="#" onclick="showProject('soundings', event)">Soundings</a></li>
+                <li><a href="#" onclick="showProject('mothers', event)">Mothers</a></li>
+            </ul>
+        </div>
         
-        <ul>
-            <li><a href="#">Weathergirl</a></li>
-            <li><a href="#">Dreams</a></li>
-            <li><a href="#">Bathynomus</a></li>
-            <li><a href="#">Soundings</a></li>
-            <li><a href="#">Mothers</a></li>
-        </ul>
-        
-        <hr>
+        <!-- Right column - content area -->
+        <div class="content-column">
+            <!-- Weathergirl content -->
+            <div id="weathergirl-content" class="project-content">
+                <div class="project-content-inner">
+                    <img src="7.jpg" alt="Weathergirl">
+                    <p>Weathergirl, 2020, digital video</p>
+                </div>
+            </div>
+            
+            <!-- Dreams content -->
+            <div id="dreams-content" class="project-content">
+                <div class="project-content-inner">
+                    <img src="7.jpg" alt="Dreams">
+                    <p>Dreams, 2020, digital video</p>
+                </div>
+            </div>
+            
+            <!-- Bathynomus content -->
+            <div id="bathynomus-content" class="project-content">
+                <div class="project-content-inner">
+                    <img src="7.jpg" alt="Bathynomus">
+                    <p>Bathynomus, 2020, digital video</p>
+                </div>
+            </div>
+            
+            <!-- Soundings content -->
+            <div id="soundings-content" class="project-content">
+                <div class="project-content-inner">
+                    <img src="7.jpg" alt="Soundings">
+                    <p>Soundings, 2020, digital video</p>
+                </div>
+            </div>
+            
+            <!-- Mothers content -->
+            <div id="mothers-content" class="project-content">
+                <div class="project-content-inner">
+                    <img src="7.jpg" alt="Mothers">
+                    <p>Mothers, 2020, digital video</p>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        function showProject(projectId, event) {
+            // Prevent default link behavior
+            if (event) {
+                event.preventDefault();
+            }
+            
+            // Hide all project content
+            var contents = document.getElementsByClassName('project-content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove('active');
+            }
+            
+            // Show selected project content
+            var selectedContent = document.getElementById(projectId + '-content');
+            if (selectedContent) {
+                selectedContent.classList.add('active');
+            }
+            
+            // Remove active class from all links
+            var links = document.querySelectorAll('.index-column a');
+            for (var i = 0; i < links.length; i++) {
+                links[i].classList.remove('active-link');
+            }
+            
+            // Add active class to clicked link
+            if (event && event.target) {
+                event.target.classList.add('active-link');
+            }
+            
+            // Store the last active project in localStorage
+            localStorage.setItem('lastProject', projectId);
+        }
+        
+        // On page load, check if there was a last viewed project
+        window.onload = function() {
+            var lastProject = localStorage.getItem('lastProject');
+            if (lastProject) {
+                showProject(lastProject, null);
+            } else {
+                // Optionally show first project by default
+                showProject('dreams', null);
+            }
+        };
+    </script>
 </body>
 </html>
