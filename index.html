@@ -19,30 +19,48 @@
             width: 100%;
         }
         
-        /* Split screen layout */
+        /* Three column layout */
         .container {
             display: flex;
             min-height: 100vh;
             width: 100%;
         }
         
-        /* Left column - index (ACME style) */
-        .index-column {
-            flex: 0 0 250px;
+        /* Left column - film projects (ACME style) */
+        .left-column {
+            flex: 0 0 200px;
             padding: 20px 15px 20px 30px;
-            border-right: 1px solid #000000;  /* Thin vertical line */
+            border-right: 1px solid #000000;
         }
         
-        /* Right column - content area */
-        .content-column {
+        /* Middle column - content display area */
+        .middle-column {
             flex: 1;
             padding: 20px 30px;
             background-color: #A4CB9E;
+            overflow: auto;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        
+        /* Right column - collaborative programming */
+        .right-column {
+            flex: 0 0 200px;
+            padding: 20px 30px 20px 15px;
+            border-left: 1px solid #000000;
+        }
+        
+        /* Content wrapper for centering */
+        .content-wrapper {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
         }
         
         /* Content card for projects */
         .project-content {
-            max-width: 600px;
+            width: 100%;
         }
         
         .project-content img {
@@ -50,18 +68,43 @@
             height: auto;
             border: 1px solid #333;
             margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .project-content p {
             font-size: 16px;
             line-height: 1.4;
             font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        
+        /* Iframe styling for external links */
+        .project-content iframe {
+            width: 100%;
+            height: 70vh;
+            border: 1px solid #333;
+            background-color: white;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         h1 {
-            font-size: clamp(22px, 5vw, 28px);
+            font-size: clamp(20px, 4vw, 24px);
             font-weight: bold;
             margin: 10px 0 18px 0;
+        }
+        
+        .column-header {
+            font-size: clamp(14px, 3vw, 16px);
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #000000;
+            padding-bottom: 5px;
         }
         
         ul {
@@ -72,7 +115,7 @@
         
         li {
             margin-bottom: 2px;
-            font-size: clamp(14px, 4vw, 16px);
+            font-size: clamp(14px, 3vw, 16px);
             line-height: 1.3;
         }
         
@@ -105,37 +148,45 @@
         }
         
         /* Responsive adjustments */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .container {
-                flex-direction: column;
+                flex-wrap: wrap;
             }
-            .index-column {
-                flex: none;
-                width: 100%;
+            .left-column {
+                flex: 0 0 100%;
                 border-right: none;
                 border-bottom: 1px solid #000000;
                 padding: 15px 15px 15px 25px;
             }
-            .content-column {
+            .middle-column {
+                flex: 0 0 100%;
+                order: 2;
                 padding: 20px;
+                min-height: 50vh;
+            }
+            .right-column {
+                flex: 0 0 100%;
+                border-left: none;
+                border-top: 1px solid #000000;
+                padding: 15px 25px 15px 15px;
             }
         }
         
         @media (max-width: 380px) {
-            .index-column {
-                padding: 12px 12px 12px 20px;
+            .left-column, .right-column {
+                padding: 12px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Left column - index -->
-        <div class="index-column">
+        <!-- Left column - Film Projects -->
+        <div class="left-column">
+            <div class="column-header">Film Projects</div>
             <h1>Bronte Dow</h1>
             
             <ul>
-                <li><a href="#" onclick="showProject('weathergirl', event)">Weathergirl</a></li>
                 <li><a href="#" onclick="showProject('dreams', event)">Dreams</a></li>
                 <li><a href="#" onclick="showProject('bathynomus', event)">Bathynomus</a></li>
                 <li><a href="#" onclick="showProject('soundings', event)">Soundings</a></li>
@@ -143,47 +194,50 @@
             </ul>
         </div>
         
-        <!-- Right column - content area -->
-        <div class="content-column">
-            <!-- Weathergirl content -->
-            <div id="weathergirl-content" class="project-content">
-                <div class="project-content-inner">
-                    <img src="7.jpg" alt="Weathergirl">
-                    <p>Weathergirl, 2020, digital video</p>
+        <!-- Middle column - Content display area (centered) -->
+        <div class="middle-column">
+            <div class="content-wrapper">
+                <!-- Dreams content - image 7.jpg -->
+                <div id="dreams-content" class="project-content">
+                    <div class="project-content-inner">
+                        <img src="7.jpg" alt="Dreams">
+                        <p>Dreams, 2020, digital video</p>
+                    </div>
+                </div>
+                
+                <!-- Bathynomus content - image 7.jpg (placeholder) -->
+                <div id="bathynomus-content" class="project-content">
+                    <div class="project-content-inner">
+                        <img src="7.jpg" alt="Bathynomus">
+                        <p>Bathynomus, 2020, digital video</p>
+                    </div>
+                </div>
+                
+                <!-- Soundings content - image 18.jpg -->
+                <div id="soundings-content" class="project-content">
+                    <div class="project-content-inner">
+                        <img src="18.jpg" alt="Soundings">
+                        <p>Soundings, 2020, digital video</p>
+                    </div>
+                </div>
+                
+                <!-- Mothers content - external link -->
+                <div id="mothers-content" class="project-content">
+                    <div class="project-content-inner">
+                        <iframe src="https://turf-projects.com/project/mothers/" title="Mothers at TURF Projects"></iframe>
+                    </div>
                 </div>
             </div>
+        </div>
+        
+        <!-- Right column - Collaborative Programming -->
+        <div class="right-column">
+            <div class="column-header">Collaborative Programming</div>
+            <ul>
+                <li><a href="#" onclick="showProject('weathergirl', event)">Weathergirl</a></li>
+            </ul>
             
-            <!-- Dreams content -->
-            <div id="dreams-content" class="project-content">
-                <div class="project-content-inner">
-                    <img src="7.jpg" alt="Dreams">
-                    <p>Dreams, 2020, digital video</p>
-                </div>
-            </div>
-            
-            <!-- Bathynomus content -->
-            <div id="bathynomus-content" class="project-content">
-                <div class="project-content-inner">
-                    <img src="7.jpg" alt="Bathynomus">
-                    <p>Bathynomus, 2020, digital video</p>
-                </div>
-            </div>
-            
-            <!-- Soundings content -->
-            <div id="soundings-content" class="project-content">
-                <div class="project-content-inner">
-                    <img src="7.jpg" alt="Soundings">
-                    <p>Soundings, 2020, digital video</p>
-                </div>
-            </div>
-            
-            <!-- Mothers content -->
-            <div id="mothers-content" class="project-content">
-                <div class="project-content-inner">
-                    <img src="7.jpg" alt="Mothers">
-                    <p>Mothers, 2020, digital video</p>
-                </div>
-            </div>
+            <!-- Weathergirl content hidden - will show in middle column when clicked -->
         </div>
     </div>
 
@@ -207,7 +261,7 @@
             }
             
             // Remove active class from all links
-            var links = document.querySelectorAll('.index-column a');
+            var links = document.querySelectorAll('.left-column a, .right-column a');
             for (var i = 0; i < links.length; i++) {
                 links[i].classList.remove('active-link');
             }
@@ -227,7 +281,7 @@
             if (lastProject) {
                 showProject(lastProject, null);
             } else {
-                // Optionally show first project by default
+                // Show Dreams by default
                 showProject('dreams', null);
             }
         };
