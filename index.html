@@ -21,7 +21,7 @@
             flex-direction: column;
         }
         
-        /* Split screen layout */
+        /* Split screen layout - now with three columns */
         .container {
             display: flex;
             flex: 1;
@@ -29,16 +29,25 @@
             width: 100%;
         }
         
-        /* Left column - index with just dates */
-        .index-column {
-            flex: 0 0 120px;
-            padding: 20px 10px 20px 20px;
+        /* Left column - main date index (wider) */
+        .main-index-column {
+            flex: 0 0 180px;  /* Wider to fit 2024–present on one line */
+            padding: 20px 15px 20px 30px;
             border-right: 1px solid #000000;
             background-color: #A4CB9E;
             z-index: 2;
         }
         
-        /* Right column - content area - takes remaining width */
+        /* Middle column - secondary index (project titles) */
+        .secondary-index-column {
+            flex: 0 0 150px;
+            padding: 20px 15px 20px 20px;
+            border-right: 1px solid #000000;
+            background-color: #A4CB9E;
+            z-index: 2;
+        }
+        
+        /* Right column - content area */
         .content-column {
             flex: 1;
             background-color: #A4CB9E;
@@ -120,7 +129,7 @@
             height: 10px;
         }
         
-        /* Date index styling - unbolded stack */
+        /* Main date index styling - unbolded stack */
         .date-index {
             list-style-type: none;
             padding-left: 0;
@@ -132,6 +141,46 @@
             font-size: clamp(16px, 4vw, 18px);
             font-weight: normal;
             line-height: 1.3;
+            white-space: nowrap; /* Prevents wrapping */
+        }
+        
+        /* Secondary index styling */
+        .secondary-index {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .secondary-index li {
+            margin-bottom: 8px;
+            font-size: clamp(14px, 3.5vw, 16px);
+            font-weight: normal;
+            line-height: 1.3;
+            cursor: pointer;
+        }
+        
+        .secondary-index li a {
+            color: #000000;
+            text-decoration: none;
+            display: inline-block;
+            padding: 2px 0;
+        }
+        
+        .secondary-index li a:hover {
+            text-decoration: underline;
+        }
+        
+        .secondary-index li a.active-secondary {
+            background-color: #ffff99;
+        }
+        
+        /* Hide secondary index by default */
+        .secondary-index {
+            display: none;
+        }
+        
+        .secondary-index.active {
+            display: block;
         }
         
         a {
@@ -148,7 +197,7 @@
             text-decoration: underline;
         }
         
-        /* Active link state */
+        /* Active link state for main index */
         .active-link {
             background-color: #ffff99;
         }
@@ -176,12 +225,20 @@
         }
         
         /* Responsive adjustments for phones */
-        @media (max-width: 600px) {
+        @media (max-width: 800px) {
             .container {
                 flex-direction: column;
             }
             
-            .index-column {
+            .main-index-column {
+                flex: none;
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #000000;
+                padding: 15px;
+            }
+            
+            .secondary-index-column {
                 flex: none;
                 width: 100%;
                 border-right: none;
@@ -198,6 +255,7 @@
             .date-index li {
                 margin-bottom: 0;
                 font-size: 18px;
+                white-space: normal;
             }
             
             .content-column {
@@ -213,7 +271,7 @@
         
         /* Small phone optimization */
         @media (max-width: 380px) {
-            .index-column {
+            .main-index-column, .secondary-index-column {
                 padding: 12px;
             }
             
@@ -233,28 +291,41 @@
                 padding: 8px 12px;
             }
         }
-        
-        /* Landscape orientation on phones */
-        @media (orientation: landscape) and (max-height: 500px) {
-            .index-column {
-                padding: 10px;
-            }
-            
-            .content-column {
-                min-height: 50vh;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Left column - index with just dates -->
-        <div class="index-column">
+        <!-- Left column - main date index (wider) -->
+        <div class="main-index-column">
             <ul class="date-index">
-                <li><a href="#" onclick="showProject('2024-present', event)" id="link-2024-present">2024–present</a></li>
-                <li><a href="#" onclick="showProject('2020', event)" id="link-2020">2020</a></li>
-                <li><a href="#" onclick="showProject('2019', event)" id="link-2019">2019</a></li>
-                <li><a href="#" onclick="showProject('2018', event)" id="link-2018">2018</a></li>
+                <li><a href="#" onclick="showSecondaryIndex('2024-present', event)" id="link-2024-present">2024–present</a></li>
+                <li><a href="#" onclick="showSecondaryIndex('2020', event)" id="link-2020">2020</a></li>
+                <li><a href="#" onclick="showSecondaryIndex('2019', event)" id="link-2019">2019</a></li>
+                <li><a href="#" onclick="showSecondaryIndex('2018', event)" id="link-2018">2018</a></li>
+            </ul>
+        </div>
+        
+        <!-- Middle column - secondary index (project titles) -->
+        <div class="secondary-index-column" id="secondary-index-column">
+            <!-- 2024-present secondary index - Weathergirl -->
+            <ul class="secondary-index" id="secondary-2024-present">
+                <li><a href="#" onclick="showProject('weathergirl', event)">Weathergirl</a></li>
+            </ul>
+            
+            <!-- 2020 secondary index - Dreams -->
+            <ul class="secondary-index" id="secondary-2020">
+                <li><a href="#" onclick="showProject('dreams', event)">Dreams</a></li>
+            </ul>
+            
+            <!-- 2019 secondary index - Bathynomus and Soundings -->
+            <ul class="secondary-index" id="secondary-2019">
+                <li><a href="#" onclick="showProject('bathynomus', event)">Bathynomus</a></li>
+                <li><a href="#" onclick="showProject('soundings', event)">Soundings</a></li>
+            </ul>
+            
+            <!-- 2018 secondary index - Mothers -->
+            <ul class="secondary-index" id="secondary-2018">
+                <li><a href="#" onclick="showProject('mothers', event)">Mothers</a></li>
             </ul>
         </div>
         
@@ -262,16 +333,16 @@
         <div class="content-column" id="content-column">
             <!-- Content wrapper for all content -->
             <div class="content-wrapper" id="regular-content-wrapper">
-                <!-- 2024-present - Weathergirl with image and description -->
-                <div id="2024-present-content" class="project-content">
+                <!-- Weathergirl content -->
+                <div id="weathergirl-content" class="project-content">
                     <div class="project-content-inner">
                         <img src="Avalon July 24 2025.jpg" alt="Weathergirl">
                         <p class="description">An itinerant screening series dedicated to showcasing funny, sad, and perverse artist's moving image organised by Bronte Dow and Freya Field-Donovan. More documentation here <a href="https://weathergirlevents.wordpress.com/" target="_blank">https://weathergirlevents.wordpress.com/</a></p>
                     </div>
                 </div>
                 
-                <!-- 2020 - Dreams -->
-                <div id="2020-content" class="project-content">
+                <!-- Dreams content -->
+                <div id="dreams-content" class="project-content">
                     <div class="project-content-inner">
                         <img src="7.jpg" alt="Dreams">
                         <p class="title-line">Dreams, digital video, 5 mins</p>
@@ -280,8 +351,18 @@
                     </div>
                 </div>
                 
-                <!-- 2019 - Soundings -->
-                <div id="2019-content" class="project-content">
+                <!-- Bathynomus content -->
+                <div id="bathynomus-content" class="project-content">
+                    <div class="project-content-inner">
+                        <img src="7.jpg" alt="Bathynomus">
+                        <p class="title-line">Bathynomus, digital video, 3 mins</p>
+                        <div class="line-break"></div>
+                        <p class="description">A giant isopod (Bathynomus giganteus) is preserved in a Tupperware container at the National Oceanography Centre, Southampton, UK.</p>
+                    </div>
+                </div>
+                
+                <!-- Soundings content -->
+                <div id="soundings-content" class="project-content">
                     <div class="project-content-inner">
                         <img src="Artwork 1920x1080.jpg" alt="Soundings">
                         <p class="title-line">Soundings, digital video, 38 mins</p>
@@ -290,8 +371,8 @@
                     </div>
                 </div>
                 
-                <!-- 2018 - Mothers (replacing Bathynomus) -->
-                <div id="2018-content" class="project-content">
+                <!-- Mothers content -->
+                <div id="mothers-content" class="project-content">
                     <div class="project-content-inner">
                         <img src="Mothers Turf Projects (1).jpg" alt="Mothers at TURF Projects">
                         <p class="description">An exhibition at Turf Projects presenting collaborations between artists and their mothers.</p>
@@ -307,13 +388,52 @@
     </div>
 
     <script>
+        function showSecondaryIndex(yearId, event) {
+            // Prevent default link behavior
+            if (event) {
+                event.preventDefault();
+            }
+            
+            // Hide all secondary indices
+            var secondaries = document.getElementsByClassName('secondary-index');
+            for (var i = 0; i < secondaries.length; i++) {
+                secondaries[i].classList.remove('active');
+            }
+            
+            // Show selected secondary index
+            var selectedSecondary = document.getElementById('secondary-' + yearId);
+            if (selectedSecondary) {
+                selectedSecondary.classList.add('active');
+            }
+            
+            // Remove active class from all main links
+            var links = document.querySelectorAll('.main-index-column a');
+            for (var i = 0; i < links.length; i++) {
+                links[i].classList.remove('active-link');
+            }
+            
+            // Add active class to clicked main link
+            if (event && event.target) {
+                event.target.classList.add('active-link');
+            }
+            
+            // Don't show any project content yet - wait for secondary click
+            var contents = document.getElementsByClassName('project-content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove('active');
+            }
+            
+            // Store the last active year
+            localStorage.setItem('lastYear', yearId);
+        }
+        
         function showProject(projectId, event) {
             // Prevent default link behavior
             if (event) {
                 event.preventDefault();
             }
             
-            // Hide all project content first
+            // Hide all project content
             var contents = document.getElementsByClassName('project-content');
             for (var i = 0; i < contents.length; i++) {
                 contents[i].classList.remove('active');
@@ -325,29 +445,39 @@
                 selectedContent.classList.add('active');
             }
             
-            // Remove active class from all links
-            var links = document.querySelectorAll('.index-column a');
-            for (var i = 0; i < links.length; i++) {
-                links[i].classList.remove('active-link');
+            // Remove active class from all secondary links
+            var secondaryLinks = document.querySelectorAll('.secondary-index a');
+            for (var i = 0; i < secondaryLinks.length; i++) {
+                secondaryLinks[i].classList.remove('active-secondary');
             }
             
-            // Add active class to clicked link
+            // Add active class to clicked secondary link
             if (event && event.target) {
-                event.target.classList.add('active-link');
+                event.target.classList.add('active-secondary');
             }
             
-            // Store the last active project in localStorage
+            // Store the last active project
             localStorage.setItem('lastProject', projectId);
         }
         
-        // On page load, check if there was a last viewed project
+        // On page load, check if there was a last viewed year/project
         window.onload = function() {
+            var lastYear = localStorage.getItem('lastYear');
             var lastProject = localStorage.getItem('lastProject');
-            if (lastProject) {
-                showProject(lastProject, null);
+            
+            if (lastYear) {
+                showSecondaryIndex(lastYear, null);
+                
+                if (lastProject) {
+                    // Small delay to ensure DOM is ready
+                    setTimeout(function() {
+                        showProject(lastProject, null);
+                    }, 100);
+                }
             } else {
-                // Show 2020 (Dreams) by default
-                showProject('2020', null);
+                // Show 2020 by default
+                showSecondaryIndex('2020', null);
+                showProject('dreams', null);
             }
         };
     </script>
