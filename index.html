@@ -19,9 +19,17 @@
             width: 100%;
             display: flex;
             flex-direction: column;
+            cursor: default;
         }
         
-        /* Split screen layout - now with three columns */
+        /* Click anywhere on green background returns to homepage */
+        body.home-mode .main-index-column,
+        body.home-mode .secondary-index-column,
+        body.home-mode .content-column {
+            cursor: pointer;
+        }
+        
+        /* Split screen layout - no vertical lines */
         .container {
             display: flex;
             flex: 1;
@@ -29,11 +37,10 @@
             width: 100%;
         }
         
-        /* Left column - main date index (wider) */
+        /* Left column - main date index */
         .main-index-column {
-            flex: 0 0 180px;  /* Wider to fit 2024–present on one line */
+            flex: 0 0 180px;
             padding: 20px 15px 20px 30px;
-            border-right: 1px solid #000000;
             background-color: #A4CB9E;
             z-index: 2;
         }
@@ -42,7 +49,6 @@
         .secondary-index-column {
             flex: 0 0 150px;
             padding: 20px 15px 20px 20px;
-            border-right: 1px solid #000000;
             background-color: #A4CB9E;
             z-index: 2;
         }
@@ -121,15 +127,16 @@
             font-weight: normal;
         }
         
+        /* No hover effects */
         .project-content .external-link a:hover {
-            background-color: #ffff99;
+            text-decoration: none;
         }
         
         .line-break {
             height: 10px;
         }
         
-        /* Main date index styling - unbolded stack */
+        /* Main date index styling */
         .date-index {
             list-style-type: none;
             padding-left: 0;
@@ -141,7 +148,7 @@
             font-size: clamp(16px, 4vw, 18px);
             font-weight: normal;
             line-height: 1.3;
-            white-space: nowrap; /* Prevents wrapping */
+            white-space: nowrap;
         }
         
         /* Secondary index styling */
@@ -149,33 +156,6 @@
             list-style-type: none;
             padding-left: 0;
             margin: 0;
-        }
-        
-        .secondary-index li {
-            margin-bottom: 8px;
-            font-size: clamp(14px, 3.5vw, 16px);
-            font-weight: normal;
-            line-height: 1.3;
-            cursor: pointer;
-        }
-        
-        .secondary-index li a {
-            color: #000000;
-            text-decoration: none;
-            display: inline-block;
-            padding: 2px 0;
-        }
-        
-        .secondary-index li a:hover {
-            text-decoration: underline;
-        }
-        
-        .secondary-index li a.active-secondary {
-            background-color: #ffff99;
-        }
-        
-        /* Hide secondary index by default */
-        .secondary-index {
             display: none;
         }
         
@@ -183,23 +163,37 @@
             display: block;
         }
         
+        .secondary-index li {
+            margin-bottom: 8px;
+            font-size: clamp(14px, 3.5vw, 16px);
+            font-weight: normal;
+            line-height: 1.3;
+        }
+        
+        /* Link styling - no hover effects, no underline */
         a {
             color: #000000;
             text-decoration: none;
             display: inline-block;
             padding: 2px 0;
             cursor: pointer;
-            -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+            -webkit-tap-highlight-color: transparent;
             font-weight: normal;
         }
         
+        /* No hover effects on links */
         a:hover {
-            text-decoration: underline;
+            text-decoration: none;
+            background-color: transparent;
         }
         
-        /* Active link state for main index */
+        /* No active link highlighting */
         .active-link {
-            background-color: #ffff99;
+            background-color: transparent;
+        }
+        
+        .active-secondary {
+            background-color: transparent;
         }
         
         /* Footer - ACME style line at bottom */
@@ -221,7 +215,7 @@
         }
         
         .footer a:hover {
-            text-decoration: underline;
+            text-decoration: none;
         }
         
         /* Responsive adjustments for phones */
@@ -233,16 +227,12 @@
             .main-index-column {
                 flex: none;
                 width: 100%;
-                border-right: none;
-                border-bottom: 1px solid #000000;
                 padding: 15px;
             }
             
             .secondary-index-column {
                 flex: none;
                 width: 100%;
-                border-right: none;
-                border-bottom: 1px solid #000000;
                 padding: 15px;
             }
             
@@ -269,7 +259,6 @@
             }
         }
         
-        /* Small phone optimization */
         @media (max-width: 380px) {
             .main-index-column, .secondary-index-column {
                 padding: 12px;
@@ -286,16 +275,12 @@
             .content-column {
                 padding: 12px;
             }
-            
-            .footer {
-                padding: 8px 12px;
-            }
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <!-- Left column - main date index (wider) -->
+<body id="main-body">
+    <div class="container" id="main-container">
+        <!-- Left column - main date index -->
         <div class="main-index-column">
             <ul class="date-index">
                 <li><a href="#" onclick="showSecondaryIndex('2024-present', event)" id="link-2024-present">2024–present</a></li>
@@ -306,7 +291,7 @@
         </div>
         
         <!-- Middle column - secondary index (project titles) -->
-        <div class="secondary-index-column" id="secondary-index-column">
+        <div class="secondary-index-column" id="secondary-index-column" onclick="handleSecondaryColumnClick(event)">
             <!-- 2024-present secondary index - Weathergirl -->
             <ul class="secondary-index" id="secondary-2024-present">
                 <li><a href="#" onclick="showProject('weathergirl', event)">Weathergirl</a></li>
@@ -330,14 +315,16 @@
         </div>
         
         <!-- Right column - content area -->
-        <div class="content-column" id="content-column">
+        <div class="content-column" id="content-column" onclick="handleContentColumnClick(event)">
             <!-- Content wrapper for all content -->
             <div class="content-wrapper" id="regular-content-wrapper">
                 <!-- Weathergirl content -->
                 <div id="weathergirl-content" class="project-content">
                     <div class="project-content-inner">
-                        <img src="Avalon July 24 2025.jpg" alt="Weathergirl">
-                        <p class="description">An itinerant screening series dedicated to showcasing funny, sad, and perverse artist's moving image organised by Bronte Dow and Freya Field-Donovan. More documentation here <a href="https://weathergirlevents.wordpress.com/" target="_blank">https://weathergirlevents.wordpress.com/</a></p>
+                        <img src="Photo Aug 10 2024.jpg" alt="Weathergirl">
+                        <p class="description">I co-organise an itinerant screening series dedicated to showcasing funny, sad, and perverse artist's moving image.</p>
+                        <div class="line-break"></div>
+                        <p class="external-link"><a href="https://weathergirlevents.wordpress.com/" target="_blank">https://weathergirlevents.wordpress.com/</a></p>
                     </div>
                 </div>
                 
@@ -354,7 +341,7 @@
                 <!-- Bathynomus content -->
                 <div id="bathynomus-content" class="project-content">
                     <div class="project-content-inner">
-                        <img src="7.jpg" alt="Bathynomus">
+                        <img src="11.jpg" alt="Bathynomus">
                         <p class="title-line">Bathynomus, digital video, 3 mins</p>
                         <div class="line-break"></div>
                         <p class="description">A giant isopod (Bathynomus giganteus) is preserved in a Tupperware container at the National Oceanography Centre, Southampton, UK.</p>
@@ -376,6 +363,8 @@
                     <div class="project-content-inner">
                         <img src="Mothers Turf Projects (1).jpg" alt="Mothers at TURF Projects">
                         <p class="description">An exhibition at Turf Projects presenting collaborations between artists and their mothers.</p>
+                        <div class="line-break"></div>
+                        <p class="external-link"><a href="https://turf-projects.com/project/mothers/" target="_blank">https://turf-projects.com/project/mothers/</a></p>
                     </div>
                 </div>
             </div>
@@ -388,9 +377,14 @@
     </div>
 
     <script>
+        // Track current state
+        let currentYear = null;
+        let currentProject = null;
+        
         function showSecondaryIndex(yearId, event) {
-            // Prevent default link behavior
+            // Stop event from bubbling up to container clicks
             if (event) {
+                event.stopPropagation();
                 event.preventDefault();
             }
             
@@ -406,30 +400,20 @@
                 selectedSecondary.classList.add('active');
             }
             
-            // Remove active class from all main links
-            var links = document.querySelectorAll('.main-index-column a');
-            for (var i = 0; i < links.length; i++) {
-                links[i].classList.remove('active-link');
-            }
-            
-            // Add active class to clicked main link
-            if (event && event.target) {
-                event.target.classList.add('active-link');
-            }
-            
             // Don't show any project content yet - wait for secondary click
             var contents = document.getElementsByClassName('project-content');
             for (var i = 0; i < contents.length; i++) {
                 contents[i].classList.remove('active');
             }
             
-            // Store the last active year
-            localStorage.setItem('lastYear', yearId);
+            currentYear = yearId;
+            currentProject = null;
         }
         
         function showProject(projectId, event) {
-            // Prevent default link behavior
+            // Stop event from bubbling up to container clicks
             if (event) {
+                event.stopPropagation();
                 event.preventDefault();
             }
             
@@ -445,40 +429,67 @@
                 selectedContent.classList.add('active');
             }
             
-            // Remove active class from all secondary links
-            var secondaryLinks = document.querySelectorAll('.secondary-index a');
-            for (var i = 0; i < secondaryLinks.length; i++) {
-                secondaryLinks[i].classList.remove('active-secondary');
-            }
-            
-            // Add active class to clicked secondary link
-            if (event && event.target) {
-                event.target.classList.add('active-secondary');
-            }
-            
-            // Store the last active project
-            localStorage.setItem('lastProject', projectId);
+            currentProject = projectId;
         }
         
-        // On page load, check if there was a last viewed year/project
-        window.onload = function() {
-            var lastYear = localStorage.getItem('lastYear');
-            var lastProject = localStorage.getItem('lastProject');
-            
-            if (lastYear) {
-                showSecondaryIndex(lastYear, null);
-                
-                if (lastProject) {
-                    // Small delay to ensure DOM is ready
-                    setTimeout(function() {
-                        showProject(lastProject, null);
-                    }, 100);
-                }
-            } else {
-                // Show 2020 by default
-                showSecondaryIndex('2020', null);
-                showProject('dreams', null);
+        function resetToHomepage() {
+            // Hide all secondary indices
+            var secondaries = document.getElementsByClassName('secondary-index');
+            for (var i = 0; i < secondaries.length; i++) {
+                secondaries[i].classList.remove('active');
             }
+            
+            // Hide all project content
+            var contents = document.getElementsByClassName('project-content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove('active');
+            }
+            
+            currentYear = null;
+            currentProject = null;
+        }
+        
+        // Handle clicks on the secondary index column background
+        function handleSecondaryColumnClick(event) {
+            // Only reset if clicking the column background, not a link
+            if (event.target === document.getElementById('secondary-index-column') || 
+                event.target.classList.contains('secondary-index-column')) {
+                resetToHomepage();
+            }
+        }
+        
+        // Handle clicks on the content column background
+        function handleContentColumnClick(event) {
+            // Only reset if clicking the column background, not content
+            if (event.target === document.getElementById('content-column') || 
+                event.target.classList.contains('content-column') ||
+                event.target === document.getElementById('regular-content-wrapper')) {
+                resetToHomepage();
+            }
+        }
+        
+        // Handle clicks on the main container background (the green area)
+        document.getElementById('main-container').addEventListener('click', function(event) {
+            // Check if the click is directly on the container or on column backgrounds
+            if (event.target === document.getElementById('main-container') || 
+                event.target.classList.contains('main-index-column') ||
+                event.target.classList.contains('secondary-index-column') ||
+                event.target.classList.contains('content-column')) {
+                resetToHomepage();
+            }
+        });
+        
+        // Also handle clicks on the body background
+        document.getElementById('main-body').addEventListener('click', function(event) {
+            // If click is on the body itself (rare) or on container background
+            if (event.target === document.getElementById('main-body')) {
+                resetToHomepage();
+            }
+        });
+        
+        // On page load, show only the years (homepage)
+        window.onload = function() {
+            resetToHomepage();
         };
     </script>
 </body>
