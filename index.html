@@ -2,107 +2,114 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Bronte Dow</title>
-    <!-- Bootstrap CSS (keeping your existing structure) -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <!-- Font Awesome icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    
+    <!-- Minimal inline styles - exactly like ACME but responsive -->
     <style>
-        /* ACME Laboratories style - green background, monospace feel */
-        html {
-            background-color: #009966;  /* Solid ACME green */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            background-color: #009966 !important;  /* Override any Bootstrap */
-            font-family: "Courier New", Courier, "Lucida Sans Typewriter", monospace;
-            margin: 2rem auto;
-            max-width: 900px;
-            padding: 0 20px;
+            background-color: #A4CB9E;
             color: #000000;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 15px 15px 15px 25px;
+            min-height: 100vh;
+            width: 100%;
         }
         
-        /* Main content container - light green interior like acme.com */
-        .acme-box {
-            background-color: #ccffcc;
-            border: 2px solid #000000;
-            padding: 2.5rem 3rem;
-            box-shadow: 8px 8px 0 rgba(0,0,0,0.2);
+        /* Responsive container */
+        .content {
+            max-width: 800px;
+            width: 100%;
+            margin: 0;
         }
         
-        /* Your name - large and bold like ACME */
         h1 {
-            font-family: "Courier New", Courier, monospace;
-            font-size: 3.2rem;
+            font-size: clamp(22px, 5vw, 28px);
             font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: -0.02em;
-            margin: 0 0 0.5rem 0;
-            padding: 0;
-            border-bottom: 4px solid #000000;
-            display: inline-block;
+            margin: 10px 0 18px 0;
         }
         
-        /* Project list - exactly like ACME's index */
-        .project-index {
+        ul {
             list-style-type: none;
-            margin: 2.5rem 0 2rem 0;
-            padding: 0;
+            padding-left: 0;
+            margin: 0 0 18px 0;
         }
         
-        .project-index li {
-            margin: 0.8rem 0;
-            padding: 0;
-            font-size: 1.6rem;
-            font-weight: normal;
+        li {
+            margin-bottom: 2px;
+            font-size: clamp(14px, 4vw, 16px);
+            line-height: 1.3;
         }
         
-        .project-index li a {
-            text-decoration: none;
+        a {
             color: #000000;
-            border-bottom: 3px solid #006633;
-            padding-bottom: 2px;
-            font-style: italic;  /* Your original italic styling */
+            text-decoration: none;
+            display: inline-block;
+            padding: 2px 0;
+            -webkit-tap-highlight-color: rgba(0,0,0,0.1);
         }
         
-        .project-index li a:hover {
-            background-color: #ffff66;
-            border-bottom: 3px solid #000000;
-        }
-        
-        /* Remove any Bootstrap interference */
-        .container, .row, .col {
-            background-color: transparent !important;
+        a:hover {
+            text-decoration: underline;
         }
         
         hr {
-            border-top: 2px solid #006633;
-            background-color: transparent;
-            margin: 2rem 0 0.5rem 0;
+            border: none;
+            border-top: 1px solid #000000;
+            margin: 18px 0 10px 0;
+            width: 100%;
+        }
+        
+        /* iPhone SE / small phone optimization */
+        @media (max-width: 380px) {
+            body {
+                padding: 12px 12px 12px 20px;
+            }
+            h1 {
+                margin: 8px 0 16px 0;
+            }
+            li {
+                margin-bottom: 3px;
+            }
+        }
+        
+        /* iPad / tablet optimization */
+        @media (min-width: 768px) {
+            body {
+                padding: 20px 20px 20px 30px;
+            }
+        }
+        
+        /* Landscape orientation */
+        @media (orientation: landscape) and (max-height: 500px) {
+            body {
+                padding: 10px 10px 10px 25px;
+            }
+            h1 {
+                margin: 5px 0 12px 0;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="acme-box">
-        <!-- Just your name - no intro sentence -->
+    <div class="content">
         <h1>Bronte Dow</h1>
         
-        <!-- Empty space like acme.com's layout -->
-        <div style="height: 0.5rem;"></div>
-        
-        <!-- Pure hyperlinked project list - exactly as requested -->
-        <ul class="project-index">
-            <li><a href="#"><i>Weathergirl</i></a></li>
-            <li><a href="#"><i>Dreams</i></a></li>
-            <li><a href="#"><i>Bathynomus</i></a></li>
-            <li><a href="#"><i>Soundings</i></a></li>
-            <li><a href="#"><i>Mothers</i></a></li>
+        <ul>
+            <li><a href="#">Weathergirl</a></li>
+            <li><a href="#">Dreams</a></li>
+            <li><a href="#">Bathynomus</a></li>
+            <li><a href="#">Soundings</a></li>
+            <li><a href="#">Mothers</a></li>
         </ul>
         
         <hr>
-        <!-- No tribute line - completely clean -->
     </div>
 </body>
 </html>
