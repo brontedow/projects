@@ -17,49 +17,98 @@
             font-family: Arial, Helvetica, sans-serif;
             min-height: 100vh;
             width: 100%;
+            display: flex;
+            flex-direction: column;
         }
         
-        /* Three column layout */
+        /* Split screen layout */
         .container {
             display: flex;
-            min-height: 100vh;
+            flex: 1;
+            min-height: calc(100vh - 50px);
             width: 100%;
         }
         
-        /* Left column - film projects (ACME style) */
-        .left-column {
-            flex: 0 0 200px;
+        /* Left column - index (ACME style) - fixed width */
+        .index-column {
+            flex: 0 0 250px;
             padding: 20px 15px 20px 30px;
             border-right: 1px solid #000000;
+            background-color: #A4CB9E;
+            z-index: 2;
         }
         
-        /* Middle column - content display area */
-        .middle-column {
+        /* Right column - content area - takes remaining width */
+        .content-column {
             flex: 1;
-            padding: 20px 30px;
             background-color: #A4CB9E;
             overflow: auto;
             display: flex;
             justify-content: center;
             align-items: flex-start;
+            position: relative;
         }
         
-        /* Right column - collaborative programming */
-        .right-column {
-            flex: 0 0 200px;
-            padding: 20px 30px 20px 15px;
-            border-left: 1px solid #000000;
-        }
-        
-        /* Content wrapper for centering */
+        /* Content wrapper for centering regular content */
         .content-wrapper {
             max-width: 600px;
             width: 100%;
-            margin: 0 auto;
+            margin: 20px auto;
+            padding: 0 20px;
         }
         
-        /* Content card for projects */
+        /* Special fullscreen wrapper for Weathergirl */
+        .fullscreen-wrapper {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        /* Fullscreen iframe for Weathergirl */
+        .fullscreen-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: white;
+            display: block;
+        }
+        
+        /* Content card for projects (regular) */
         .project-content {
+            width: 100%;
+            display: none;
+        }
+        
+        .project-content.active {
+            display: block;
+        }
+        
+        /* Special class for Weathergirl content to use fullscreen */
+        .project-content.weathergirl-fullscreen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .project-content.weathergirl-fullscreen .project-content-inner {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .project-content.weathergirl-fullscreen iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Regular content styling */
+        .project-content-inner {
             width: 100%;
         }
         
@@ -75,36 +124,40 @@
         
         .project-content p {
             font-size: 16px;
-            line-height: 1.4;
+            line-height: 1.5;
             font-family: Arial, Helvetica, sans-serif;
-            text-align: center;
+            text-align: left;
+            margin-bottom: 10px;
         }
         
-        /* Iframe styling for external links */
-        .project-content iframe {
-            width: 100%;
-            height: 70vh;
-            border: 1px solid #333;
-            background-color: white;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+        .project-content .title-line {
+            font-weight: normal;
+            margin-bottom: 5px;
+        }
+        
+        .project-content .description {
+            margin-top: 10px;
+            font-style: normal;
+        }
+        
+        .line-break {
+            height: 10px;
         }
         
         h1 {
-            font-size: clamp(20px, 4vw, 24px);
+            font-size: clamp(22px, 5vw, 28px);
             font-weight: bold;
             margin: 10px 0 18px 0;
         }
         
-        .column-header {
-            font-size: clamp(14px, 3vw, 16px);
-            font-weight: bold;
+        .year-section {
             margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid #000000;
-            padding-bottom: 5px;
+        }
+        
+        .year-heading {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: clamp(14px, 4vw, 16px);
         }
         
         ul {
@@ -113,10 +166,20 @@
             margin: 0;
         }
         
-        li {
+        .year-list {
+            margin-left: 0;
+            margin-bottom: 15px;
+        }
+        
+        .year-list li {
             margin-bottom: 2px;
-            font-size: clamp(14px, 3vw, 16px);
+            font-size: clamp(14px, 4vw, 16px);
             line-height: 1.3;
+        }
+        
+        /* Triple line break spacing */
+        .triple-break {
+            margin: 6px 0;
         }
         
         a {
@@ -137,108 +200,140 @@
             background-color: #ffff99;
         }
         
-        /* Hide all project content by default */
-        .project-content {
-            display: none;
+        /* Footer - ACME style line at bottom */
+        .footer {
+            border-top: 1px solid #000000;
+            padding: 12px 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            width: 100%;
+            background-color: #A4CB9E;
+            z-index: 3;
         }
         
-        /* Show active project */
-        .project-content.active {
-            display: block;
+        .footer a {
+            color: #000000;
+            text-decoration: none;
+            padding: 0;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
         }
         
         /* Responsive adjustments */
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
             .container {
-                flex-wrap: wrap;
+                flex-direction: column;
             }
-            .left-column {
-                flex: 0 0 100%;
+            .index-column {
+                flex: none;
+                width: 100%;
                 border-right: none;
                 border-bottom: 1px solid #000000;
                 padding: 15px 15px 15px 25px;
             }
-            .middle-column {
-                flex: 0 0 100%;
-                order: 2;
-                padding: 20px;
-                min-height: 50vh;
+            .content-column {
+                min-height: 70vh;
             }
-            .right-column {
-                flex: 0 0 100%;
-                border-left: none;
-                border-top: 1px solid #000000;
-                padding: 15px 25px 15px 15px;
+            .footer {
+                padding: 10px 20px;
             }
         }
         
         @media (max-width: 380px) {
-            .left-column, .right-column {
-                padding: 12px;
+            .index-column {
+                padding: 12px 12px 12px 20px;
+            }
+            .footer {
+                padding: 8px 15px;
+                font-size: 14px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Left column - Film Projects -->
-        <div class="left-column">
-            <div class="column-header">Film Projects</div>
+        <!-- Left column - index with chronological years -->
+        <div class="index-column">
             <h1>Bronte Dow</h1>
             
-            <ul>
-                <li><a href="#" onclick="showProject('dreams', event)">Dreams</a></li>
-                <li><a href="#" onclick="showProject('bathynomus', event)">Bathynomus</a></li>
-                <li><a href="#" onclick="showProject('soundings', event)">Soundings</a></li>
-                <li><a href="#" onclick="showProject('mothers', event)">Mothers</a></li>
-            </ul>
+            <div class="year-section">
+                <div class="year-heading">2024–present</div>
+                <ul class="year-list">
+                    <li><a href="#" onclick="showProject('weathergirl', event)">Weathergirl</a></li>
+                </ul>
+            </div>
+            
+            <div class="year-section">
+                <div class="year-heading">2020</div>
+                <ul class="year-list">
+                    <li><a href="#" onclick="showProject('dreams', event)">Dreams</a></li>
+                </ul>
+            </div>
+            
+            <div class="year-section">
+                <div class="year-heading">2019</div>
+                <ul class="year-list">
+                    <li><a href="#" onclick="showProject('soundings', event)">Soundings</a></li>
+                </ul>
+            </div>
+            
+            <div class="year-section">
+                <div class="year-heading">2018</div>
+                <ul class="year-list">
+                    <li><a href="#" onclick="showProject('bathynomus', event)">Bathynomus</a></li>
+                </ul>
+            </div>
         </div>
         
-        <!-- Middle column - Content display area (centered) -->
-        <div class="middle-column">
-            <div class="content-wrapper">
-                <!-- Dreams content - image 7.jpg -->
+        <!-- Right column - content area -->
+        <div class="content-column" id="content-column">
+            <!-- Regular content wrapper (hidden when Weathergirl is active) -->
+            <div class="content-wrapper" id="regular-content-wrapper">
+                <!-- Weathergirl content - will be fullscreen, not shown here -->
+                <div id="weathergirl-content" class="project-content weathergirl-fullscreen">
+                    <div class="project-content-inner">
+                        <iframe src="https://weathergirlevents.wordpress.com/" title="Weathergirl Events"></iframe>
+                    </div>
+                </div>
+                
+                <!-- Dreams content - 7.jpg with detailed description -->
                 <div id="dreams-content" class="project-content">
                     <div class="project-content-inner">
                         <img src="7.jpg" alt="Dreams">
-                        <p>Dreams, 2020, digital video</p>
+                        <p class="title-line">Dreams, digital video, 5 mins</p>
+                        <div class="line-break"></div>
+                        <p class="description">A fragmented, recursive meditation on selfhood.</p>
                     </div>
                 </div>
                 
-                <!-- Bathynomus content - image 7.jpg (placeholder) -->
+                <!-- Soundings content - Artwork 1920x1080.jpg with detailed description -->
+                <div id="soundings-content" class="project-content">
+                    <div class="project-content-inner">
+                        <img src="Artwork 1920x1080.jpg" alt="Soundings">
+                        <p class="title-line">Soundings, digital video, 38 mins</p>
+                        <div class="line-break"></div>
+                        <p class="description">A robotics engineer and a marine biologist speculate on a near future in which prospectors have turned to the deep ocean commons.</p>
+                    </div>
+                </div>
+                
+                <!-- Bathynomus content - image with detailed description -->
                 <div id="bathynomus-content" class="project-content">
                     <div class="project-content-inner">
                         <img src="7.jpg" alt="Bathynomus">
-                        <p>Bathynomus, 2020, digital video</p>
-                    </div>
-                </div>
-                
-                <!-- Soundings content - image 18.jpg -->
-                <div id="soundings-content" class="project-content">
-                    <div class="project-content-inner">
-                        <img src="18.jpg" alt="Soundings">
-                        <p>Soundings, 2020, digital video</p>
-                    </div>
-                </div>
-                
-                <!-- Mothers content - external link -->
-                <div id="mothers-content" class="project-content">
-                    <div class="project-content-inner">
-                        <iframe src="https://turf-projects.com/project/mothers/" title="Mothers at TURF Projects"></iframe>
+                        <p class="title-line">Bathynomus, digital video, 3 mins</p>
+                        <div class="line-break"></div>
+                        <p class="description">A giant isopod (Bathynomus giganteus) is preserved in a Tupperware container at the National Oceanography Centre, Southampton, UK.</p>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Right column - Collaborative Programming -->
-        <div class="right-column">
-            <div class="column-header">Collaborative Programming</div>
-            <ul>
-                <li><a href="#" onclick="showProject('weathergirl', event)">Weathergirl</a></li>
-            </ul>
-            
-            <!-- Weathergirl content hidden - will show in middle column when clicked -->
-        </div>
+    </div>
+    
+    <!-- Footer with contact line - ACME style -->
+    <div class="footer">
+        <a href="mailto:dowbronte@gmail.com">dowbronte@gmail.com</a>
     </div>
 
     <script>
@@ -248,20 +343,45 @@
                 event.preventDefault();
             }
             
-            // Hide all project content
+            // Get references
+            var contentColumn = document.getElementById('content-column');
+            var regularWrapper = document.getElementById('regular-content-wrapper');
+            var weathergirlContent = document.getElementById('weathergirl-content');
+            
+            // Hide all project content first
             var contents = document.getElementsByClassName('project-content');
             for (var i = 0; i < contents.length; i++) {
                 contents[i].classList.remove('active');
             }
             
-            // Show selected project content
-            var selectedContent = document.getElementById(projectId + '-content');
-            if (selectedContent) {
-                selectedContent.classList.add('active');
+            // Special handling for Weathergirl
+            if (projectId === 'weathergirl') {
+                // Hide regular wrapper
+                if (regularWrapper) {
+                    regularWrapper.style.display = 'none';
+                }
+                // Show weathergirl content
+                if (weathergirlContent) {
+                    weathergirlContent.classList.add('active');
+                }
+            } else {
+                // For non-Weathergirl projects, show regular wrapper
+                if (regularWrapper) {
+                    regularWrapper.style.display = 'block';
+                }
+                // Hide weathergirl content if it's active
+                if (weathergirlContent) {
+                    weathergirlContent.classList.remove('active');
+                }
+                // Show selected project content
+                var selectedContent = document.getElementById(projectId + '-content');
+                if (selectedContent) {
+                    selectedContent.classList.add('active');
+                }
             }
             
             // Remove active class from all links
-            var links = document.querySelectorAll('.left-column a, .right-column a');
+            var links = document.querySelectorAll('.index-column a');
             for (var i = 0; i < links.length; i++) {
                 links[i].classList.remove('active-link');
             }
