@@ -21,7 +21,7 @@
             flex-direction: column;
         }
         
-        /* Three column layout - no vertical lines */
+        /* Three column layout */
         .container {
             display: flex;
             flex: 1;
@@ -29,28 +29,28 @@
             width: 100%;
         }
         
-        /* Left column - years */
+        /* Column 1: Years - equal width */
         .years-column {
-            flex: 0 0 180px;
+            flex: 0 0 200px;
             padding: 20px 15px 20px 30px;
             background-color: #A4CB9E;
         }
         
-        /* Middle column - categories (Programming, Film, Curation) */
+        /* Column 2: Categories - equal width */
         .categories-column {
-            flex: 0 0 180px;
+            flex: 0 0 200px;
             padding: 20px 15px 20px 20px;
             background-color: #A4CB9E;
         }
         
-        /* Right column - projects */
+        /* Column 3: Projects - equal width */
         .projects-column {
-            flex: 0 0 180px;
+            flex: 0 0 200px;
             padding: 20px 30px 20px 20px;
             background-color: #A4CB9E;
         }
         
-        /* Content area - for images and text */
+        /* Content area */
         .content-column {
             flex: 1;
             background-color: #A4CB9E;
@@ -61,14 +61,13 @@
             padding: 20px;
         }
         
-        /* Content wrapper for centering */
         .content-wrapper {
             max-width: 600px;
             width: 100%;
             margin: 0 auto;
         }
         
-        /* Content card for projects */
+        /* Project content */
         .project-content {
             width: 100%;
             display: none;
@@ -78,7 +77,6 @@
             display: block;
         }
         
-        /* Regular content styling */
         .project-content-inner {
             width: 100%;
         }
@@ -93,6 +91,12 @@
             margin-right: auto;
         }
         
+        /* Make Dreams image clickable */
+        .project-content-inner a {
+            display: block;
+            text-decoration: none;
+        }
+        
         .project-content p {
             font-size: 16px;
             line-height: 1.5;
@@ -102,32 +106,18 @@
             font-weight: normal;
         }
         
-        .project-content .title-line {
-            font-weight: normal;
-            margin-bottom: 5px;
-        }
-        
-        .project-content .description {
-            margin-top: 10px;
-            font-style: normal;
-            font-weight: normal;
-        }
-        
-        .project-content .external-link {
-            margin-top: 15px;
-        }
-        
         .project-content .external-link a {
             color: #000000;
             text-decoration: underline;
             font-weight: normal;
+            font-size: 16px;
         }
         
         .line-break {
             height: 10px;
         }
         
-        /* List styling - identical font for all columns */
+        /* List styling - identical for all columns */
         .years-list, .categories-list, .projects-list {
             list-style-type: none;
             padding-left: 0;
@@ -154,7 +144,6 @@
             font-size: 16px;
         }
         
-        /* No hover effects */
         a:hover {
             text-decoration: none;
             background-color: transparent;
@@ -187,34 +176,29 @@
             font-size: 15px;
         }
         
-        /* Responsive adjustments */
+        /* Responsive */
         @media (max-width: 1000px) {
             .container {
                 flex-wrap: wrap;
             }
-            
             .years-column, .categories-column, .projects-column {
                 flex: none;
                 width: 100%;
                 padding: 15px;
                 border-bottom: 1px solid #000000;
             }
-            
             .years-list, .categories-list, .projects-list {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 20px;
             }
-            
             .years-list li, .categories-list li, .projects-list li {
                 margin-bottom: 0;
                 white-space: normal;
             }
-            
             .years-list.active, .categories-list.active, .projects-list.active {
                 display: flex;
             }
-            
             .content-column {
                 min-height: 60vh;
                 padding: 15px;
@@ -225,11 +209,9 @@
             .years-column, .categories-column, .projects-column {
                 padding: 12px;
             }
-            
             .years-list, .categories-list, .projects-list {
                 gap: 15px;
             }
-            
             .content-column {
                 padding: 12px;
             }
@@ -238,7 +220,7 @@
 </head>
 <body>
     <div class="container">
-        <!-- Left column - years -->
+        <!-- COLUMN 1: YEARS -->
         <div class="years-column">
             <ul class="years-list">
                 <li><a href="#" onclick="showCategories('2024-present', event)">2024–present</a></li>
@@ -248,7 +230,7 @@
             </ul>
         </div>
         
-        <!-- Middle column - categories -->
+        <!-- COLUMN 2: CATEGORIES -->
         <div class="categories-column" id="categories-column">
             <!-- 2024-present category - Programming -->
             <ul class="categories-list" id="categories-2024-present">
@@ -271,7 +253,7 @@
             </ul>
         </div>
         
-        <!-- Right column - projects -->
+        <!-- COLUMN 3: PROJECTS -->
         <div class="projects-column" id="projects-column">
             <!-- Programming projects - Weathergirl -->
             <ul class="projects-list" id="projects-programming">
@@ -295,7 +277,7 @@
             </ul>
         </div>
         
-        <!-- Content area -->
+        <!-- CONTENT AREA -->
         <div class="content-column">
             <div class="content-wrapper">
                 <!-- Weathergirl content -->
@@ -308,35 +290,35 @@
                     </div>
                 </div>
                 
-                <!-- Dreams content -->
+                <!-- Dreams content - with clickable image linking to Vimeo -->
                 <div id="dreams-content" class="project-content">
                     <div class="project-content-inner">
-                        <img src="7.jpg" alt="Dreams">
+                        <a href="https://vimeo.com/brontedow/dreams" target="_blank">
+                            <img src="7.jpg" alt="Dreams">
+                        </a>
                         <p class="title-line">Dreams, digital video, 5 mins</p>
                         <div class="line-break"></div>
                         <p class="description">A meditation on selfhood assembled from original and found footage, exploring the rituals that shape personal identity.</p>
-                        <div class="line-break"></div>
-                        <p class="external-link">Watch it here <a href="https://vimeo.com/brontedow/dreams" target="_blank">https://vimeo.com/brontedow/dreams?fl=tl&fe=ec</a></p>
                     </div>
                 </div>
                 
-                <!-- Bathynomus content -->
+                <!-- Bathynomus content - updated title -->
                 <div id="bathynomus-content" class="project-content">
                     <div class="project-content-inner">
                         <img src="11.jpg" alt="Bathynomus">
-                        <p class="title-line">Bathynomus, digital video, 3 mins</p>
+                        <p class="title-line">Giant Isopod (Bathynomus), digital video, 3 mins</p>
                         <div class="line-break"></div>
                         <p class="description">A giant isopod (Bathynomus giganteus) is preserved in a Tupperware container at the National Oceanography Centre, Southampton, UK.</p>
                     </div>
                 </div>
                 
-                <!-- Soundings content -->
+                <!-- Soundings content - improved text -->
                 <div id="soundings-content" class="project-content">
                     <div class="project-content-inner">
                         <img src="Artwork 1920x1080.jpg" alt="Soundings">
                         <p class="title-line">Soundings, digital video, 38 mins</p>
                         <div class="line-break"></div>
-                        <p class="description">A robotics engineer and a marine biologist speculate on a near future in which prospectors have turned to the deep ocean commons.</p>
+                        <p class="description">A robotics engineer and a marine biologist consider a future where the deep ocean has become a site for resource extraction.</p>
                     </div>
                 </div>
                 
@@ -353,7 +335,7 @@
         </div>
     </div>
     
-    <!-- Footer -->
+    <!-- FOOTER -->
     <div class="footer">
         <a href="mailto:dowbronte@gmail.com">dowbronte@gmail.com</a>
     </div>
@@ -433,8 +415,6 @@
                 selectedContent.classList.add('active');
             }
         }
-        
-        // No background click reset - content stays when clicking elsewhere
     </script>
 </body>
 </html>
