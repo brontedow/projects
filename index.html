@@ -150,6 +150,12 @@
             background-color: transparent;
         }
         
+        /* Active state - bold and underlined for all levels */
+        a.active-link {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        
         /* Hide lists by default */
         .categories-list, .projects-list {
             display: none;
@@ -212,10 +218,10 @@
         <!-- COLUMN 1: YEARS -->
         <div class="years-column">
             <ul class="years-list">
-                <li><a href="#" onclick="showCategories('2024-present', event)">2024–present</a></li>
-                <li><a href="#" onclick="showCategories('2020', event)">2020</a></li>
-                <li><a href="#" onclick="showCategories('2019', event)">2019</a></li>
-                <li><a href="#" onclick="showCategories('2018', event)">2018</a></li>
+                <li><a href="#" onclick="showCategories('2024-present', event)" id="link-2024-present">2024–present</a></li>
+                <li><a href="#" onclick="showCategories('2020', event)" id="link-2020">2020</a></li>
+                <li><a href="#" onclick="showCategories('2019', event)" id="link-2019">2019</a></li>
+                <li><a href="#" onclick="showCategories('2018', event)" id="link-2018">2018</a></li>
             </ul>
         </div>
         
@@ -223,22 +229,22 @@
         <div class="categories-column" id="categories-column">
             <!-- 2024-present category - Programming -->
             <ul class="categories-list" id="categories-2024-present">
-                <li><a href="#" onclick="showProjects('programming', event)">Programming</a></li>
+                <li><a href="#" onclick="showProjects('programming', event)" id="link-programming">Programming</a></li>
             </ul>
             
             <!-- 2020 category - Film -->
             <ul class="categories-list" id="categories-2020">
-                <li><a href="#" onclick="showProjects('film-2020', event)">Film</a></li>
+                <li><a href="#" onclick="showProjects('film-2020', event)" id="link-film-2020">Film</a></li>
             </ul>
             
             <!-- 2019 category - Film -->
             <ul class="categories-list" id="categories-2019">
-                <li><a href="#" onclick="showProjects('film-2019', event)">Film</a></li>
+                <li><a href="#" onclick="showProjects('film-2019', event)" id="link-film-2019">Film</a></li>
             </ul>
             
             <!-- 2018 category - Curation -->
             <ul class="categories-list" id="categories-2018">
-                <li><a href="#" onclick="showProjects('curation', event)">Curation</a></li>
+                <li><a href="#" onclick="showProjects('curation', event)" id="link-curation">Curation</a></li>
             </ul>
         </div>
         
@@ -246,23 +252,22 @@
         <div class="projects-column" id="projects-column">
             <!-- Programming projects - Weathergirl -->
             <ul class="projects-list" id="projects-programming">
-                <li><a href="#" onclick="showProject('weathergirl', event)">Weathergirl</a></li>
+                <li><a href="#" onclick="showProject('weathergirl', event)" id="link-weathergirl">Weathergirl</a></li>
             </ul>
             
             <!-- Film 2020 projects - Dreams -->
             <ul class="projects-list" id="projects-film-2020">
-                <li><a href="#" onclick="showProject('dreams', event)">Dreams</a></li>
+                <li><a href="#" onclick="showProject('dreams', event)" id="link-dreams">Dreams</a></li>
             </ul>
             
-            <!-- Film 2019 projects - Bathynomus and Soundings -->
+            <!-- Film 2019 projects - ONLY Bathynomus (Soundings removed) -->
             <ul class="projects-list" id="projects-film-2019">
-                <li><a href="#" onclick="showProject('bathynomus', event)">Bathynomus</a></li>
-                <li><a href="#" onclick="showProject('soundings', event)">Soundings</a></li>
+                <li><a href="#" onclick="showProject('bathynomus', event)" id="link-bathynomus">Bathynomus</a></li>
             </ul>
             
             <!-- Curation projects - Mothers -->
             <ul class="projects-list" id="projects-curation">
-                <li><a href="#" onclick="showProject('mothers', event)">Mothers</a></li>
+                <li><a href="#" onclick="showProject('mothers', event)" id="link-mothers">Mothers</a></li>
             </ul>
         </div>
         
@@ -303,16 +308,6 @@
                     </div>
                 </div>
                 
-                <!-- Soundings content -->
-                <div id="soundings-content" class="project-content">
-                    <div class="project-content-inner">
-                        <img src="Artwork 1920x1080.jpg" alt="Soundings">
-                        <p class="title-line">Soundings, digital video, 38 mins</p>
-                        <div class="line-break"></div>
-                        <p class="description">A robotics engineer and a marine biologist consider a future of resource extraction in the deep sea.</p>
-                    </div>
-                </div>
-                
                 <!-- Mothers content - image links to TURF Projects -->
                 <div id="mothers-content" class="project-content">
                     <div class="project-content-inner">
@@ -337,6 +332,24 @@
                 event.preventDefault();
                 event.stopPropagation();
             }
+            
+            // Remove active class from all year links
+            document.querySelectorAll('.years-list a').forEach(link => {
+                link.classList.remove('active-link');
+            });
+            
+            // Add active class to clicked year
+            document.getElementById('link-' + yearId).classList.add('active-link');
+            
+            // Remove active class from all category links
+            document.querySelectorAll('.categories-list a').forEach(link => {
+                link.classList.remove('active-link');
+            });
+            
+            // Remove active class from all project links
+            document.querySelectorAll('.projects-list a').forEach(link => {
+                link.classList.remove('active-link');
+            });
             
             // Hide all category lists
             var categories = document.getElementsByClassName('categories-list');
@@ -369,6 +382,29 @@
                 event.stopPropagation();
             }
             
+            // Remove active class from all category links
+            document.querySelectorAll('.categories-list a').forEach(link => {
+                link.classList.remove('active-link');
+            });
+            
+            // Add active class to clicked category
+            let categoryLinkId;
+            if (categoryId === 'programming') {
+                categoryLinkId = 'link-programming';
+            } else if (categoryId === 'film-2020') {
+                categoryLinkId = 'link-film-2020';
+            } else if (categoryId === 'film-2019') {
+                categoryLinkId = 'link-film-2019';
+            } else if (categoryId === 'curation') {
+                categoryLinkId = 'link-curation';
+            }
+            document.getElementById(categoryLinkId).classList.add('active-link');
+            
+            // Remove active class from all project links
+            document.querySelectorAll('.projects-list a').forEach(link => {
+                link.classList.remove('active-link');
+            });
+            
             // Hide all project lists
             var projects = document.getElementsByClassName('projects-list');
             for (var i = 0; i < projects.length; i++) {
@@ -393,6 +429,14 @@
                 event.preventDefault();
                 event.stopPropagation();
             }
+            
+            // Remove active class from all project links
+            document.querySelectorAll('.projects-list a').forEach(link => {
+                link.classList.remove('active-link');
+            });
+            
+            // Add active class to clicked project
+            document.getElementById('link-' + projectId).classList.add('active-link');
             
             // Hide all content
             var contents = document.getElementsByClassName('project-content');
