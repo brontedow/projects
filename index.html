@@ -29,24 +29,24 @@
             width: 100%;
         }
         
-        /* Column 1: Years - equal width */
+        /* Column 1: Years - properly sized */
         .years-column {
-            flex: 0 0 200px;
-            padding: 20px 15px 20px 30px;
+            flex: 0 0 120px;
+            padding: 20px 10px 20px 25px;
             background-color: #A4CB9E;
         }
         
-        /* Column 2: Categories - equal width */
+        /* Column 2: Categories - properly sized */
         .categories-column {
-            flex: 0 0 200px;
-            padding: 20px 15px 20px 20px;
+            flex: 0 0 120px;
+            padding: 20px 10px 20px 15px;
             background-color: #A4CB9E;
         }
         
-        /* Column 3: Projects - equal width */
+        /* Column 3: Projects - properly sized */
         .projects-column {
-            flex: 0 0 200px;
-            padding: 20px 30px 20px 20px;
+            flex: 0 0 120px;
+            padding: 20px 20px 20px 15px;
             background-color: #A4CB9E;
         }
         
@@ -58,11 +58,11 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 20px;
+            padding: 20px 30px;
         }
         
         .content-wrapper {
-            max-width: 600px;
+            max-width: 500px;
             width: 100%;
             margin: 0 auto;
         }
@@ -125,7 +125,7 @@
         }
         
         .years-list li, .categories-list li, .projects-list li {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-size: 16px;
             font-weight: normal;
             line-height: 1.3;
@@ -161,7 +161,7 @@
         /* Footer */
         .footer {
             border-top: 1px solid #000000;
-            padding: 12px 20px;
+            padding: 12px 25px;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 15px;
             width: 100%;
@@ -177,14 +177,14 @@
         }
         
         /* Responsive */
-        @media (max-width: 1000px) {
+        @media (max-width: 900px) {
             .container {
                 flex-wrap: wrap;
             }
             .years-column, .categories-column, .projects-column {
                 flex: none;
                 width: 100%;
-                padding: 15px;
+                padding: 12px 20px;
                 border-bottom: 1px solid #000000;
             }
             .years-list, .categories-list, .projects-list {
@@ -202,18 +202,6 @@
             .content-column {
                 min-height: 60vh;
                 padding: 15px;
-            }
-        }
-        
-        @media (max-width: 380px) {
-            .years-column, .categories-column, .projects-column {
-                padding: 12px;
-            }
-            .years-list, .categories-list, .projects-list {
-                gap: 15px;
-            }
-            .content-column {
-                padding: 12px;
             }
         }
     </style>
@@ -298,21 +286,21 @@
                         </a>
                         <p class="title-line">Dreams, digital video, 5 mins</p>
                         <div class="line-break"></div>
-                        <p class="description">A meditation on selfhood assembled from original and found footage, exploring the rituals that shape personal identity.</p>
+                        <p class="description">A self-portrait assembled using original and found footage.</p>
                     </div>
                 </div>
                 
-                <!-- Bathynomus content - updated title -->
+                <!-- Bathynomus content -->
                 <div id="bathynomus-content" class="project-content">
                     <div class="project-content-inner">
                         <img src="11.jpg" alt="Bathynomus">
-                        <p class="title-line">Giant Isopod (Bathynomus), digital video, 3 mins</p>
+                        <p class="title-line">Bathynomus, digital video, 3 mins</p>
                         <div class="line-break"></div>
-                        <p class="description">A giant isopod (Bathynomus giganteus) is preserved in a Tupperware container at the National Oceanography Centre, Southampton, UK.</p>
+                        <p class="description">A love story between a giant isopod and a marine biologist unfolds in a song performed by Florence Warner.</p>
                     </div>
                 </div>
                 
-                <!-- Soundings content - improved text -->
+                <!-- Soundings content -->
                 <div id="soundings-content" class="project-content">
                     <div class="project-content-inner">
                         <img src="Artwork 1920x1080.jpg" alt="Soundings">
@@ -326,7 +314,7 @@
                 <div id="mothers-content" class="project-content">
                     <div class="project-content-inner">
                         <img src="Mothers Turf Projects (1).jpg" alt="Mothers at TURF Projects">
-                        <p class="description">An exhibition at Turf Projects presenting collaborations between artists and their mothers.</p>
+                        <p class="description">An exhibition presenting collaborations between artists and their mothers. The project included a reading group with local mothers and carers in Croydon on Wages For Housework.</p>
                         <div class="line-break"></div>
                         <p class="external-link"><a href="https://turf-projects.com/project/mothers/" target="_blank">https://turf-projects.com/project/mothers/</a></p>
                     </div>
