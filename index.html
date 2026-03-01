@@ -36,11 +36,12 @@
             background-color: #A4CB9E;
         }
         
-        /* Column 2: Categories - comfortable margins */
+        /* Column 2: Categories - comfortable margins with centered text */
         .categories-column {
             flex: 0 0 140px;
             padding: 20px 15px 20px 20px;
             background-color: #A4CB9E;
+            text-align: center;
         }
         
         /* Column 3: Projects - comfortable margins */
@@ -124,7 +125,25 @@
             margin: 0;
         }
         
-        .years-list li, .categories-list li, .projects-list li {
+        /* Center the categories list items */
+        .categories-list {
+            text-align: center;
+        }
+        
+        .categories-list li {
+            text-align: center;
+            display: block;
+        }
+        
+        .years-list li, .projects-list li {
+            margin-bottom: 6px;
+            font-size: 16px;
+            font-weight: normal;
+            line-height: 1.3;
+            white-space: nowrap;
+        }
+        
+        .categories-list li {
             margin-bottom: 6px;
             font-size: 16px;
             font-weight: normal;
@@ -142,6 +161,13 @@
             -webkit-tap-highlight-color: transparent;
             font-weight: normal;
             font-size: 16px;
+        }
+        
+        /* Center the category links specifically */
+        .categories-list a {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         a:hover {
@@ -186,6 +212,7 @@
                 width: 100%;
                 padding: 12px 25px;
                 border-bottom: 1px solid #000000;
+                text-align: left;
             }
             .years-list, .categories-list, .projects-list {
                 display: flex;
@@ -198,6 +225,10 @@
             }
             .years-list.active, .categories-list.active, .projects-list.active {
                 display: flex;
+            }
+            .categories-list a {
+                margin-left: 0;
+                margin-right: 0;
             }
             .content-column {
                 min-height: 60vh;
@@ -218,7 +249,7 @@
             </ul>
         </div>
         
-        <!-- COLUMN 2: CATEGORIES -->
+        <!-- COLUMN 2: CATEGORIES - CENTERED TEXT -->
         <div class="categories-column" id="categories-column">
             <!-- 2024-present category - Programming -->
             <ul class="categories-list" id="categories-2024-present">
@@ -302,13 +333,13 @@
                     </div>
                 </div>
                 
-                <!-- Soundings content -->
+                <!-- Soundings content - with improved text -->
                 <div id="soundings-content" class="project-content">
                     <div class="project-content-inner">
                         <img src="Artwork 1920x1080.jpg" alt="Soundings">
                         <p class="title-line">Soundings, digital video, 38 mins</p>
                         <div class="line-break"></div>
-                        <p class="description">A robotics engineer and a marine biologist consider a future where the deep ocean has become a site for resource extraction.</p>
+                        <p class="description">A robotics engineer and a marine biologist consider a future of resource extraction in the deep sea.</p>
                     </div>
                 </div>
                 
