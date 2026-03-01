@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Bronte Dow</title>
     <style>
         * {
@@ -21,7 +21,7 @@
             flex-direction: column;
         }
         
-        /* Three column layout */
+        /* Three column layout for desktop */
         .container {
             display: flex;
             flex: 1;
@@ -29,14 +29,14 @@
             width: 100%;
         }
         
-        /* Column 1: Years - wider */
+        /* Column 1: Years */
         .years-column {
             flex: 0 0 180px;
             padding: 20px 15px 20px 30px;
             background-color: #A4CB9E;
         }
         
-        /* Column 2: Categories - wider, left-aligned */
+        /* Column 2: Categories */
         .categories-column {
             flex: 0 0 180px;
             padding: 20px 15px 20px 20px;
@@ -44,7 +44,7 @@
             text-align: left;
         }
         
-        /* Column 3: Projects - wider */
+        /* Column 3: Projects */
         .projects-column {
             flex: 0 0 180px;
             padding: 20px 30px 20px 20px;
@@ -150,7 +150,7 @@
             background-color: transparent;
         }
         
-        /* Active state - bold and underlined for all levels */
+        /* Active state - bold and underlined */
         a.active-link {
             font-weight: bold;
             text-decoration: underline;
@@ -183,32 +183,76 @@
             font-size: 15px;
         }
         
-        /* Responsive */
-        @media (max-width: 1000px) {
+        /* ===== MOBILE FIXES ===== */
+        @media (max-width: 768px) {
+            /* Stack columns vertically */
             .container {
-                flex-wrap: wrap;
+                flex-direction: column;
             }
+            
+            /* Full width columns */
             .years-column, .categories-column, .projects-column {
                 flex: none;
                 width: 100%;
-                padding: 12px 25px;
+                padding: 15px 20px;
                 border-bottom: 1px solid #000000;
             }
+            
+            /* Remove bottom border from last column */
+            .projects-column {
+                border-bottom: none;
+            }
+            
+            /* Make lists horizontal scrollable on mobile */
             .years-list, .categories-list, .projects-list {
                 display: flex;
                 flex-wrap: wrap;
-                gap: 20px;
+                gap: 15px;
             }
+            
             .years-list li, .categories-list li, .projects-list li {
                 margin-bottom: 0;
-                white-space: normal;
+                white-space: nowrap;
             }
-            .years-list.active, .categories-list.active, .projects-list.active {
-                display: flex;
-            }
+            
+            /* Adjust content area */
             .content-column {
-                min-height: 60vh;
                 padding: 20px;
+                min-height: auto;
+            }
+            
+            .content-wrapper {
+                max-width: 100%;
+            }
+            
+            /* Better touch targets */
+            a {
+                padding: 8px 0;
+                font-size: 18px;
+            }
+            
+            /* Footer padding */
+            .footer {
+                padding: 15px 20px;
+            }
+        }
+        
+        /* Small phone optimization */
+        @media (max-width: 480px) {
+            .years-column, .categories-column, .projects-column {
+                padding: 12px 15px;
+            }
+            
+            .years-list, .categories-list, .projects-list {
+                gap: 12px;
+            }
+            
+            a {
+                font-size: 16px;
+            }
+            
+            .content-column {
+                padding: 15px;
             }
         }
     </style>
@@ -225,7 +269,7 @@
             </ul>
         </div>
         
-        <!-- COLUMN 2: CATEGORIES - LEFT ALIGNED -->
+        <!-- COLUMN 2: CATEGORIES -->
         <div class="categories-column" id="categories-column">
             <!-- 2024-present category - Programming -->
             <ul class="categories-list" id="categories-2024-present">
@@ -287,18 +331,20 @@
                         <img src="Photo Aug 10 2024.jpg" alt="Weathergirl">
                         <p class="description">Since 2024 I have co-organised an itinerant screening series with Freya Field-Donovan dedicated to showcasing funny, sad, and perverse artist's moving image.</p>
                         <div class="line-break"></div>
- <p class="external-link"><a href="https://weathergirlevents.wordpress.com/" target="_blank">https://weathergirlevents.wordpress.com/</a></p>
-
+                        <p class="external-link"><a href="https://weathergirlevents.wordpress.com/" target="_blank">https://weathergirlevents.wordpress.com/</a></p>
+                        <div class="line-break"></div>
                         <p class="external-link"><a href="https://www.instagram.com/weathergirl.5" target="_blank">https://www.instagram.com/weathergirl.5</a></p>
                     </div>
                 </div>
                 
-                <!-- Dreams content - image links to Vimeo -->
+                <!-- Dreams content -->
                 <div id="dreams-content" class="project-content">
                     <div class="project-content-inner">
                         <a href="https://vimeo.com/brontedow/dreams" target="_blank">
                             <img src="7.jpg" alt="Dreams">
                         </a>
+                        <p class="title-line">Dreams, digital video, 5 mins</p>
+                        <div class="line-break"></div>
                         <p class="description">An assemblage/self-portrait using original and found footage.</p>
                     </div>
                 </div>
@@ -311,7 +357,7 @@
                     </div>
                 </div>
                 
-                <!-- Bathynomus content - no title line, just image and description -->
+                <!-- Bathynomus content -->
                 <div id="bathynomus-content" class="project-content">
                     <div class="project-content-inner">
                         <a href="https://vimeo.com/brontedow/bathynomus?share=copy&fl=sv&fe=ci" target="_blank">
@@ -321,10 +367,12 @@
                     </div>
                 </div>
                 
-                <!-- Soundings content - reinstated -->
+                <!-- Soundings content -->
                 <div id="soundings-content" class="project-content">
                     <div class="project-content-inner">
                         <img src="Artwork 1920x1080.jpg" alt="Soundings">
+                        <p class="title-line">Soundings, digital video, 38 mins</p>
+                        <div class="line-break"></div>
                         <p class="description">A robotics engineer and a marine biologist consider a future of resource extraction in the deep sea.</p>
                     </div>
                 </div>
@@ -421,7 +469,9 @@
             } else if (categoryId === 'curation') {
                 categoryLinkId = 'link-curation';
             }
-            document.getElementById(categoryLinkId).classList.add('active-link');
+            if (categoryLinkId) {
+                document.getElementById(categoryLinkId).classList.add('active-link');
+            }
             
             // Remove active class from all project links
             document.querySelectorAll('.projects-list a').forEach(link => {
