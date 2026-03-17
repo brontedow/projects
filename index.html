@@ -61,7 +61,7 @@
             width: 100%;
         }
         
-        /* Project content */
+        /* Project content - FIXED ALIGNMENT */
         .project-content {
             width: 100%;
             display: none;
@@ -73,20 +73,30 @@
         
         .project-content-inner {
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .image-text-group {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start; /* This aligns tops */
+            gap: 20px;
+            width: 100%;
         }
         
         .project-content img {
-            max-width: 95%;
+            width: 200px; /* Fixed width for consistency */
             height: auto;
             border: 1px solid #333;
-            margin-bottom: 20px;
             display: block;
-            margin-left: 0;
+            flex-shrink: 0;
         }
         
-        .project-content-inner a {
-            display: block;
-            text-decoration: none;
+        .text-block {
+            flex: 1;
+            padding-top: 0; /* Ensure no top padding */
         }
         
         .project-content p {
@@ -96,7 +106,6 @@
             text-align: left;
             margin-bottom: 10px;
             font-weight: normal;
-            max-width: 95%;
         }
         
         .project-content .external-link a {
@@ -189,6 +198,15 @@
                 padding: 20px;
             }
             
+            .image-text-group {
+                flex-direction: column;
+            }
+            
+            .project-content img {
+                width: 100%;
+                max-width: 100%;
+            }
+            
             a {
                 padding: 8px 0;
                 font-size: 18px;
@@ -232,55 +250,75 @@
             </ul>
         </div>
         
-        <!-- CONTENT AREA -->
+        <!-- CONTENT AREA - with top-aligned images and text -->
         <div class="content-column">
             <div class="content-wrapper">
                 <!-- Weathergirl content -->
                 <div id="weathergirl-content" class="project-content">
                     <div class="project-content-inner">
-                        <img src="Photo Aug 10 2024.jpg" alt="Weathergirl">
-                        <p>Since 2024 I have co-organised an itinerant screening series with Freya Field-Donovan dedicated to showcasing funny, sad, and perverse artist's moving image.</p>
-                        <div class="line-break"></div>
-                        <p class="external-link"><a href="https://weathergirlevents.wordpress.com/" target="_blank">https://weathergirlevents.wordpress.com/</a></p>
-                        <p class="external-link"><a href="https://www.instagram.com/weathergirl.5" target="_blank">https://www.instagram.com/weathergirl.5</a></p>
+                        <div class="image-text-group">
+                            <img src="Photo Aug 10 2024.jpg" alt="Weathergirl">
+                            <div class="text-block">
+                                <p>Since 2024 I have co-organised an itinerant screening series with Freya Field-Donovan dedicated to showcasing funny, sad, and perverse artist's moving image.</p>
+                                <div class="line-break"></div>
+                                <p class="external-link"><a href="https://weathergirlevents.wordpress.com/" target="_blank">https://weathergirlevents.wordpress.com/</a></p>
+                                <p class="external-link"><a href="https://www.instagram.com/weathergirl.5" target="_blank">https://www.instagram.com/weathergirl.5</a></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Dreams content -->
                 <div id="dreams-content" class="project-content">
                     <div class="project-content-inner">
-                        <a href="https://vimeo.com/brontedow/dreams" target="_blank">
-                            <img src="7.jpg" alt="Dreams">
-                        </a>
-                        <p>An assemblage or self-portrait using original and found footage. <br><br>Digital video, 9 min.</p>
+                        <div class="image-text-group">
+                            <a href="https://vimeo.com/brontedow/dreams" target="_blank">
+                                <img src="7.jpg" alt="Dreams">
+                            </a>
+                            <div class="text-block">
+                                <p>An assemblage or self-portrait using original and found footage. <br><br>Digital video, 9 min.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Dry Spell content -->
                 <div id="dryspell-content" class="project-content">
                     <div class="project-content-inner">
-                        <img src="Photo Mar 25 2023.jpg" alt="Dry Spell">
-                        <p>A radio version of a short story about life in an almost waterless Sydney by author and historian Marjorie Barnard. <br><br>Digital sound, 20 min.</p>
+                        <div class="image-text-group">
+                            <img src="Photo Mar 25 2023.jpg" alt="Dry Spell">
+                            <div class="text-block">
+                                <p>A radio version of a short story about life in an almost waterless Sydney by author and historian Marjorie Barnard. <br><br>Digital sound, 20 min.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Bathynomus content -->
                 <div id="bathynomus-content" class="project-content">
                     <div class="project-content-inner">
-                        <a href="https://vimeo.com/brontedow/bathynomus?share=copy&fl=sv&fe=ci" target="_blank">
-                            <img src="11.jpg" alt="Bathynomus">
-                        </a>
-                        <p>A love story between a marine biologist and a deep sea fish specimen unfolds in a song performed by Florence Warner. <br><br>Digital video, 3 min.</p>
+                        <div class="image-text-group">
+                            <a href="https://vimeo.com/brontedow/bathynomus?share=copy&fl=sv&fe=ci" target="_blank">
+                                <img src="11.jpg" alt="Bathynomus">
+                            </a>
+                            <div class="text-block">
+                                <p>A love story between a marine biologist and a deep sea fish specimen unfolds in a song performed by Florence Warner. <br><br>Digital video, 3 min.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Mothers content -->
                 <div id="mothers-content" class="project-content">
                     <div class="project-content-inner">
-                        <a href="https://turf-projects.com/project/mothers/" target="_blank">
-                            <img src="Mothers Turf Projects (1).jpg" alt="Mothers at TURF Projects">
-                        </a>
-                        <p>An exhibition presenting collaborations between practicing artists and their mothers.</p>
+                        <div class="image-text-group">
+                            <a href="https://turf-projects.com/project/mothers/" target="_blank">
+                                <img src="Mothers Turf Projects (1).jpg" alt="Mothers at TURF Projects">
+                            </a>
+                            <div class="text-block">
+                                <p>An exhibition presenting collaborations between practicing artists and their mothers.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
