@@ -16,6 +16,8 @@ body {
     background-color: #A4CB9E;
     color: #000;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -25,10 +27,9 @@ body {
 .container {
     display: flex;
     flex: 1;
-    width: 100%;
 }
 
-/* Columns (wider, no borders) */
+/* Columns */
 .years-column {
     flex: 0 0 150px;
     padding: 20px 15px 20px 30px;
@@ -55,7 +56,6 @@ ul {
 
 li {
     margin-bottom: 8px;
-    font-size: 16px;
     white-space: nowrap;
 }
 
@@ -71,7 +71,7 @@ a.active-link {
     text-decoration: underline;
 }
 
-/* Project visibility */
+/* Visibility control */
 .projects-list {
     display: none;
 }
@@ -88,18 +88,17 @@ a.active-link {
     display: block;
 }
 
-/* Content */
+/* Content styling */
 .project-content img {
     max-width: 95%;
     height: auto;
     border: 1px solid #333;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 .project-content p {
     max-width: 95%;
-    margin-bottom: 10px;
-    line-height: 1.5;
+    margin-bottom: 8px;
 }
 
 .external-link a {
@@ -108,10 +107,10 @@ a.active-link {
 
 /* Footer */
 .footer {
-    padding: 12px 30px;
+    padding: 12px 40px;
 }
 
-/* MOBILE — same behaviour as desktop */
+/* MOBILE */
 @media (max-width: 768px) {
 
     .container {
@@ -121,17 +120,17 @@ a.active-link {
     .years-column,
     .projects-column {
         width: 100%;
-        padding: 15px 20px;
+        padding: 10px 20px;
     }
 
-    /* years always visible */
+    /* tighter year row */
     .years-list {
         display: flex;
         flex-wrap: wrap;
-        gap: 20px;
+        gap: 12px;
     }
 
-    /* projects still controlled by JS */
+    /* projects only show when active */
     .projects-list {
         display: none;
     }
@@ -139,24 +138,35 @@ a.active-link {
     .projects-list.active {
         display: flex;
         flex-wrap: wrap;
-        gap: 20px;
+        gap: 10px;
+        margin-top: 4px;
     }
 
     li {
         margin-bottom: 0;
     }
 
+    /* tighter content spacing */
     .content-column {
-        padding: 20px;
+        padding: 15px 20px;
+    }
+
+    .content-wrapper {
+        margin-top: 0;
     }
 
     .project-content img {
         max-width: 100%;
+        margin-bottom: 10px;
     }
 
-    a {
-        font-size: 18px;
-        padding: 6px 0;
+    .project-content p {
+        margin-bottom: 6px;
+    }
+
+    /* footer aligned with content */
+    .footer {
+        padding: 12px 20px;
     }
 }
 </style>
@@ -280,10 +290,10 @@ function showProject(projectId) {
         .classList.add('active');
 }
 
-/* default state */
+/* default */
 window.onload = () => {
-    showProjects('2020');
-    showProject('dreams');
+    showProjects('2019');
+    showProject('bathynomus');
 };
 </script>
 
