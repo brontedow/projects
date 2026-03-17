@@ -21,7 +21,7 @@
             flex-direction: column;
         }
         
-        /* Three column layout */
+        /* Desktop three column layout */
         .container {
             display: flex;
             flex: 1;
@@ -92,7 +92,6 @@
             margin-right: auto;
         }
         
-        /* Make images clickable */
         .project-content-inner a {
             display: block;
             text-decoration: none;
@@ -133,7 +132,6 @@
             white-space: nowrap;
         }
         
-        /* All links identical */
         a {
             color: #000000;
             text-decoration: none;
@@ -150,13 +148,11 @@
             background-color: transparent;
         }
         
-        /* Active state - bold and underlined */
         a.active-link {
             font-weight: bold;
             text-decoration: underline;
         }
         
-        /* Hide lists by default */
         .categories-list, .projects-list {
             display: none;
         }
@@ -183,42 +179,77 @@
             font-size: 15px;
         }
         
-        /* ===== MOBILE FIXES ===== */
+        /* ===== MOBILE VERTICAL STACKING ===== */
         @media (max-width: 768px) {
-            /* Stack columns vertically */
+            /* Override desktop flex */
             .container {
-                flex-direction: column;
+                display: block;
+                padding: 15px;
             }
             
-            /* Full width columns with bottom borders */
-            .years-column, .categories-column, .projects-column {
-                flex: none;
+            /* Hide all columns as separate - we'll rebuild vertically */
+            .years-column, .categories-column, .projects-column, .content-column {
                 width: 100%;
-                padding: 15px 20px;
+                padding: 0;
+                margin-bottom: 20px;
+            }
+            
+            /* Years always visible */
+            .years-column {
+                display: block;
+                padding: 0 0 15px 0;
                 border-bottom: 1px solid #000000;
             }
             
-            /* Remove bottom border from last column */
-            .projects-column {
-                border-bottom: none;
-            }
-            
-            /* Make list items horizontal with wrapping */
-            .years-list, .categories-list, .projects-list {
+            .years-list {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 20px;
             }
             
-            .years-list li, .categories-list li, .projects-list li {
+            .years-list li {
                 margin-bottom: 0;
-                white-space: nowrap;
             }
             
-            /* Adjust content area */
+            /* Categories - only visible when active */
+            .categories-column {
+                margin-top: 15px;
+                padding-bottom: 15px;
+                border-bottom: 1px solid #000000;
+            }
+            
+            .categories-list {
+                display: flex !important;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .categories-list li {
+                margin-bottom: 0;
+            }
+            
+            /* Projects - only visible when active */
+            .projects-column {
+                margin-top: 15px;
+                padding-bottom: 15px;
+                border-bottom: 1px solid #000000;
+            }
+            
+            .projects-list {
+                display: flex !important;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .projects-list li {
+                margin-bottom: 0;
+            }
+            
+            /* Content area */
             .content-column {
-                padding: 20px;
-                min-height: auto;
+                margin-top: 20px;
+                padding: 20px 0 0 0;
+                border-top: 1px solid #000000;
             }
             
             .content-wrapper {
@@ -231,18 +262,12 @@
                 font-size: 18px;
             }
             
-            /* Footer padding */
             .footer {
-                padding: 15px 20px;
+                padding: 15px;
             }
         }
         
-        /* Small phone optimization */
         @media (max-width: 480px) {
-            .years-column, .categories-column, .projects-column {
-                padding: 12px 15px;
-            }
-            
             .years-list, .categories-list, .projects-list {
                 gap: 15px;
             }
@@ -250,16 +275,12 @@
             a {
                 font-size: 16px;
             }
-            
-            .content-column {
-                padding: 15px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- COLUMN 1: YEARS -->
+        <!-- COLUMN 1: YEARS (always visible) -->
         <div class="years-column">
             <ul class="years-list">
                 <li><a href="#" onclick="showCategories('2024-present', event)" id="link-2024-present">2024–present</a></li>
@@ -269,7 +290,7 @@
             </ul>
         </div>
         
-        <!-- COLUMN 2: CATEGORIES -->
+        <!-- COLUMN 2: CATEGORIES (appears below selected year) -->
         <div class="categories-column" id="categories-column">
             <!-- 2024-present category - Programming -->
             <ul class="categories-list" id="categories-2024-present">
@@ -282,7 +303,7 @@
                 <li><a href="#" onclick="showProjects('sound-2020', event)" id="link-sound-2020">Sound</a></li>
             </ul>
             
-            <!-- 2019 category - Film (Soundings removed) -->
+            <!-- 2019 category - Film -->
             <ul class="categories-list" id="categories-2019">
                 <li><a href="#" onclick="showProjects('film-2019', event)" id="link-film-2019">Film</a></li>
             </ul>
@@ -293,7 +314,7 @@
             </ul>
         </div>
         
-        <!-- COLUMN 3: PROJECTS -->
+        <!-- COLUMN 3: PROJECTS (appears below selected category) -->
         <div class="projects-column" id="projects-column">
             <!-- Programming projects - Weathergirl -->
             <ul class="projects-list" id="projects-programming">
@@ -374,7 +395,7 @@
                             <img src="Mothers Turf Projects (1).jpg" alt="Mothers at TURF Projects">
                         </a>
                         <p class="description">An exhibition presenting collaborations between practicing artists and their mothers. 
-                            <br><br></p>
+                            <br><br>The project included a reading group with local mothers and carers in Croydon on Wages For Housework.</p>
                     </div>
                 </div>
             </div>
@@ -407,10 +428,9 @@
             });
             
             // Hide all category lists
-            var categories = document.getElementsByClassName('categories-list');
-            for (var i = 0; i < categories.length; i++) {
-                categories[i].classList.remove('active');
-            }
+            document.querySelectorAll('.categories-list').forEach(list => {
+                list.classList.remove('active');
+            });
             
             // Show selected category list
             var selectedCategories = document.getElementById('categories-' + yearId);
@@ -419,16 +439,14 @@
             }
             
             // Hide all project lists
-            var projects = document.getElementsByClassName('projects-list');
-            for (var i = 0; i < projects.length; i++) {
-                projects[i].classList.remove('active');
-            }
+            document.querySelectorAll('.projects-list').forEach(list => {
+                list.classList.remove('active');
+            });
             
             // Hide all content
-            var contents = document.getElementsByClassName('project-content');
-            for (var i = 0; i < contents.length; i++) {
-                contents[i].classList.remove('active');
-            }
+            document.querySelectorAll('.project-content').forEach(content => {
+                content.classList.remove('active');
+            });
         }
         
         function showProjects(categoryId, event) {
@@ -460,10 +478,9 @@
             });
             
             // Hide all project lists
-            var projects = document.getElementsByClassName('projects-list');
-            for (var i = 0; i < projects.length; i++) {
-                projects[i].classList.remove('active');
-            }
+            document.querySelectorAll('.projects-list').forEach(list => {
+                list.classList.remove('active');
+            });
             
             // Show selected project list
             var selectedProjects = document.getElementById('projects-' + categoryId);
@@ -472,10 +489,9 @@
             }
             
             // Hide all content
-            var contents = document.getElementsByClassName('project-content');
-            for (var i = 0; i < contents.length; i++) {
-                contents[i].classList.remove('active');
-            }
+            document.querySelectorAll('.project-content').forEach(content => {
+                content.classList.remove('active');
+            });
         }
         
         function showProject(projectId, event) {
@@ -493,10 +509,9 @@
             document.getElementById('link-' + projectId).classList.add('active-link');
             
             // Hide all content
-            var contents = document.getElementsByClassName('project-content');
-            for (var i = 0; i < contents.length; i++) {
-                contents[i].classList.remove('active');
-            }
+            document.querySelectorAll('.project-content').forEach(content => {
+                content.classList.remove('active');
+            });
             
             // Show selected content
             var selectedContent = document.getElementById(projectId + '-content');
