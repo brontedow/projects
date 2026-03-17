@@ -21,40 +21,44 @@
             flex-direction: column;
         }
         
-        /* Simple three column layout - same for all screens */
+        /* Desktop three column layout with click-through */
         .container {
             display: flex;
-            flex-wrap: wrap;
             flex: 1;
             min-height: calc(100vh - 50px);
             width: 100%;
         }
         
-        /* All columns same width on mobile, fixed on desktop */
-        .years-column, .categories-column, .projects-column {
-            flex: 1 1 180px;
-            padding: 20px 15px;
-            background-color: #A4CB9E;
-            border-bottom: 1px solid #000000;
-        }
-        
+        /* Column 1: Years */
         .years-column {
-            padding-left: 30px;
-        }
-        
-        .projects-column {
-            border-bottom: none;
-        }
-        
-        /* Content area - full width */
-        .content-column {
-            flex: 1 1 100%;
+            flex: 0 0 180px;
+            padding: 20px 15px 20px 30px;
             background-color: #A4CB9E;
+        }
+        
+        /* Column 2: Categories */
+        .categories-column {
+            flex: 0 0 180px;
+            padding: 20px 15px 20px 20px;
+            background-color: #A4CB9E;
+        }
+        
+        /* Column 3: Projects */
+        .projects-column {
+            flex: 0 0 180px;
+            padding: 20px 30px 20px 20px;
+            background-color: #A4CB9E;
+        }
+        
+        /* Content area */
+        .content-column {
+            flex: 1;
+            background-color: #A4CB9E;
+            overflow: auto;
             display: flex;
             justify-content: flex-start;
             align-items: flex-start;
-            padding: 30px 30px 20px 30px;
-            border-top: 1px solid #000000;
+            padding: 20px 40px;
         }
         
         .content-wrapper {
@@ -77,12 +81,12 @@
         }
         
         .project-content img {
-            width: 100%;
-            max-width: 600px;
+            max-width: 95%;
             height: auto;
             border: 1px solid #333;
             margin-bottom: 20px;
             display: block;
+            margin-left: 0;
         }
         
         .project-content-inner a {
@@ -97,7 +101,7 @@
             text-align: left;
             margin-bottom: 10px;
             font-weight: normal;
-            max-width: 600px;
+            max-width: 95%;
         }
         
         .project-content .external-link a {
@@ -139,9 +143,13 @@
             text-decoration: underline;
         }
         
-        /* Show all lists always */
+        /* Hide lists by default - for click-through */
         .categories-list, .projects-list {
-            display: block !important;
+            display: none;
+        }
+        
+        .categories-list.active, .projects-list.active {
+            display: block;
         }
         
         /* Footer */
@@ -158,13 +166,21 @@
             font-size: 15px;
         }
         
-        /* Mobile adjustments */
+        /* ===== SIMPLE MOBILE - just stack columns ===== */
         @media (max-width: 768px) {
-            .years-column, .categories-column, .projects-column {
-                flex: 1 1 100%;
-                padding: 15px 20px;
+            .container {
+                flex-direction: column;
             }
             
+            /* All columns full width */
+            .years-column, .categories-column, .projects-column {
+                flex: none;
+                width: 100%;
+                padding: 15px 20px;
+                border-bottom: 1px solid #000000;
+            }
+            
+            /* Keep the click-through functionality but make lists horizontal */
             .years-list, .categories-list, .projects-list {
                 display: flex;
                 flex-wrap: wrap;
@@ -180,6 +196,14 @@
                 padding: 20px;
             }
             
+            .project-content img {
+                max-width: 100%;
+            }
+            
+            .project-content p {
+                max-width: 100%;
+            }
+            
             a {
                 padding: 8px 0;
                 font-size: 18px;
@@ -192,33 +216,62 @@
         <!-- COLUMN 1: YEARS -->
         <div class="years-column">
             <ul class="years-list">
-                <li><a href="#" onclick="showProject('weathergirl', event)" id="link-weathergirl">2024–present</a></li>
-                <li><a href="#" onclick="showProject('dreams', event)" id="link-dreams">2020</a></li>
-                <li><a href="#" onclick="showProject('dryspell', event)" id="link-dryspell">2020</a></li>
-                <li><a href="#" onclick="showProject('bathynomus', event)" id="link-bathynomus">2019</a></li>
-                <li><a href="#" onclick="showProject('mothers', event)" id="link-mothers">2018</a></li>
+                <li><a href="#" onclick="showCategories('2024-present', event)" id="link-2024-present">2024–present</a></li>
+                <li><a href="#" onclick="showCategories('2020', event)" id="link-2020">2020</a></li>
+                <li><a href="#" onclick="showCategories('2019', event)" id="link-2019">2019</a></li>
+                <li><a href="#" onclick="showCategories('2018', event)" id="link-2018">2018</a></li>
             </ul>
         </div>
         
         <!-- COLUMN 2: CATEGORIES -->
-        <div class="categories-column">
-            <ul class="categories-list">
-                <li><a href="#" onclick="showProject('weathergirl', event)">Programming</a></li>
-                <li><a href="#" onclick="showProject('dreams', event)">Film</a></li>
-                <li><a href="#" onclick="showProject('dryspell', event)">Sound</a></li>
-                <li><a href="#" onclick="showProject('bathynomus', event)">Film</a></li>
-                <li><a href="#" onclick="showProject('mothers', event)">Curation</a></li>
+        <div class="categories-column" id="categories-column">
+            <!-- 2024-present category -->
+            <ul class="categories-list" id="categories-2024-present">
+                <li><a href="#" onclick="showProjects('programming', event)" id="link-programming">Programming</a></li>
+            </ul>
+            
+            <!-- 2020 categories -->
+            <ul class="categories-list" id="categories-2020">
+                <li><a href="#" onclick="showProjects('film-2020', event)" id="link-film-2020">Film</a></li>
+                <li><a href="#" onclick="showProjects('sound-2020', event)" id="link-sound-2020">Sound</a></li>
+            </ul>
+            
+            <!-- 2019 category -->
+            <ul class="categories-list" id="categories-2019">
+                <li><a href="#" onclick="showProjects('film-2019', event)" id="link-film-2019">Film</a></li>
+            </ul>
+            
+            <!-- 2018 category -->
+            <ul class="categories-list" id="categories-2018">
+                <li><a href="#" onclick="showProjects('curation', event)" id="link-curation">Curation</a></li>
             </ul>
         </div>
         
         <!-- COLUMN 3: PROJECTS -->
-        <div class="projects-column">
-            <ul class="projects-list">
-                <li><a href="#" onclick="showProject('weathergirl', event)">Weathergirl</a></li>
-                <li><a href="#" onclick="showProject('dreams', event)">Dreams</a></li>
-                <li><a href="#" onclick="showProject('dryspell', event)">Dry Spell</a></li>
-                <li><a href="#" onclick="showProject('bathynomus', event)">Bathynomus</a></li>
-                <li><a href="#" onclick="showProject('mothers', event)">Mothers</a></li>
+        <div class="projects-column" id="projects-column">
+            <!-- Programming projects -->
+            <ul class="projects-list" id="projects-programming">
+                <li><a href="#" onclick="showProject('weathergirl', event)" id="link-weathergirl">Weathergirl</a></li>
+            </ul>
+            
+            <!-- Film 2020 projects -->
+            <ul class="projects-list" id="projects-film-2020">
+                <li><a href="#" onclick="showProject('dreams', event)" id="link-dreams">Dreams</a></li>
+            </ul>
+            
+            <!-- Sound 2020 projects -->
+            <ul class="projects-list" id="projects-sound-2020">
+                <li><a href="#" onclick="showProject('dryspell', event)" id="link-dryspell">Dry Spell</a></li>
+            </ul>
+            
+            <!-- Film 2019 projects -->
+            <ul class="projects-list" id="projects-film-2019">
+                <li><a href="#" onclick="showProject('bathynomus', event)" id="link-bathynomus">Bathynomus</a></li>
+            </ul>
+            
+            <!-- Curation projects -->
+            <ul class="projects-list" id="projects-curation">
+                <li><a href="#" onclick="showProject('mothers', event)" id="link-mothers">Mothers</a></li>
             </ul>
         </div>
         
@@ -242,7 +295,6 @@
                         <a href="https://vimeo.com/brontedow/dreams" target="_blank">
                             <img src="7.jpg" alt="Dreams">
                         </a>
-                        <div class="line-break"></div>
                         <p>An assemblage or self-portrait using original and found footage. <br><br>Digital video, 9 min.</p>
                     </div>
                 </div>
@@ -284,20 +336,96 @@
     </div>
 
     <script>
+        function showCategories(yearId, event) {
+            if (event) {
+                event.preventDefault();
+            }
+            
+            // Update year links
+            document.querySelectorAll('.years-list a').forEach(link => {
+                link.classList.remove('active-link');
+            });
+            document.getElementById('link-' + yearId).classList.add('active-link');
+            
+            // Clear other active states
+            document.querySelectorAll('.categories-list a, .projects-list a').forEach(link => {
+                link.classList.remove('active-link');
+            });
+            
+            // Hide all category lists
+            document.querySelectorAll('.categories-list').forEach(list => {
+                list.classList.remove('active');
+            });
+            
+            // Show selected category list
+            var selectedCategories = document.getElementById('categories-' + yearId);
+            if (selectedCategories) {
+                selectedCategories.classList.add('active');
+            }
+            
+            // Hide all project lists and content
+            document.querySelectorAll('.projects-list').forEach(list => {
+                list.classList.remove('active');
+            });
+            document.querySelectorAll('.project-content').forEach(content => {
+                content.classList.remove('active');
+            });
+        }
+        
+        function showProjects(categoryId, event) {
+            if (event) {
+                event.preventDefault();
+            }
+            
+            // Update category links
+            document.querySelectorAll('.categories-list a').forEach(link => {
+                link.classList.remove('active-link');
+            });
+            
+            let categoryLinkId = {
+                'programming': 'link-programming',
+                'film-2020': 'link-film-2020',
+                'sound-2020': 'link-sound-2020',
+                'film-2019': 'link-film-2019',
+                'curation': 'link-curation'
+            }[categoryId];
+            
+            if (categoryLinkId) {
+                document.getElementById(categoryLinkId).classList.add('active-link');
+            }
+            
+            // Clear project active states
+            document.querySelectorAll('.projects-list a').forEach(link => {
+                link.classList.remove('active-link');
+            });
+            
+            // Hide all project lists
+            document.querySelectorAll('.projects-list').forEach(list => {
+                list.classList.remove('active');
+            });
+            
+            // Show selected project list
+            var selectedProjects = document.getElementById('projects-' + categoryId);
+            if (selectedProjects) {
+                selectedProjects.classList.add('active');
+            }
+            
+            // Hide all content
+            document.querySelectorAll('.project-content').forEach(content => {
+                content.classList.remove('active');
+            });
+        }
+        
         function showProject(projectId, event) {
             if (event) {
                 event.preventDefault();
             }
             
-            // Remove active class from all links
-            document.querySelectorAll('a').forEach(link => {
+            // Update project links
+            document.querySelectorAll('.projects-list a').forEach(link => {
                 link.classList.remove('active-link');
             });
-            
-            // Add active class to clicked link
-            if (event && event.target) {
-                event.target.classList.add('active-link');
-            }
+            document.getElementById('link-' + projectId).classList.add('active-link');
             
             // Hide all content
             document.querySelectorAll('.project-content').forEach(content => {
@@ -310,11 +438,6 @@
                 selectedContent.classList.add('active');
             }
         }
-        
-        // Show Dreams by default
-        window.onload = function() {
-            showProject('dreams', null);
-        };
     </script>
 </body>
 </html>
