@@ -21,7 +21,7 @@
             flex-direction: column;
         }
         
-        /* Two column layout - years and projects only */
+        /* Original two column layout */
         .container {
             display: flex;
             flex: 1;
@@ -29,18 +29,18 @@
             width: 100%;
         }
         
-        /* Column 1: Years */
+        /* Column 1: Years - original width */
         .years-column {
-            flex: 0 0 120px;
-            padding: 20px 10px 20px 25px;
+            flex: 0 0 180px;
+            padding: 20px 15px 20px 30px;
             background-color: #A4CB9E;
             border-right: 1px solid #000000;
         }
         
-        /* Column 2: Projects */
+        /* Column 2: Projects - original width */
         .projects-column {
-            flex: 0 0 160px;
-            padding: 20px 25px 20px 15px;
+            flex: 0 0 180px;
+            padding: 20px 30px 20px 20px;
             background-color: #A4CB9E;
             border-right: 1px solid #000000;
         }
@@ -61,7 +61,7 @@
             width: 100%;
         }
         
-        /* Project content - FIXED ALIGNMENT ONLY */
+        /* Project content - with fixed alignment */
         .project-content {
             width: 100%;
             display: none;
@@ -165,21 +165,13 @@
             font-size: 15px;
         }
         
-        /* Mobile adjustments - keep existing mobile layout */
+        /* Mobile */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
             }
             
-            .years-column {
-                width: 100%;
-                flex: none;
-                border-right: none;
-                border-bottom: 1px solid #000000;
-                padding: 15px 20px;
-            }
-            
-            .projects-column {
+            .years-column, .projects-column {
                 width: 100%;
                 flex: none;
                 border-right: none;
