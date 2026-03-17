@@ -21,7 +21,7 @@
             flex-direction: column;
         }
         
-        /* Default: Desktop three column layout with categories */
+        /* Two column layout - years and projects only */
         .container {
             display: flex;
             flex: 1;
@@ -31,23 +31,18 @@
         
         /* Column 1: Years */
         .years-column {
-            flex: 0 0 180px;
-            padding: 20px 15px 20px 30px;
+            flex: 0 0 120px;
+            padding: 20px 10px 20px 25px;
             background-color: #A4CB9E;
+            border-right: 1px solid #000000;
         }
         
-        /* Column 2: Categories */
-        .categories-column {
-            flex: 0 0 180px;
-            padding: 20px 15px 20px 20px;
-            background-color: #A4CB9E;
-        }
-        
-        /* Column 3: Projects */
+        /* Column 2: Projects */
         .projects-column {
-            flex: 0 0 180px;
-            padding: 20px 30px 20px 20px;
+            flex: 0 0 160px;
+            padding: 20px 25px 20px 15px;
             background-color: #A4CB9E;
+            border-right: 1px solid #000000;
         }
         
         /* Content area */
@@ -114,13 +109,13 @@
         }
         
         /* List styling */
-        .years-list, .categories-list, .projects-list {
+        .years-list, .projects-list {
             list-style-type: none;
             padding-left: 0;
             margin: 0;
         }
         
-        .years-list li, .categories-list li, .projects-list li {
+        .years-list li, .projects-list li {
             margin-bottom: 8px;
             font-size: 16px;
             font-weight: normal;
@@ -143,12 +138,12 @@
             text-decoration: underline;
         }
         
-        /* Hide lists by default */
-        .categories-list, .projects-list {
+        /* Hide projects by default */
+        .projects-list {
             display: none;
         }
         
-        .categories-list.active, .projects-list.active {
+        .projects-list.active {
             display: block;
         }
         
@@ -166,26 +161,37 @@
             font-size: 15px;
         }
         
-        /* ===== WEBSITE VERSION (no category column) ===== */
-        @media (min-width: 1024px) {
-            /* Hide categories column completely */
-            .categories-column {
-                display: none;
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
             }
             
-            /* Adjust years column width */
-            .years-column {
-                flex: 0 0 120px;
+            .years-column, .projects-column {
+                width: 100%;
+                flex: none;
+                border-right: none;
+                border-bottom: 1px solid #000000;
+                padding: 15px 20px;
             }
             
-            /* Adjust projects column width and position */
-            .projects-column {
-                flex: 0 0 160px;
+            .years-list, .projects-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
             }
             
-            /* Direct year-to-project mapping */
-            .years-list li a {
-                cursor: pointer;
+            .years-list li, .projects-list li {
+                margin-bottom: 0;
+            }
+            
+            .content-column {
+                padding: 20px;
+            }
+            
+            a {
+                padding: 8px 0;
+                font-size: 18px;
             }
         }
     </style>
@@ -195,61 +201,33 @@
         <!-- COLUMN 1: YEARS -->
         <div class="years-column">
             <ul class="years-list">
-                <li><a href="#" onclick="showCategories('2024-present', event)" id="link-2024-present">2024–present</a></li>
-                <li><a href="#" onclick="showCategories('2020', event)" id="link-2020">2020</a></li>
-                <li><a href="#" onclick="showCategories('2019', event)" id="link-2019">2019</a></li>
-                <li><a href="#" onclick="showCategories('2018', event)" id="link-2018">2018</a></li>
+                <li><a href="#" onclick="showProjects('2024-present', event)" id="link-2024-present">2024–present</a></li>
+                <li><a href="#" onclick="showProjects('2020', event)" id="link-2020">2020</a></li>
+                <li><a href="#" onclick="showProjects('2019', event)" id="link-2019">2019</a></li>
+                <li><a href="#" onclick="showProjects('2018', event)" id="link-2018">2018</a></li>
             </ul>
         </div>
         
-        <!-- COLUMN 2: CATEGORIES (hidden on website version) -->
-        <div class="categories-column" id="categories-column">
-            <!-- 2024-present category -->
-            <ul class="categories-list" id="categories-2024-present">
-                <li><a href="#" onclick="showProjects('programming', event)" id="link-programming">Programming</a></li>
-            </ul>
-            
-            <!-- 2020 categories -->
-            <ul class="categories-list" id="categories-2020">
-                <li><a href="#" onclick="showProjects('film-2020', event)" id="link-film-2020">Film</a></li>
-                <li><a href="#" onclick="showProjects('sound-2020', event)" id="link-sound-2020">Sound</a></li>
-            </ul>
-            
-            <!-- 2019 category -->
-            <ul class="categories-list" id="categories-2019">
-                <li><a href="#" onclick="showProjects('film-2019', event)" id="link-film-2019">Film</a></li>
-            </ul>
-            
-            <!-- 2018 category -->
-            <ul class="categories-list" id="categories-2018">
-                <li><a href="#" onclick="showProjects('curation', event)" id="link-curation">Curation</a></li>
-            </ul>
-        </div>
-        
-        <!-- COLUMN 3: PROJECTS -->
+        <!-- COLUMN 2: PROJECTS -->
         <div class="projects-column" id="projects-column">
-            <!-- Programming projects -->
-            <ul class="projects-list" id="projects-programming">
+            <!-- 2024-present projects -->
+            <ul class="projects-list" id="projects-2024-present">
                 <li><a href="#" onclick="showProject('weathergirl', event)" id="link-weathergirl">Weathergirl</a></li>
             </ul>
             
-            <!-- Film 2020 projects -->
-            <ul class="projects-list" id="projects-film-2020">
+            <!-- 2020 projects -->
+            <ul class="projects-list" id="projects-2020">
                 <li><a href="#" onclick="showProject('dreams', event)" id="link-dreams">Dreams</a></li>
-            </ul>
-            
-            <!-- Sound 2020 projects -->
-            <ul class="projects-list" id="projects-sound-2020">
                 <li><a href="#" onclick="showProject('dryspell', event)" id="link-dryspell">Dry Spell</a></li>
             </ul>
             
-            <!-- Film 2019 projects -->
-            <ul class="projects-list" id="projects-film-2019">
+            <!-- 2019 projects -->
+            <ul class="projects-list" id="projects-2019">
                 <li><a href="#" onclick="showProject('bathynomus', event)" id="link-bathynomus">Bathynomus</a></li>
             </ul>
             
-            <!-- Curation projects -->
-            <ul class="projects-list" id="projects-curation">
+            <!-- 2018 projects -->
+            <ul class="projects-list" id="projects-2018">
                 <li><a href="#" onclick="showProject('mothers', event)" id="link-mothers">Mothers</a></li>
             </ul>
         </div>
@@ -315,7 +293,7 @@
     </div>
 
     <script>
-        function showCategories(yearId, event) {
+        function showProjects(yearId, event) {
             if (event) {
                 event.preventDefault();
             }
@@ -325,68 +303,6 @@
                 link.classList.remove('active-link');
             });
             document.getElementById('link-' + yearId).classList.add('active-link');
-            
-            // Clear other active states
-            document.querySelectorAll('.categories-list a, .projects-list a').forEach(link => {
-                link.classList.remove('active-link');
-            });
-            
-            // Hide all category lists
-            document.querySelectorAll('.categories-list').forEach(list => {
-                list.classList.remove('active');
-            });
-            
-            // Show selected category list
-            var selectedCategories = document.getElementById('categories-' + yearId);
-            if (selectedCategories) {
-                selectedCategories.classList.add('active');
-            }
-            
-            // Hide all project lists and content
-            document.querySelectorAll('.projects-list').forEach(list => {
-                list.classList.remove('active');
-            });
-            document.querySelectorAll('.project-content').forEach(content => {
-                content.classList.remove('active');
-            });
-
-            // For website version (no categories), trigger projects directly
-            if (window.innerWidth >= 1024) {
-                if (yearId === '2024-present') {
-                    showProjects('programming', event);
-                } else if (yearId === '2020') {
-                    // Show both Film and Sound projects for 2020
-                    document.getElementById('projects-film-2020').classList.add('active');
-                    document.getElementById('projects-sound-2020').classList.add('active');
-                } else if (yearId === '2019') {
-                    showProjects('film-2019', event);
-                } else if (yearId === '2018') {
-                    showProjects('curation', event);
-                }
-            }
-        }
-        
-        function showProjects(categoryId, event) {
-            if (event) {
-                event.preventDefault();
-            }
-            
-            // Update category links
-            document.querySelectorAll('.categories-list a').forEach(link => {
-                link.classList.remove('active-link');
-            });
-            
-            let categoryLinkId = {
-                'programming': 'link-programming',
-                'film-2020': 'link-film-2020',
-                'sound-2020': 'link-sound-2020',
-                'film-2019': 'link-film-2019',
-                'curation': 'link-curation'
-            }[categoryId];
-            
-            if (categoryLinkId) {
-                document.getElementById(categoryLinkId).classList.add('active-link');
-            }
             
             // Clear project active states
             document.querySelectorAll('.projects-list a').forEach(link => {
@@ -399,7 +315,7 @@
             });
             
             // Show selected project list
-            var selectedProjects = document.getElementById('projects-' + categoryId);
+            var selectedProjects = document.getElementById('projects-' + yearId);
             if (selectedProjects) {
                 selectedProjects.classList.add('active');
             }
@@ -432,6 +348,15 @@
                 selectedContent.classList.add('active');
             }
         }
+        
+        // Show Dreams by default
+        window.onload = function() {
+            showProjects('2020', null);
+            setTimeout(() => {
+                document.getElementById('link-dreams').classList.add('active-link');
+                document.getElementById('dreams-content').classList.add('active');
+            }, 100);
+        };
     </script>
 </body>
 </html>
