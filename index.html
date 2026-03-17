@@ -29,31 +29,29 @@
             width: 100%;
         }
         
-        /* Column 1: Years */
-        .years-column {
-            flex: 0 0 180px;
-            padding: 20px 15px 20px 30px;
+        /* Evenly spaced columns */
+        .years-column, .categories-column, .projects-column {
+            flex: 1;
+            max-width: 200px;
+            padding: 20px 15px;
             background-color: #A4CB9E;
         }
         
-        /* Column 2: Categories */
+        .years-column {
+            padding-left: 30px;
+        }
+        
         .categories-column {
-            flex: 0 0 180px;
-            padding: 20px 15px 20px 20px;
-            background-color: #A4CB9E;
             text-align: left;
         }
         
-        /* Column 3: Projects */
         .projects-column {
-            flex: 0 0 180px;
-            padding: 20px 30px 20px 20px;
-            background-color: #A4CB9E;
+            padding-right: 30px;
         }
         
-        /* Content area */
+        /* Content area - takes remaining space */
         .content-column {
-            flex: 1;
+            flex: 2;
             background-color: #A4CB9E;
             overflow: auto;
             display: flex;
@@ -63,7 +61,7 @@
         }
         
         .content-wrapper {
-            max-width: 550px;
+            max-width: 700px;
             width: 100%;
             margin: 0 auto;
         }
@@ -83,10 +81,10 @@
         }
         
         .project-content img {
-            max-width: 100%;
+            max-width: 95%;
             height: auto;
             border: 1px solid #333;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: block;
             margin-left: auto;
             margin-right: auto;
@@ -181,24 +179,26 @@
         
         /* ===== MOBILE VERTICAL STACKING ===== */
         @media (max-width: 768px) {
-            /* Override desktop flex */
+            /* Switch to vertical layout */
             .container {
                 display: block;
                 padding: 15px;
             }
             
-            /* Hide all columns as separate - we'll rebuild vertically */
+            /* Reset columns for vertical stacking */
             .years-column, .categories-column, .projects-column, .content-column {
                 width: 100%;
+                max-width: 100%;
+                flex: none;
                 padding: 0;
-                margin-bottom: 20px;
+                margin-bottom: 0;
             }
             
-            /* Years always visible */
+            /* Years row - always visible */
             .years-column {
-                display: block;
-                padding: 0 0 15px 0;
+                padding: 0 0 20px 0;
                 border-bottom: 1px solid #000000;
+                margin-bottom: 20px;
             }
             
             .years-list {
@@ -211,10 +211,10 @@
                 margin-bottom: 0;
             }
             
-            /* Categories - only visible when active */
+            /* Categories row - only visible when active */
             .categories-column {
-                margin-top: 15px;
-                padding-bottom: 15px;
+                margin-bottom: 20px;
+                padding-bottom: 20px;
                 border-bottom: 1px solid #000000;
             }
             
@@ -228,10 +228,10 @@
                 margin-bottom: 0;
             }
             
-            /* Projects - only visible when active */
+            /* Projects row - only visible when active */
             .projects-column {
-                margin-top: 15px;
-                padding-bottom: 15px;
+                margin-bottom: 20px;
+                padding-bottom: 20px;
                 border-bottom: 1px solid #000000;
             }
             
@@ -247,12 +247,16 @@
             
             /* Content area */
             .content-column {
-                margin-top: 20px;
+                margin-top: 10px;
                 padding: 20px 0 0 0;
-                border-top: 1px solid #000000;
             }
             
             .content-wrapper {
+                max-width: 100%;
+            }
+            
+            /* Reset image size on mobile */
+            .project-content img {
                 max-width: 100%;
             }
             
@@ -260,10 +264,6 @@
             a {
                 padding: 8px 0;
                 font-size: 18px;
-            }
-            
-            .footer {
-                padding: 15px;
             }
         }
         
@@ -303,7 +303,7 @@
                 <li><a href="#" onclick="showProjects('sound-2020', event)" id="link-sound-2020">Sound</a></li>
             </ul>
             
-            <!-- 2019 category - Film -->
+            <!-- 2019 category - Film (Soundings removed) -->
             <ul class="categories-list" id="categories-2019">
                 <li><a href="#" onclick="showProjects('film-2019', event)" id="link-film-2019">Film</a></li>
             </ul>
@@ -388,14 +388,13 @@
                     </div>
                 </div>
                 
-                <!-- Mothers content -->
+                <!-- Mothers content - trimmed -->
                 <div id="mothers-content" class="project-content">
                     <div class="project-content-inner">
                         <a href="https://turf-projects.com/project/mothers/" target="_blank">
                             <img src="Mothers Turf Projects (1).jpg" alt="Mothers at TURF Projects">
                         </a>
-                        <p class="description">An exhibition presenting collaborations between practicing artists and their mothers. 
-                            <br><br>The project included a reading group with local mothers and carers in Croydon on Wages For Housework.</p>
+                        <p class="description">An exhibition presenting collaborations between practicing artists and their mothers.</p>
                     </div>
                 </div>
             </div>
