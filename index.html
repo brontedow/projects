@@ -21,7 +21,7 @@
             flex-direction: column;
         }
         
-        /* Desktop three column layout */
+        /* Default: Desktop three column layout with categories */
         .container {
             display: flex;
             flex: 1;
@@ -143,7 +143,7 @@
             text-decoration: underline;
         }
         
-        /* Hide lists by default - for click-through */
+        /* Hide lists by default */
         .categories-list, .projects-list {
             display: none;
         }
@@ -165,6 +165,29 @@
             text-decoration: none;
             font-size: 15px;
         }
+        
+        /* ===== WEBSITE VERSION (no category column) ===== */
+        @media (min-width: 1024px) {
+            /* Hide categories column completely */
+            .categories-column {
+                display: none;
+            }
+            
+            /* Adjust years column width */
+            .years-column {
+                flex: 0 0 120px;
+            }
+            
+            /* Adjust projects column width and position */
+            .projects-column {
+                flex: 0 0 160px;
+            }
+            
+            /* Direct year-to-project mapping */
+            .years-list li a {
+                cursor: pointer;
+            }
+        }
     </style>
 </head>
 <body>
@@ -179,7 +202,7 @@
             </ul>
         </div>
         
-        <!-- COLUMN 2: CATEGORIES -->
+        <!-- COLUMN 2: CATEGORIES (hidden on website version) -->
         <div class="categories-column" id="categories-column">
             <!-- 2024-present category -->
             <ul class="categories-list" id="categories-2024-present">
@@ -326,6 +349,21 @@
             document.querySelectorAll('.project-content').forEach(content => {
                 content.classList.remove('active');
             });
+
+            // For website version (no categories), trigger projects directly
+            if (window.innerWidth >= 1024) {
+                if (yearId === '2024-present') {
+                    showProjects('programming', event);
+                } else if (yearId === '2020') {
+                    // Show both Film and Sound projects for 2020
+                    document.getElementById('projects-film-2020').classList.add('active');
+                    document.getElementById('projects-sound-2020').classList.add('active');
+                } else if (yearId === '2019') {
+                    showProjects('film-2019', event);
+                } else if (yearId === '2018') {
+                    showProjects('curation', event);
+                }
+            }
         }
         
         function showProjects(categoryId, event) {
