@@ -21,96 +21,51 @@
             flex-direction: column;
         }
         
-        /* Mobile-first layout */
+        /* Three column layout */
         .container {
             display: flex;
-            flex-direction: column;
             flex: 1;
+            min-height: calc(100vh - 50px);
             width: 100%;
-            padding: 15px;
         }
         
-        /* Navigation rows */
-        .nav-row {
-            margin-bottom: 25px;
-            border-bottom: 1px solid #000000;
-            padding-bottom: 15px;
+        /* Column 1: Years */
+        .years-column {
+            flex: 0 0 180px;
+            padding: 20px 15px 20px 30px;
+            background-color: #A4CB9E;
         }
         
-        .nav-row:last-of-type {
-            border-bottom: none;
+        /* Column 2: Categories */
+        .categories-column {
+            flex: 0 0 180px;
+            padding: 20px 15px 20px 20px;
+            background-color: #A4CB9E;
+            text-align: left;
         }
         
-        .nav-label {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 10px;
-            opacity: 0.7;
-        }
-        
-        /* Horizontal scrollable lists */
-        .nav-list {
-            list-style-type: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding-left: 0;
-        }
-        
-        .nav-list li {
-            font-size: 18px;
-            line-height: 1.3;
-        }
-        
-        /* All links */
-        a {
-            color: #000000;
-            text-decoration: none;
-            display: inline-block;
-            padding: 8px 0;
-            cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
-            font-weight: normal;
-            font-size: 18px;
-        }
-        
-        /* Active state */
-        a.active-link {
-            font-weight: bold;
-            text-decoration: underline;
-        }
-        
-        /* Hide lists by default */
-        .categories-list, .projects-list {
-            display: none;
-        }
-        
-        .categories-list.active, .projects-list.active {
-            display: block;
-        }
-        
-        .categories-list, .projects-list {
-            list-style-type: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .categories-list li, .projects-list li {
-            margin-bottom: 0;
+        /* Column 3: Projects */
+        .projects-column {
+            flex: 0 0 180px;
+            padding: 20px 30px 20px 20px;
+            background-color: #A4CB9E;
         }
         
         /* Content area */
         .content-column {
-            width: 100%;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #000000;
+            flex: 1;
+            background-color: #A4CB9E;
+            overflow: auto;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px 40px;
         }
         
         .content-wrapper {
-            max-width: 100%;
+            max-width: 550px;
+            width: 100%;
+            margin: 0 auto;
         }
         
         /* Project content */
@@ -133,11 +88,13 @@
             border: 1px solid #333;
             margin-bottom: 15px;
             display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
         
+        /* Make images clickable */
         .project-content-inner a {
             display: block;
-            padding: 0;
             text-decoration: none;
         }
         
@@ -155,19 +112,65 @@
             text-decoration: underline;
             font-weight: normal;
             font-size: 16px;
-            padding: 4px 0;
         }
         
         .line-break {
             height: 10px;
         }
         
+        /* List styling */
+        .years-list, .categories-list, .projects-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .years-list li, .categories-list li, .projects-list li {
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: normal;
+            line-height: 1.3;
+            white-space: nowrap;
+        }
+        
+        /* All links identical */
+        a {
+            color: #000000;
+            text-decoration: none;
+            display: inline-block;
+            padding: 2px 0;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            font-weight: normal;
+            font-size: 16px;
+        }
+        
+        a:hover {
+            text-decoration: none;
+            background-color: transparent;
+        }
+        
+        /* Active state - bold and underlined */
+        a.active-link {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        
+        /* Hide lists by default */
+        .categories-list, .projects-list {
+            display: none;
+        }
+        
+        .categories-list.active, .projects-list.active {
+            display: block;
+        }
+        
         /* Footer */
         .footer {
             border-top: 1px solid #000000;
-            padding: 15px;
+            padding: 12px 30px;
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 16px;
+            font-size: 15px;
             width: 100%;
             background-color: #A4CB9E;
         }
@@ -177,54 +180,88 @@
             text-decoration: none;
             padding: 0;
             font-weight: normal;
-            font-size: 16px;
+            font-size: 15px;
         }
         
-        /* Desktop overrides - only kicks in on larger screens */
-        @media (min-width: 1024px) {
+        /* ===== MOBILE FIXES ===== */
+        @media (max-width: 768px) {
+            /* Stack columns vertically */
             .container {
-                flex-direction: row;
-                padding: 20px;
-            }
-            
-            .nav-row {
-                border-bottom: none;
-                padding-bottom: 0;
-                margin-bottom: 0;
-                width: 180px;
-                margin-right: 20px;
-            }
-            
-            .nav-label {
-                display: none;
-            }
-            
-            .nav-list, .categories-list, .projects-list {
                 flex-direction: column;
-                gap: 8px;
             }
             
+            /* Full width columns with bottom borders */
+            .years-column, .categories-column, .projects-column {
+                flex: none;
+                width: 100%;
+                padding: 15px 20px;
+                border-bottom: 1px solid #000000;
+            }
+            
+            /* Remove bottom border from last column */
+            .projects-column {
+                border-bottom: none;
+            }
+            
+            /* Make list items horizontal with wrapping */
+            .years-list, .categories-list, .projects-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .years-list li, .categories-list li, .projects-list li {
+                margin-bottom: 0;
+                white-space: nowrap;
+            }
+            
+            /* Adjust content area */
             .content-column {
-                flex: 1;
-                margin-top: 0;
-                padding-top: 0;
-                border-top: none;
-                padding-left: 30px;
+                padding: 20px;
+                min-height: auto;
+            }
+            
+            .content-wrapper {
+                max-width: 100%;
+            }
+            
+            /* Better touch targets */
+            a {
+                padding: 8px 0;
+                font-size: 18px;
+            }
+            
+            /* Footer padding */
+            .footer {
+                padding: 15px 20px;
+            }
+        }
+        
+        /* Small phone optimization */
+        @media (max-width: 480px) {
+            .years-column, .categories-column, .projects-column {
+                padding: 12px 15px;
+            }
+            
+            .years-list, .categories-list, .projects-list {
+                gap: 15px;
             }
             
             a {
                 font-size: 16px;
-                padding: 2px 0;
+            }
+            
+            .content-column {
+                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- ROW 1: YEARS -->
-        <div class="nav-row">
-            <div class="nav-label">Years</div>
-            <ul class="nav-list">
+        <!-- COLUMN 1: YEARS -->
+        <div class="years-column">
+            <ul class="years-list">
                 <li><a href="#" onclick="showCategories('2024-present', event)" id="link-2024-present">2024–present</a></li>
                 <li><a href="#" onclick="showCategories('2020', event)" id="link-2020">2020</a></li>
                 <li><a href="#" onclick="showCategories('2019', event)" id="link-2019">2019</a></li>
@@ -232,9 +269,8 @@
             </ul>
         </div>
         
-        <!-- ROW 2: CATEGORIES -->
-        <div class="nav-row" id="categories-row">
-            <div class="nav-label">Categories</div>
+        <!-- COLUMN 2: CATEGORIES -->
+        <div class="categories-column" id="categories-column">
             <!-- 2024-present category - Programming -->
             <ul class="categories-list" id="categories-2024-present">
                 <li><a href="#" onclick="showProjects('programming', event)" id="link-programming">Programming</a></li>
@@ -246,7 +282,7 @@
                 <li><a href="#" onclick="showProjects('sound-2020', event)" id="link-sound-2020">Sound</a></li>
             </ul>
             
-            <!-- 2019 category - Film (now only Bathynomus) -->
+            <!-- 2019 category - Film (Soundings removed) -->
             <ul class="categories-list" id="categories-2019">
                 <li><a href="#" onclick="showProjects('film-2019', event)" id="link-film-2019">Film</a></li>
             </ul>
@@ -257,9 +293,8 @@
             </ul>
         </div>
         
-        <!-- ROW 3: PROJECTS -->
-        <div class="nav-row" id="projects-row">
-            <div class="nav-label">Projects</div>
+        <!-- COLUMN 3: PROJECTS -->
+        <div class="projects-column" id="projects-column">
             <!-- Programming projects - Weathergirl -->
             <ul class="projects-list" id="projects-programming">
                 <li><a href="#" onclick="showProject('weathergirl', event)" id="link-weathergirl">Weathergirl</a></li>
@@ -339,7 +374,7 @@
                             <img src="Mothers Turf Projects (1).jpg" alt="Mothers at TURF Projects">
                         </a>
                         <p class="description">An exhibition presenting collaborations between practicing artists and their mothers. 
-                          </p>
+                            <br><br>The project included a reading group with local mothers and carers in Croydon on Wages For Housework.</p>
                     </div>
                 </div>
             </div>
@@ -359,7 +394,7 @@
             }
             
             // Remove active class from all year links
-            document.querySelectorAll('.nav-list a').forEach(link => {
+            document.querySelectorAll('.years-list a').forEach(link => {
                 link.classList.remove('active-link');
             });
             
@@ -372,9 +407,10 @@
             });
             
             // Hide all category lists
-            document.querySelectorAll('.categories-list').forEach(list => {
-                list.classList.remove('active');
-            });
+            var categories = document.getElementsByClassName('categories-list');
+            for (var i = 0; i < categories.length; i++) {
+                categories[i].classList.remove('active');
+            }
             
             // Show selected category list
             var selectedCategories = document.getElementById('categories-' + yearId);
@@ -383,14 +419,16 @@
             }
             
             // Hide all project lists
-            document.querySelectorAll('.projects-list').forEach(list => {
-                list.classList.remove('active');
-            });
+            var projects = document.getElementsByClassName('projects-list');
+            for (var i = 0; i < projects.length; i++) {
+                projects[i].classList.remove('active');
+            }
             
             // Hide all content
-            document.querySelectorAll('.project-content').forEach(content => {
-                content.classList.remove('active');
-            });
+            var contents = document.getElementsByClassName('project-content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove('active');
+            }
         }
         
         function showProjects(categoryId, event) {
@@ -422,9 +460,10 @@
             });
             
             // Hide all project lists
-            document.querySelectorAll('.projects-list').forEach(list => {
-                list.classList.remove('active');
-            });
+            var projects = document.getElementsByClassName('projects-list');
+            for (var i = 0; i < projects.length; i++) {
+                projects[i].classList.remove('active');
+            }
             
             // Show selected project list
             var selectedProjects = document.getElementById('projects-' + categoryId);
@@ -433,9 +472,10 @@
             }
             
             // Hide all content
-            document.querySelectorAll('.project-content').forEach(content => {
-                content.classList.remove('active');
-            });
+            var contents = document.getElementsByClassName('project-content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove('active');
+            }
         }
         
         function showProject(projectId, event) {
@@ -453,9 +493,10 @@
             document.getElementById('link-' + projectId).classList.add('active-link');
             
             // Hide all content
-            document.querySelectorAll('.project-content').forEach(content => {
-                content.classList.remove('active');
-            });
+            var contents = document.getElementsByClassName('project-content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove('active');
+            }
             
             // Show selected content
             var selectedContent = document.getElementById(projectId + '-content');
