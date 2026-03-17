@@ -41,7 +41,6 @@
             flex: 0 0 180px;
             padding: 20px 15px 20px 20px;
             background-color: #A4CB9E;
-            text-align: left;
         }
         
         /* Column 3: Projects */
@@ -57,7 +56,7 @@
             background-color: #A4CB9E;
             overflow: auto;
             display: flex;
-            justify-content: flex-start; /* Changed from center to flex-start */
+            justify-content: flex-start;
             align-items: flex-start;
             padding: 20px 40px;
         }
@@ -65,7 +64,6 @@
         .content-wrapper {
             max-width: 700px;
             width: 100%;
-            margin: 0; /* Removed auto margin */
         }
         
         /* Project content */
@@ -88,8 +86,6 @@
             border: 1px solid #333;
             margin-bottom: 20px;
             display: block;
-            margin-left: 0; /* Changed from auto to 0 */
-            margin-right: 0; /* Changed from auto to 0 */
         }
         
         .project-content-inner a {
@@ -104,14 +100,12 @@
             text-align: left;
             margin-bottom: 10px;
             font-weight: normal;
-            max-width: 95%; /* Match image width */
+            max-width: 95%;
         }
         
         .project-content .external-link a {
             color: #000000;
             text-decoration: underline;
-            font-weight: normal;
-            font-size: 16px;
         }
         
         .line-break {
@@ -144,16 +138,12 @@
             font-size: 16px;
         }
         
-        a:hover {
-            text-decoration: none;
-            background-color: transparent;
-        }
-        
         a.active-link {
             font-weight: bold;
             text-decoration: underline;
         }
         
+        /* Hide all lists by default */
         .categories-list, .projects-list {
             display: none;
         }
@@ -166,8 +156,6 @@
         .footer {
             border-top: 1px solid #000000;
             padding: 12px 30px;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 15px;
             width: 100%;
             background-color: #A4CB9E;
         }
@@ -175,91 +163,91 @@
         .footer a {
             color: #000000;
             text-decoration: none;
-            padding: 0;
-            font-weight: normal;
             font-size: 15px;
         }
         
         /* ===== MOBILE ===== */
         @media (max-width: 768px) {
-            /* Keep desktop three-column layout but adjust for mobile */
             .container {
-                display: flex;
                 flex-direction: column;
                 padding: 15px;
             }
             
-            /* All columns full width but preserve hierarchy */
-            .years-column, .categories-column, .projects-column {
-                flex: none;
+            /* Reset columns */
+            .years-column, .categories-column, .projects-column, .content-column {
                 width: 100%;
-                max-width: 100%;
-                padding: 0 0 20px 0;
+                flex: none;
+                padding: 0;
+            }
+            
+            /* Years always visible */
+            .years-column {
+                padding-bottom: 20px;
                 margin-bottom: 20px;
                 border-bottom: 1px solid #000000;
             }
             
-            /* Only years visible by default */
-            .years-column {
-                display: block;
-            }
-            
-            /* Categories and projects only visible when active */
-            .categories-column, .projects-column {
-                display: none;
-            }
-            
-            .categories-column.active, .projects-column.active {
-                display: block;
-            }
-            
-            /* Horizontal scrolling lists */
-            .years-list, .categories-list, .projects-list {
+            .years-list {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 20px;
             }
             
-            .years-list li, .categories-list li, .projects-list li {
+            .years-list li {
                 margin-bottom: 0;
-                white-space: nowrap;
             }
             
-            /* Content area */
+            /* Categories - hidden by default */
+            .categories-column {
+                display: none;
+                margin-bottom: 20px;
+            }
+            
+            .categories-column.active {
+                display: block;
+                padding-bottom: 20px;
+                border-bottom: 1px solid #000000;
+            }
+            
+            .categories-list {
+                display: flex !important;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .categories-list li {
+                margin-bottom: 0;
+            }
+            
+            /* Projects - hidden by default */
+            .projects-column {
+                display: none;
+                margin-bottom: 20px;
+            }
+            
+            .projects-column.active {
+                display: block;
+                padding-bottom: 20px;
+                border-bottom: 1px solid #000000;
+            }
+            
+            .projects-list {
+                display: flex !important;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .projects-list li {
+                margin-bottom: 0;
+            }
+            
             .content-column {
-                padding: 20px 0 0 0;
-                margin-top: 10px;
+                padding-top: 20px;
             }
             
-            .content-wrapper {
-                max-width: 100%;
-            }
-            
-            /* Align left on mobile too */
-            .project-content img {
-                margin-left: 0;
-                margin-right: 0;
-                max-width: 100%;
-            }
-            
-            .project-content p {
-                max-width: 100%;
-            }
-            
-            /* Better touch targets */
             a {
                 padding: 8px 0;
                 font-size: 18px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .years-list, .categories-list, .projects-list {
-                gap: 15px;
-            }
-            
-            a {
-                font-size: 16px;
             }
         }
     </style>
@@ -283,7 +271,7 @@
                 <li><a href="#" onclick="showProjects('programming', event)" id="link-programming">Programming</a></li>
             </ul>
             
-            <!-- 2020 categories - Film and Sound -->
+            <!-- 2020 categories - Film and Sound (SINGLE 2020) -->
             <ul class="categories-list" id="categories-2020">
                 <li><a href="#" onclick="showProjects('film-2020', event)" id="link-film-2020">Film</a></li>
                 <li><a href="#" onclick="showProjects('sound-2020', event)" id="link-sound-2020">Sound</a></li>
