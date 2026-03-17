@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bronte Dow</title>
     <style>
         * {
@@ -21,7 +21,7 @@
             flex-direction: column;
         }
         
-        /* Desktop three column layout with click-through */
+        /* Desktop three column layout */
         .container {
             display: flex;
             flex: 1;
@@ -164,50 +164,6 @@
             color: #000000;
             text-decoration: none;
             font-size: 15px;
-        }
-        
-        /* ===== SIMPLE MOBILE - just stack columns ===== */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-            
-            /* All columns full width */
-            .years-column, .categories-column, .projects-column {
-                flex: none;
-                width: 100%;
-                padding: 15px 20px;
-                border-bottom: 1px solid #000000;
-            }
-            
-            /* Keep the click-through functionality but make lists horizontal */
-            .years-list, .categories-list, .projects-list {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 20px;
-            }
-            
-            .years-list li, .categories-list li, .projects-list li {
-                margin-bottom: 0;
-                white-space: nowrap;
-            }
-            
-            .content-column {
-                padding: 20px;
-            }
-            
-            .project-content img {
-                max-width: 100%;
-            }
-            
-            .project-content p {
-                max-width: 100%;
-            }
-            
-            a {
-                padding: 8px 0;
-                font-size: 18px;
-            }
         }
     </style>
 </head>
