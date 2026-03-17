@@ -1,370 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bronte Dow</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background-color: #A4CB9E;
-            color: #000000;
-            font-family: Arial, Helvetica, sans-serif;
-            min-height: 100vh;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        /* Original two column layout */
-        .container {
-            display: flex;
-            flex: 1;
-            min-height: calc(100vh - 50px);
-            width: 100%;
-        }
-        
-        /* Column 1: Years - original width */
-        .years-column {
-            flex: 0 0 180px;
-            padding: 20px 15px 20px 30px;
-            background-color: #A4CB9E;
-            border-right: 1px solid #000000;
-        }
-        
-        /* Column 2: Projects - original width */
-        .projects-column {
-            flex: 0 0 180px;
-            padding: 20px 30px 20px 20px;
-            background-color: #A4CB9E;
-            border-right: 1px solid #000000;
-        }
-        
-        /* Content area */
-        .content-column {
-            flex: 1;
-            background-color: #A4CB9E;
-            overflow: auto;
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-            padding: 20px 40px;
-        }
-        
-        .content-wrapper {
-            max-width: 700px;
-            width: 100%;
-        }
-        
-        /* Project content - with fixed alignment */
-        .project-content {
-            width: 100%;
-            display: none;
-        }
-        
-        .project-content.active {
-            display: block;
-        }
-        
-        .project-content-inner {
-            width: 100%;
-        }
-        
-        .project-content img {
-            max-width: 95%;
-            height: auto;
-            border: 1px solid #333;
-            margin-bottom: 20px;
-            display: block;
-            margin-left: 0;
-            vertical-align: top;
-        }
-        
-        .project-content-inner a {
-            display: inline-block;
-            text-decoration: none;
-            line-height: 0;
-        }
-        
-        .project-content p {
-            font-size: 16px;
-            line-height: 1.5;
-            font-family: Arial, Helvetica, sans-serif;
-            text-align: left;
-            margin-bottom: 10px;
-            font-weight: normal;
-            max-width: 95%;
-        }
-        
-        .project-content .external-link a {
-            color: #000000;
-            text-decoration: underline;
-            display: inline;
-            line-height: normal;
-        }
-        
-        .line-break {
-            height: 10px;
-        }
-        
-        /* List styling */
-        .years-list, .projects-list {
-            list-style-type: none;
-            padding-left: 0;
-            margin: 0;
-        }
-        
-        .years-list li, .projects-list li {
-            margin-bottom: 8px;
-            font-size: 16px;
-            font-weight: normal;
-            line-height: 1.3;
-            white-space: nowrap;
-        }
-        
-        a {
-            color: #000000;
-            text-decoration: none;
-            display: inline-block;
-            padding: 2px 0;
-            cursor: pointer;
-            font-weight: normal;
-            font-size: 16px;
-        }
-        
-        a.active-link {
-            font-weight: bold;
-            text-decoration: underline;
-        }
-        
-        /* Hide projects by default */
-        .projects-list {
-            display: none;
-        }
-        
-        .projects-list.active {
-            display: block;
-        }
-        
-        /* Footer */
-        .footer {
-            border-top: 1px solid #000000;
-            padding: 12px 30px;
-            width: 100%;
-            background-color: #A4CB9E;
-        }
-        
-        .footer a {
-            color: #000000;
-            text-decoration: none;
-            font-size: 15px;
-        }
-        
-        /* Mobile */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-            
-            .years-column, .projects-column {
-                width: 100%;
-                flex: none;
-                border-right: none;
-                border-bottom: 1px solid #000000;
-                padding: 15px 20px;
-            }
-            
-            .years-list, .projects-list {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 20px;
-            }
-            
-            .years-list li, .projects-list li {
-                margin-bottom: 0;
-            }
-            
-            .content-column {
-                padding: 20px;
-            }
-            
-            .project-content img {
-                max-width: 100%;
-            }
-            
-            a {
-                padding: 8px 0;
-                font-size: 18px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bronte Dow</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #A4CB9E;
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+}
+
+/* Columns (wider, no borders) */
+.years-column {
+    flex: 0 0 150px;
+    padding: 20px 15px 20px 30px;
+}
+
+.projects-column {
+    flex: 0 0 220px;
+    padding: 20px 30px 20px 20px;
+}
+
+.content-column {
+    flex: 1;
+    padding: 20px 40px;
+}
+
+.content-wrapper {
+    max-width: 700px;
+}
+
+/* Lists */
+ul {
+    list-style: none;
+}
+
+li {
+    margin-bottom: 8px;
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+/* Links */
+a {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a.active-link {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Project visibility */
+.projects-list {
+    display: none;
+}
+
+.projects-list.active {
+    display: block;
+}
+
+.project-content {
+    display: none;
+}
+
+.project-content.active {
+    display: block;
+}
+
+/* Content */
+.project-content img {
+    max-width: 95%;
+    height: auto;
+    border: 1px solid #333;
+    margin-bottom: 20px;
+}
+
+.project-content p {
+    max-width: 95%;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.external-link a {
+    text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+    padding: 12px 30px;
+}
+
+/* MOBILE — same behaviour as desktop */
+@media (max-width: 768px) {
+
+    .container {
+        flex-direction: column;
+    }
+
+    .years-column,
+    .projects-column {
+        width: 100%;
+        padding: 15px 20px;
+    }
+
+    /* years always visible */
+    .years-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    /* projects still controlled by JS */
+    .projects-list {
+        display: none;
+    }
+
+    .projects-list.active {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    li {
+        margin-bottom: 0;
+    }
+
+    .content-column {
+        padding: 20px;
+    }
+
+    .project-content img {
+        max-width: 100%;
+    }
+
+    a {
+        font-size: 18px;
+        padding: 6px 0;
+    }
+}
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <!-- COLUMN 1: YEARS -->
-        <div class="years-column">
-            <ul class="years-list">
-                <li><a href="#" onclick="showProjects('2024-present', event)" id="link-2024-present">2024–present</a></li>
-                <li><a href="#" onclick="showProjects('2020', event)" id="link-2020">2020</a></li>
-                <li><a href="#" onclick="showProjects('2019', event)" id="link-2019">2019</a></li>
-                <li><a href="#" onclick="showProjects('2018', event)" id="link-2018">2018</a></li>
-            </ul>
-        </div>
-        
-        <!-- COLUMN 2: PROJECTS -->
-        <div class="projects-column" id="projects-column">
-            <!-- 2024-present projects -->
-            <ul class="projects-list" id="projects-2024-present">
-                <li><a href="#" onclick="showProject('weathergirl', event)" id="link-weathergirl">Weathergirl</a></li>
-            </ul>
-            
-            <!-- 2020 projects -->
-            <ul class="projects-list" id="projects-2020">
-                <li><a href="#" onclick="showProject('dreams', event)" id="link-dreams">Dreams</a></li>
-                <li><a href="#" onclick="showProject('dryspell', event)" id="link-dryspell">Dry Spell</a></li>
-            </ul>
-            
-            <!-- 2019 projects -->
-            <ul class="projects-list" id="projects-2019">
-                <li><a href="#" onclick="showProject('bathynomus', event)" id="link-bathynomus">Bathynomus</a></li>
-            </ul>
-            
-            <!-- 2018 projects -->
-            <ul class="projects-list" id="projects-2018">
-                <li><a href="#" onclick="showProject('mothers', event)" id="link-mothers">Mothers</a></li>
-            </ul>
-        </div>
-        
-        <!-- CONTENT AREA -->
-        <div class="content-column">
-            <div class="content-wrapper">
-                <!-- Weathergirl content -->
-                <div id="weathergirl-content" class="project-content">
-                    <div class="project-content-inner">
-                        <img src="Photo Aug 10 2024.jpg" alt="Weathergirl">
-                        <p>Since 2024 I have co-organised an itinerant screening series with Freya Field-Donovan dedicated to showcasing funny, sad, and perverse artist's moving image.</p>
-                        <div class="line-break"></div>
-                        <p class="external-link"><a href="https://weathergirlevents.wordpress.com/" target="_blank">https://weathergirlevents.wordpress.com/</a></p>
-                        <p class="external-link"><a href="https://www.instagram.com/weathergirl.5" target="_blank">https://www.instagram.com/weathergirl.5</a></p>
-                    </div>
-                </div>
-                
-                <!-- Dreams content -->
-                <div id="dreams-content" class="project-content">
-                    <div class="project-content-inner">
-                        <a href="https://vimeo.com/brontedow/dreams" target="_blank">
-                            <img src="7.jpg" alt="Dreams">
-                        </a>
-                        <p>An assemblage or self-portrait using original and found footage. <br><br>Digital video, 9 min.</p>
-                    </div>
-                </div>
-                
-                <!-- Dry Spell content -->
-                <div id="dryspell-content" class="project-content">
-                    <div class="project-content-inner">
-                        <img src="Photo Mar 25 2023.jpg" alt="Dry Spell">
-                        <p>A radio version of a short story about life in an almost waterless Sydney by author and historian Marjorie Barnard. <br><br>Digital sound, 20 min.</p>
-                    </div>
-                </div>
-                
-                <!-- Bathynomus content -->
-                <div id="bathynomus-content" class="project-content">
-                    <div class="project-content-inner">
-                        <a href="https://vimeo.com/brontedow/bathynomus?share=copy&fl=sv&fe=ci" target="_blank">
-                            <img src="11.jpg" alt="Bathynomus">
-                        </a>
-                        <p>A love story between a marine biologist and a deep sea fish specimen unfolds in a song performed by Florence Warner. <br><br>Digital video, 3 min.</p>
-                    </div>
-                </div>
-                
-                <!-- Mothers content -->
-                <div id="mothers-content" class="project-content">
-                    <div class="project-content-inner">
-                        <a href="https://turf-projects.com/project/mothers/" target="_blank">
-                            <img src="Mothers Turf Projects (1).jpg" alt="Mothers at TURF Projects">
-                        </a>
-                        <p>An exhibition presenting collaborations between practicing artists and their mothers.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- FOOTER -->
-    <div class="footer">
-        <a href="mailto:dowbronte@gmail.com">dowbronte@gmail.com</a>
+
+<div class="container">
+
+    <!-- YEARS -->
+    <div class="years-column">
+        <ul class="years-list">
+            <li><a onclick="showProjects('2024-present')" id="link-2024-present">2024–present</a></li>
+            <li><a onclick="showProjects('2020')" id="link-2020">2020</a></li>
+            <li><a onclick="showProjects('2019')" id="link-2019">2019</a></li>
+            <li><a onclick="showProjects('2018')" id="link-2018">2018</a></li>
+        </ul>
     </div>
 
-    <script>
-        function showProjects(yearId, event) {
-            if (event) {
-                event.preventDefault();
-            }
-            
-            // Update year links
-            document.querySelectorAll('.years-list a').forEach(link => {
-                link.classList.remove('active-link');
-            });
-            document.getElementById('link-' + yearId).classList.add('active-link');
-            
-            // Clear project active states
-            document.querySelectorAll('.projects-list a').forEach(link => {
-                link.classList.remove('active-link');
-            });
-            
-            // Hide all project lists
-            document.querySelectorAll('.projects-list').forEach(list => {
-                list.classList.remove('active');
-            });
-            
-            // Show selected project list
-            var selectedProjects = document.getElementById('projects-' + yearId);
-            if (selectedProjects) {
-                selectedProjects.classList.add('active');
-            }
-            
-            // Hide all content
-            document.querySelectorAll('.project-content').forEach(content => {
-                content.classList.remove('active');
-            });
-        }
-        
-        function showProject(projectId, event) {
-            if (event) {
-                event.preventDefault();
-            }
-            
-            // Update project links
-            document.querySelectorAll('.projects-list a').forEach(link => {
-                link.classList.remove('active-link');
-            });
-            document.getElementById('link-' + projectId).classList.add('active-link');
-            
-            // Hide all content
-            document.querySelectorAll('.project-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            // Show selected content
-            var selectedContent = document.getElementById(projectId + '-content');
-            if (selectedContent) {
-                selectedContent.classList.add('active');
-            }
-        }
-        
-        // Show Dreams by default
-        window.onload = function() {
-            showProjects('2020', null);
-            setTimeout(() => {
-                document.getElementById('link-dreams').classList.add('active-link');
-                document.getElementById('dreams-content').classList.add('active');
-            }, 100);
-        };
-    </script>
+    <!-- PROJECTS -->
+    <div class="projects-column">
+
+        <ul class="projects-list" id="projects-2024-present">
+            <li><a onclick="showProject('weathergirl')" id="link-weathergirl">Weathergirl</a></li>
+        </ul>
+
+        <ul class="projects-list" id="projects-2020">
+            <li><a onclick="showProject('dreams')" id="link-dreams">Dreams</a></li>
+            <li><a onclick="showProject('dryspell')" id="link-dryspell">Dry Spell</a></li>
+        </ul>
+
+        <ul class="projects-list" id="projects-2019">
+            <li><a onclick="showProject('bathynomus')" id="link-bathynomus">Bathynomus</a></li>
+        </ul>
+
+        <ul class="projects-list" id="projects-2018">
+            <li><a onclick="showProject('mothers')" id="link-mothers">Mothers</a></li>
+        </ul>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content-column">
+        <div class="content-wrapper">
+
+            <div id="weathergirl-content" class="project-content">
+                <img src="Photo Aug 10 2024.jpg">
+                <p>Since 2024 I have co-organised an itinerant screening series with Freya Field-Donovan dedicated to showcasing funny, sad, and perverse artist's moving image.</p>
+                <p class="external-link">
+                    <a href="https://weathergirlevents.wordpress.com/" target="_blank">website</a><br>
+                    <a href="https://www.instagram.com/weathergirl.5" target="_blank">instagram</a>
+                </p>
+            </div>
+
+            <div id="dreams-content" class="project-content">
+                <a href="https://vimeo.com/brontedow/dreams" target="_blank">
+                    <img src="7.jpg">
+                </a>
+                <p>An assemblage or self-portrait using original and found footage.<br><br>Digital video, 9 min.</p>
+            </div>
+
+            <div id="dryspell-content" class="project-content">
+                <img src="Photo Mar 25 2023.jpg">
+                <p>A radio version of a short story about life in an almost waterless Sydney.<br><br>Digital sound, 20 min.</p>
+            </div>
+
+            <div id="bathynomus-content" class="project-content">
+                <a href="https://vimeo.com/brontedow/bathynomus" target="_blank">
+                    <img src="11.jpg">
+                </a>
+                <p>A love story between a marine biologist and a deep sea specimen.<br><br>Digital video, 3 min.</p>
+            </div>
+
+            <div id="mothers-content" class="project-content">
+                <a href="https://turf-projects.com/project/mothers/" target="_blank">
+                    <img src="Mothers Turf Projects (1).jpg">
+                </a>
+                <p>An exhibition presenting collaborations between artists and their mothers.</p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    <a href="mailto:dowbronte@gmail.com">dowbronte@gmail.com</a>
+</div>
+
+<script>
+function showProjects(yearId) {
+
+    document.querySelectorAll('.years-list a')
+        .forEach(a => a.classList.remove('active-link'));
+
+    document.getElementById('link-' + yearId)
+        .classList.add('active-link');
+
+    document.querySelectorAll('.projects-list')
+        .forEach(list => list.classList.remove('active'));
+
+    document.getElementById('projects-' + yearId)
+        .classList.add('active');
+
+    document.querySelectorAll('.project-content')
+        .forEach(c => c.classList.remove('active'));
+}
+
+function showProject(projectId) {
+
+    document.querySelectorAll('.projects-list a')
+        .forEach(a => a.classList.remove('active-link'));
+
+    document.getElementById('link-' + projectId)
+        .classList.add('active-link');
+
+    document.querySelectorAll('.project-content')
+        .forEach(c => c.classList.remove('active'));
+
+    document.getElementById(projectId + '-content')
+        .classList.add('active');
+}
+
+/* default state */
+window.onload = () => {
+    showProjects('2020');
+    showProject('dreams');
+};
+</script>
+
 </body>
 </html>
