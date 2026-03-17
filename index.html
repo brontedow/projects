@@ -61,7 +61,7 @@
             width: 100%;
         }
         
-        /* Project content */
+        /* Project content - FIXED ALIGNMENT ONLY */
         .project-content {
             width: 100%;
             display: none;
@@ -73,27 +73,22 @@
         
         .project-content-inner {
             width: 100%;
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            gap: 20px;
         }
         
         .project-content img {
-            width: 200px;
+            max-width: 95%;
             height: auto;
             border: 1px solid #333;
+            margin-bottom: 20px;
             display: block;
-            flex-shrink: 0;
+            margin-left: 0;
+            vertical-align: top;
         }
         
         .project-content-inner a {
-            display: block;
+            display: inline-block;
             text-decoration: none;
-        }
-        
-        .text-block {
-            flex: 1;
+            line-height: 0;
         }
         
         .project-content p {
@@ -103,11 +98,14 @@
             text-align: left;
             margin-bottom: 10px;
             font-weight: normal;
+            max-width: 95%;
         }
         
         .project-content .external-link a {
             color: #000000;
             text-decoration: underline;
+            display: inline;
+            line-height: normal;
         }
         
         .line-break {
@@ -167,7 +165,7 @@
             font-size: 15px;
         }
         
-        /* Mobile adjustments - with proper click-through */
+        /* Mobile adjustments - keep existing mobile layout */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -187,30 +185,15 @@
                 border-right: none;
                 border-bottom: 1px solid #000000;
                 padding: 15px 20px;
-                display: none; /* Hidden by default */
             }
             
-            .projects-column.active {
-                display: block;
-            }
-            
-            .years-list {
+            .years-list, .projects-list {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 20px;
             }
             
-            .years-list li {
-                margin-bottom: 0;
-            }
-            
-            .projects-list {
-                display: flex !important;
-                flex-wrap: wrap;
-                gap: 20px;
-            }
-            
-            .projects-list li {
+            .years-list li, .projects-list li {
                 margin-bottom: 0;
             }
             
@@ -218,12 +201,7 @@
                 padding: 20px;
             }
             
-            .project-content-inner {
-                flex-direction: column;
-            }
-            
             .project-content img {
-                width: 100%;
                 max-width: 100%;
             }
             
@@ -277,12 +255,10 @@
                 <div id="weathergirl-content" class="project-content">
                     <div class="project-content-inner">
                         <img src="Photo Aug 10 2024.jpg" alt="Weathergirl">
-                        <div class="text-block">
-                            <p>Since 2024 I have co-organised an itinerant screening series with Freya Field-Donovan dedicated to showcasing funny, sad, and perverse artist's moving image.</p>
-                            <div class="line-break"></div>
-                            <p class="external-link"><a href="https://weathergirlevents.wordpress.com/" target="_blank">https://weathergirlevents.wordpress.com/</a></p>
-                            <p class="external-link"><a href="https://www.instagram.com/weathergirl.5" target="_blank">https://www.instagram.com/weathergirl.5</a></p>
-                        </div>
+                        <p>Since 2024 I have co-organised an itinerant screening series with Freya Field-Donovan dedicated to showcasing funny, sad, and perverse artist's moving image.</p>
+                        <div class="line-break"></div>
+                        <p class="external-link"><a href="https://weathergirlevents.wordpress.com/" target="_blank">https://weathergirlevents.wordpress.com/</a></p>
+                        <p class="external-link"><a href="https://www.instagram.com/weathergirl.5" target="_blank">https://www.instagram.com/weathergirl.5</a></p>
                     </div>
                 </div>
                 
@@ -292,9 +268,7 @@
                         <a href="https://vimeo.com/brontedow/dreams" target="_blank">
                             <img src="7.jpg" alt="Dreams">
                         </a>
-                        <div class="text-block">
-                            <p>An assemblage or self-portrait using original and found footage. <br><br>Digital video, 9 min.</p>
-                        </div>
+                        <p>An assemblage or self-portrait using original and found footage. <br><br>Digital video, 9 min.</p>
                     </div>
                 </div>
                 
@@ -302,9 +276,7 @@
                 <div id="dryspell-content" class="project-content">
                     <div class="project-content-inner">
                         <img src="Photo Mar 25 2023.jpg" alt="Dry Spell">
-                        <div class="text-block">
-                            <p>A radio version of a short story about life in an almost waterless Sydney by author and historian Marjorie Barnard. <br><br>Digital sound, 20 min.</p>
-                        </div>
+                        <p>A radio version of a short story about life in an almost waterless Sydney by author and historian Marjorie Barnard. <br><br>Digital sound, 20 min.</p>
                     </div>
                 </div>
                 
@@ -314,9 +286,7 @@
                         <a href="https://vimeo.com/brontedow/bathynomus?share=copy&fl=sv&fe=ci" target="_blank">
                             <img src="11.jpg" alt="Bathynomus">
                         </a>
-                        <div class="text-block">
-                            <p>A love story between a marine biologist and a deep sea fish specimen unfolds in a song performed by Florence Warner. <br><br>Digital video, 3 min.</p>
-                        </div>
+                        <p>A love story between a marine biologist and a deep sea fish specimen unfolds in a song performed by Florence Warner. <br><br>Digital video, 3 min.</p>
                     </div>
                 </div>
                 
@@ -326,9 +296,7 @@
                         <a href="https://turf-projects.com/project/mothers/" target="_blank">
                             <img src="Mothers Turf Projects (1).jpg" alt="Mothers at TURF Projects">
                         </a>
-                        <div class="text-block">
-                            <p>An exhibition presenting collaborations between practicing artists and their mothers.</p>
-                        </div>
+                        <p>An exhibition presenting collaborations between practicing artists and their mothers.</p>
                     </div>
                 </div>
             </div>
@@ -372,11 +340,6 @@
             document.querySelectorAll('.project-content').forEach(content => {
                 content.classList.remove('active');
             });
-            
-            // On mobile, show projects column
-            if (window.innerWidth <= 768) {
-                document.getElementById('projects-column').classList.add('active');
-            }
         }
         
         function showProject(projectId, event) {
@@ -412,4 +375,4 @@
         };
     </script>
 </body>
-</html
+</html>
